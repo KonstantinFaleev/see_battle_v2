@@ -5,6 +5,7 @@
   You may try it in your browser now!
 </p>
 <%= form_for(:session, url: '#') do |f| %>
+    <%#= render 'shared/error_messages' %>
 
     <%= f.label :email %>
     <%= f.text_field :email %>
