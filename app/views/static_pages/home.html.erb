@@ -1,11 +1,11 @@
+<%= provide(:title, 'Home') %>
 <h1>Sea Battle</h1>
 <p>
   Welcome to the Sea Battle app.
   Do you remember the all well-known old game for which you only need a pen, paper, and of course, the opponent?
   You may try it in your browser now!
 </p>
-<%= form_for(:session, url: '#') do |f| %>
-    <%#= render 'shared/error_messages' %>
+<%= form_for(:session, url: sessions_path) do |f| %>
 
     <%= f.label :email %>
     <%= f.text_field :email %>

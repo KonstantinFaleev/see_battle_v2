@@ -11,6 +11,7 @@ class PlayersController < ApplicationController
   def create
     @player = Player.new(p_params)
     if @player.save
+      sign_in @player
       flash[:success] = "Smooth sailing!"
       redirect_to @player
     else
