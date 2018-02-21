@@ -1,4 +1,8 @@
-<%= provide(:title, "#{@player.name} profile") %>
-<p>Name: <%= @player.name %>     </p>
-<p>Email: <%= @player.email %>   </p>
-<p>Rating: <%= @player.rating %> </p>
+<%= provide(:title, "#{@player.name}") %>
+<% if current_player == @player %>
+    <h1>My profile</h1>
+<% else %>
+    <h1><%= @player.name %> profile</h1>
+<% end %>
+<p>Name: <%= @player.name %> </p>
+<p>Rating: <%= @player.rating %> pts. </p>

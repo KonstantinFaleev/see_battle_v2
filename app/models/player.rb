@@ -1,5 +1,6 @@
-class Player < ApplicationRecord::Base
+class Player < ActiveRecord::Base
   has_secure_password
+  default_scope -> { order('rating DESC') }
   before_save { self.email = email.downcase }
   before_create :create_remember_token
 

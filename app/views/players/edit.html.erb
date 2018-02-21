@@ -1,0 +1,14 @@
+<% provide(:title, "Edit profile") %>
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@player) do |f| %>
+
+        <%= render 'fields', f: f %>
+
+        <%= f.submit "Update", class: 'Button' %>
+    <% end %>
+
+  </div>
+</div>

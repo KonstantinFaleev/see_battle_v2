@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221121055) do
+ActiveRecord::Schema.define(version: 20180221174811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20180221121055) do
     t.string "password_digest"
     t.integer "rating", default: 100
     t.string "remember_token"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_players_on_email", unique: true
     t.index ["remember_token"], name: "index_players_on_remember_token"
   end
