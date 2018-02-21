@@ -13,7 +13,7 @@ class Move < ActiveRecord::Base
   # * game = the game that wants to add this move to itself
   # === Example
   def move_available?(game)
-    return Move.where(:conditions => ["game_id = ? and x_axis = ? and y_axis = ?", game, self.x_axis, self.y_axis]).all.empty?
+    return Move.where(:conditions => ["game_id = ? and player = ? and x_axis = ? and y_axis = ?", game, self.x_axis, self.y_axis]).all.empty?
   end
 
   # ******************************
@@ -25,8 +25,8 @@ class Move < ActiveRecord::Base
   end
 
   def move_ok?
-    #items = Move.find(:all, :conditions => ["game_id = ? and x_axis = ? and y_axis = ?", self.game, self.x_axis, self.y_axis])
-    items = Move.where(:conditions => ["game_id = ? and x_axis = ? and y_axis = ?", self.game, self.x_axis, self.y_axis]).all
+    items = Move.where(:conditions => ["game_id = ? and player = ? and x_axis = ? and y_axis = ?", self.game, self.x_axis, self.y_axis]).all
+
     return true if items.empty? or (items[0] == self) else return false
   end
 end

@@ -145,7 +145,7 @@ class Game < ActiveRecord::Base
     # check if move alreay played
     if move.move_available?(self) then
       self.moves << move
-      if player_b_board(getCell(x, y)) == 1
+      if self.player_b_board[x, y] == 1
         #ship is hit, do smth here
       else
         #miss, do smth here
