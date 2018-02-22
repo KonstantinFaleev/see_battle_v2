@@ -6,3 +6,4 @@
 <% end %>
 <p>Name: <%= @player.name %> </p>
 <p>Rating: <%= @player.rating %> pts. </p>
+<%= button_to "Play new game", games_path, class: "Button", :method => :post %>

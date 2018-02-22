@@ -1,25 +1,13 @@
 <%= provide(:title, 'Home') %>
-<%= button_to "Play new game", games_path, class: "Button", :method => :post %>
-<% unless signed_in? %>
-    <h1>Sea Battle</h1>
+
+<h1>Sea Battle</h1>
+<%# if signed_in? %>
+    <p style="text-align: center"> What's new? </p>
+<%# else %>
     <p>
       Welcome to the Sea Battle app.
       Do you remember the all well-known old game for which you only need a pen, paper, and of course, the opponent?
       You may try it in your browser now!
     </p>
-    <div class="row">
-      <div class="span6 offset3">
-        <%= form_for(:session, url: sessions_path) do |f| %>
-
-            <%= f.label :email %>
-            <%= f.text_field :email %>
-
-            <%= f.label :password %>
-            <%= f.password_field :password %>
-
-            <%= f.submit "Sign in", class: "Button" %>
-        <% end %>
-      </div>
-    </div>
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
-<% end %>
+    <p style="text-align: center">Please <%= link_to "Sign In", signin_path %> or <%= link_to "Sign Up.", signup_path %></p>
+<%# end %>
