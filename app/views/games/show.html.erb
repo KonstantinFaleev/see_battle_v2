@@ -1,0 +1,59 @@
+<%= provide(:title, "Game ##{@game.id}") %>
+
+
+<% if @game.game_over? %>
+    <center><h3><%= @game.play_status %></h3></center>
+<% else %>
+    <center><h3>Game in progress...</h3></center>
+<% end %>
+
+<table style="margin-left: auto; margin-right: auto; text-align: center">
+  <tr>
+    <td>
+      <table>
+        <th colspan='10'><%= @game.player_a.name %></th>
+        <% for i in 0..9 %>
+            <tr style="border: 1px dashed grey; height: 8px;">
+              <% for j in 0..9 %>
+                  <td style="border: 1px dashed grey; width: 15px;">
+                    <% if @game.player_a_board[i][j] == 0 %>
+                        <%= image_tag 'empty.png', :class => "style_img" %>
+                    <% elsif @game.player_a_board[i][j] == 1 %>
+                        <%= image_tag 'ship.png', :class => "style_img" %>
+                    <% elsif @game.player_a_board[i][j] == 3 %>
+                        <%= image_tag 'hit.png', :class => "style_img" %>
+                    <% else %>
+                        <%= image_tag 'miss.png', :class => "style_img" %>
+                    <% end %>
+                  </td>
+              <% end %>
+            </tr>
+        <% end %>
+      </table>
+    </td>
+    <td width="150"></td>
+    <td>
+      <table>
+        <th colspan='10'><%= @game.player_b.name %></th>
+        <% for i in 0..9 %>
+            <tr style="border: 1px dashed grey; height: 8px;">
+              <% for j in 0..9 %>
+                  <td style="border: 1px dashed grey; width: 15px;">
+                    <% if @game.player_b_board[i][j] == 0 || @game.player_b_board[i][j] == 1 %>
+                        <% cell = "#{j}_#{i}" %>
+                        <%= link_to "/move/#{@game.id}/cell=#{cell}" do %>
+                            <%= image_tag 'empty.png', :class => "style_img" %>
+                        <% end %>
+                    <% elsif @game.player_b_board[i][j] == 3 %>
+                        <%= image_tag 'hit.png', :class => "style_img" %>
+                    <% else %>
+                        <%= image_tag 'miss.png', :class => "style_img" %>
+                    <% end %>
+                  </td>
+              <% end %>
+            </tr>
+        <% end %>
+      </table>
+    </td>
+  </tr>
+</table>

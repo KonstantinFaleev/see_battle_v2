@@ -1,5 +1,5 @@
 <%= provide(:title, 'Home') %>
-<%= button_to "Play new game", '#', class: "Button", :method => :get %>
+<%= button_to "Play new game", games_path, class: "Button", :method => :post %>
 <% unless signed_in? %>
     <h1>Sea Battle</h1>
     <p>
