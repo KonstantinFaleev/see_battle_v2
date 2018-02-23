@@ -12,7 +12,6 @@ class Game < ActiveRecord::Base
   belongs_to :player_a, :foreign_key => 'player_a_id', :class_name => 'Player'
   belongs_to :player_b, :foreign_key => 'player_b_id', :class_name => 'Player'
   belongs_to :winner, :foreign_key => 'winner_id', :class_name => 'Player'
-  has_many :moves
 
   # Returns a new Game object with the associated players A and Bot
   def self.start_game(player_a, player_b)
@@ -21,6 +20,7 @@ class Game < ActiveRecord::Base
     g.player_b = player_b
     g.player_a_board = new_board
     g.player_b_board = new_board
+    g.game_log = "Game has started."
 
     g.save
 
@@ -105,18 +105,14 @@ class Game < ActiveRecord::Base
   # The do move method is intended to process player moves
   def do_move(x, y)
 
-    move = Move.new(:title => "Move by player: (#{x}, #{y})")
-    move.player = player_a
-    move.x_axis = x
-    move.y_axis = y
-
     # check if move alreay played
-    self.moves << move
     if self.player_b_board[x][y] == 1
       self.player_b_board[x][y] = 3
       self.player_b_ships -= 1
+      self.game_log = "#{self.player_a.name} shoots: #{y}:#{x} and hits the target!\n" + self.game_log
     else
       self.player_b_board[x][y] = 4
+      self.game_log = "#{self.player_a.name} shoots: #{y}:#{x} and misses.\n" + self.game_log
     end
 
     set_play_status player_a
@@ -128,6 +124,7 @@ class Game < ActiveRecord::Base
       # forced to use update_attributes explicitly?
       #self.winner = player
       self.update_attributes :winner => player
+      self.game_log = "Game is over. #{player.name} celebrates the victory."
 
       if self.winner == self.player_a then
         self.play_status = "You have won this game. Congratulations!"
@@ -148,24 +145,15 @@ class Game < ActiveRecord::Base
       y = rand(10)
     end
 
-    move = Move.new(:title => "Move by application: (#{x}, #{y})")
-    move.player = player_b
-    move.x_axis = x
-    move.y_axis = y
-
     if self.player_a_board[x][y] == 1
       self.player_a_board[x][y] = 3
       self.player_a_ships -= 1
+      self.game_log = "#{self.player_b.name} shoots: #{y}:#{x} and hits the target!\n" + self.game_log
     else
       self.player_a_board[x][y] = 4
+      self.game_log = "#{self.player_b.name} shoots: #{y}:#{x} and misses.\n" + self.game_log
     end
 
     set_play_status player_b
-  end
-
-  protected
-
-  def find_last_move
-    return Move.find(:first, :conditions => ['game_id = ?', self], :order => "id DESC")
   end
 end

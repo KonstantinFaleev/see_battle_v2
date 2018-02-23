@@ -28,16 +28,6 @@ ActiveRecord::Schema.define(version: 20180222101952) do
     t.string "play_status"
   end
 
-  create_table "moves", force: :cascade do |t|
-    t.string "title", limit: 100, null: false
-    t.integer "game_id", null: false
-    t.integer "player_id", null: false
-    t.integer "x_axis", null: false
-    t.integer "y_axis", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.string "email"

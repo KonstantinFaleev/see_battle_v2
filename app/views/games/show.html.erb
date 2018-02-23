@@ -2,9 +2,9 @@
 
 
 <% if @game.game_over? %>
-    <center><h3><%= @game.play_status %></h3></center>
+    <h3><%= @game.play_status %></h3>
 <% else %>
-    <center><h3>Game in progress...</h3></center>
+    <h3>Game in progress...</h3>
 <% end %>
 
 <table style="margin-left: auto; margin-right: auto; text-align: center">
@@ -57,3 +57,6 @@
     </td>
   </tr>
 </table>
+
+<h4>Game Log:</h4>
+<%= h(@game.game_log).gsub(/\n/, '<br/>').html_safe %>
