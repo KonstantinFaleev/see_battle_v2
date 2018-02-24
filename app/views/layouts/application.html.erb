@@ -9,14 +9,30 @@
   <%= render 'layouts/shim' %>
 </head>
 <body>
-  <%= render 'layouts/header' %>
+<%= render 'layouts/header' %>
 <div class="container">
-  <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "alert alert-#{key}") %>
-  <% end %>
-  <%= yield %>
-  <%= render 'layouts/footer' %>
-  <%= debug(params) if Rails.env.development? %>
+  <table class="main_container">
+    <tr>
+      <td class="left_sb">
+        Left SideBar
+      </td>
+      <td class="page_content">
+        <% flash.each do |key, value| %>
+            <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+        <% end %>
+        <%= yield %>
+      </td>
+      <td class="right_sb">
+        Right SideBar
+      </td>
+    </tr>
+    <tr>
+      <td colspan='3'>
+        <%= render 'layouts/footer' %>
+        <%= debug(params) if Rails.env.development? %>
+      </td>
+    </tr>
+  </table>
 </div>
 </body>
 </html>

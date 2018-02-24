@@ -39,7 +39,7 @@ class GamesController < ApplicationController
     x = rand(10)
     y = rand(10)
 
-    while self.player_a_board[x][y] == 3 || self.player_a_board[x][y] == 4
+    while @game.player_a_board[x][y] == 3 || @game.player_a_board[x][y] == 4
       x = rand(10)
       y = rand(10)
     end

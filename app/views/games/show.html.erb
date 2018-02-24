@@ -2,20 +2,23 @@
 
 
 <% if @game.game_over? %>
-    <h3><%= @game.play_status %></h3>
+    <center><h3><%= @game.play_status %></h3></center>
 <% else %>
-    <h3>Game in progress...</h3>
+    <center><h3>Game in progress...</h3></center>
 <% end %>
 
-<table style="margin-left: auto; margin-right: auto; text-align: center">
+<table class="board_container">
   <tr>
     <td>
       <table>
+        <thead>
         <th colspan='10'><%= @game.player_a.name %></th>
+        </thead>
+        <tbody>
         <% for i in 0..9 %>
-            <tr style="border: 1px dashed grey; height: 8px;">
+            <tr class="board">
               <% for j in 0..9 %>
-                  <td style="border: 1px dashed grey; width: 15px;">
+                  <td class="board">
                     <% if @game.player_a_board[i][j] == 0 %>
                         <%= image_tag 'empty.png', :class => "style_img" %>
                     <% elsif @game.player_a_board[i][j] == 1 %>
@@ -29,16 +32,20 @@
               <% end %>
             </tr>
         <% end %>
+        </tbody>
       </table>
     </td>
     <td width="150"></td>
     <td>
       <table>
+        <thead>
         <th colspan='10'><%= @game.player_b.name %></th>
+        </thead>
+        <tbody>
         <% for i in 0..9 %>
-            <tr style="border: 1px dashed grey; height: 8px;">
+            <tr class="board">
               <% for j in 0..9 %>
-                  <td style="border: 1px dashed grey; width: 15px;">
+                  <td class="board">
                     <% if @game.player_b_board[i][j] == 0 || @game.player_b_board[i][j] == 1 %>
                         <% cell = "#{i}_#{j}" %>
                         <%= link_to "/move/#{@game.id}/cell=#{cell}" do %>
@@ -53,10 +60,11 @@
               <% end %>
             </tr>
         <% end %>
+        </tbody>
       </table>
     </td>
   </tr>
 </table>
-
+<br>
 <h4>Game Log:</h4>
-<%= h(@game.game_log).gsub(/\n/, '<br/>').html_safe %>
+<%= text_area_tag(:message, "#{@game.game_log}", readonly: true, size: "24x6") %>
