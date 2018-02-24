@@ -12,21 +12,30 @@
     <td>
       <table>
         <thead>
-        <th colspan='10'><%= @game.player_a.name %></th>
+        <th colspan='11'><%= @game.player_a.name %></th>
         </thead>
         <tbody>
+        <tr>
+          <td>
+          </td>
+          <% ('A'..'J').each do |i| %>
+              <td>
+                <%= i %>
+              </td>
+          <% end %>
+        </tr>
         <% for i in 0..9 %>
-            <tr class="board">
+            <tr><td style="padding-right: 10px;"><%= i %></td>
               <% for j in 0..9 %>
                   <td class="board">
                     <% if @game.player_a_board[i][j] == 0 %>
-                        <%= image_tag 'empty.png', :class => "style_img" %>
+                        <%= image_tag 'empty.png' %>
                     <% elsif @game.player_a_board[i][j] == 1 %>
-                        <%= image_tag 'ship.png', :class => "style_img" %>
+                        <%= image_tag 'ship.png' %>
                     <% elsif @game.player_a_board[i][j] == 3 %>
-                        <%= image_tag 'hit.png', :class => "style_img" %>
+                        <%= image_tag 'hit.png' %>
                     <% else %>
-                        <%= image_tag 'miss.png', :class => "style_img" %>
+                        <%= image_tag 'miss.png' %>
                     <% end %>
                   </td>
               <% end %>
@@ -35,26 +44,35 @@
         </tbody>
       </table>
     </td>
-    <td width="150"></td>
+    <td style="width: 25%;"><%= image_tag 'transparent.png', :class => "style_img" %></td>
     <td>
       <table>
         <thead>
-        <th colspan='10'><%= @game.player_b.name %></th>
+        <th colspan='11'><%= @game.player_b.name %></th>
         </thead>
         <tbody>
+        <tr>
+          <td>
+          </td>
+          <% ('A'..'J').each do |i| %>
+              <td>
+                <%= i %>
+              </td>
+          <% end %>
+        </tr>
         <% for i in 0..9 %>
-            <tr class="board">
+            <tr><td style="padding-right: 10px;"><%= i %></td>
               <% for j in 0..9 %>
                   <td class="board">
                     <% if @game.player_b_board[i][j] == 0 || @game.player_b_board[i][j] == 1 %>
                         <% cell = "#{i}_#{j}" %>
                         <%= link_to "/move/#{@game.id}/cell=#{cell}" do %>
-                            <%= image_tag 'empty.png', :class => "style_img" %>
+                            <%= image_tag 'empty.png' %>
                         <% end %>
                     <% elsif @game.player_b_board[i][j] == 3 %>
-                        <%= image_tag 'hit.png', :class => "style_img" %>
+                        <%= image_tag 'hit.png' %>
                     <% else %>
-                        <%= image_tag 'miss.png', :class => "style_img" %>
+                        <%= image_tag 'miss.png' %>
                     <% end %>
                   </td>
               <% end %>

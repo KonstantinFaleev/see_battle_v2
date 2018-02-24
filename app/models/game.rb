@@ -1,7 +1,6 @@
 class Game < ActiveRecord::Base
   serialize(:player_a_board, Array)
   serialize(:player_b_board, Array)
-  attr_accessor :safe_gaurd_count
 
   validates :player_a_id, presence: true
   validates :player_b_id, presence: true
@@ -107,10 +106,10 @@ class Game < ActiveRecord::Base
     if self.player_b_board[x][y] == 1
       self.player_b_board[x][y] = 3
       self.player_b_ships -= 1
-      self.game_log = "#{self.player_a.name} shoots: #{y}:#{x} and hits the target!\n" + self.game_log
+      self.game_log = "#{self.player_a.name} shoots #{('A'..'J').to_a[y]}#{x} and hits the target!\n" + self.game_log
     else
       self.player_b_board[x][y] = 4
-      self.game_log = "#{self.player_a.name} shoots: #{y}:#{x} and misses.\n" + self.game_log
+      self.game_log = "#{self.player_a.name} shoots #{('A'..'J').to_a[y]}#{x} and misses.\n" + self.game_log
     end
 
     set_play_status player_a
@@ -122,7 +121,7 @@ class Game < ActiveRecord::Base
       # forced to use update_attributes explicitly?
       #self.winner = player
       self.update_attributes :winner => player
-      self.game_log = "Game is over. #{player.name} celebrates the victory."
+      self.game_log = "Game is over. #{player.name} celebrates the victory.\n" + self.game_log
 
       if self.winner == self.player_a then
         self.play_status = "You have won this game. Congratulations!"
@@ -139,10 +138,10 @@ class Game < ActiveRecord::Base
     if self.player_a_board[x][y] == 1
       self.player_a_board[x][y] = 3
       self.player_a_ships -= 1
-      self.game_log = "#{self.player_b.name} shoots: #{y}:#{x} and hits the target!\n" + self.game_log
+      self.game_log = "#{self.player_b.name} shoots #{('A'..'J').to_a[y]}#{x} and hits the target!\n" + self.game_log
     else
       self.player_a_board[x][y] = 4
-      self.game_log = "#{self.player_b.name} shoots: #{y}:#{x} and misses.\n" + self.game_log
+      self.game_log = "#{self.player_b.name} shoots #{('A'..'J').to_a[y]}#{x} and misses.\n" + self.game_log
     end
 
     set_play_status player_b
