@@ -1,5 +1,4 @@
 class GamesController < ApplicationController
-
   def show
     @game = Game.find(params[:id])
   end
@@ -27,8 +26,8 @@ class GamesController < ApplicationController
     # parse the x and y coordinates out of the string
     # format is x_y
     coordinates = cell.split('_')
-    y = coordinates[0].to_i;
-    x = coordinates[1].to_i;
+    x = coordinates[0].to_i;
+    y = coordinates[1].to_i;
 
     @game.do_move x, y
 
@@ -37,7 +36,15 @@ class GamesController < ApplicationController
 
   # creates the move by application by calling create_move method
   def do_move_by_application
-    @game.create_move
+    x = rand(10)
+    y = rand(10)
+
+    while self.player_a_board[x][y] == 3 || self.player_a_board[x][y] == 4
+      x = rand(10)
+      y = rand(10)
+    end
+
+    @game.create_move x, y
 
     @game.save
   end

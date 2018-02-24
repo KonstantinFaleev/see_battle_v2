@@ -40,7 +40,7 @@
               <% for j in 0..9 %>
                   <td style="border: 1px dashed grey; width: 15px;">
                     <% if @game.player_b_board[i][j] == 0 || @game.player_b_board[i][j] == 1 %>
-                        <% cell = "#{j}_#{i}" %>
+                        <% cell = "#{i}_#{j}" %>
                         <%= link_to "/move/#{@game.id}/cell=#{cell}" do %>
                             <%= image_tag 'empty.png', :class => "style_img" %>
                         <% end %>

@@ -1,5 +1,4 @@
 class Game < ActiveRecord::Base
-
   serialize(:player_a_board, Array)
   serialize(:player_b_board, Array)
   attr_accessor :safe_gaurd_count
@@ -105,7 +104,6 @@ class Game < ActiveRecord::Base
   # The do move method is intended to process player moves
   def do_move(x, y)
 
-    # check if move alreay played
     if self.player_b_board[x][y] == 1
       self.player_b_board[x][y] = 3
       self.player_b_ships -= 1
@@ -136,14 +134,7 @@ class Game < ActiveRecord::Base
 
   # Method that creates and returns application moves
   # Uses random numbers to determine what move to tr
-  def create_move
-    x = rand(10)
-    y = rand(10)
-
-    while self.player_a_board[x][y] == 3 || self.player_a_board[x][y] == 4
-      x = rand(10)
-      y = rand(10)
-    end
+  def create_move(x, y)
 
     if self.player_a_board[x][y] == 1
       self.player_a_board[x][y] = 3
