@@ -1,5 +1,6 @@
 class Player < ActiveRecord::Base
   has_secure_password
+
   default_scope -> { order('rating DESC') }
   before_save { self.email = email.downcase }
   before_create :create_remember_token
@@ -19,6 +20,14 @@ class Player < ActiveRecord::Base
 
   def Player.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end
   end
 
   private

@@ -4,7 +4,11 @@ class PlayersController < ApplicationController
   before_action :admin_account, only: :destroy
 
   def index
-    @players = Player.all
+    if params[:search]
+      @players = Player.search(params[:search])
+    else
+      @players = Player.paginate(page: params[:page])
+    end
   end
 
   def new
