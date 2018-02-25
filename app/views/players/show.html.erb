@@ -58,6 +58,13 @@
           </tr>
       <% end %>
       </tbody>
+      <tfoot>
+      <tr>
+        <td colspan='2' style="margin-left: auto; margin-right: auto; display: block;">
+          <%= will_paginate @games %>
+        </td>
+      </tr>
+      </tfoot>
     </table>
     <% if current_player == @player %>
         <%= button_to "Play new game", games_path, class: "Button", :method => :post %>

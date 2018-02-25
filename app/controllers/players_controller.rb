@@ -1,5 +1,4 @@
 class PlayersController < ApplicationController
-
   before_action :signed_in_player, only: [:index, :edit, :update]
   before_action :correct_player, only: [:edit, :update]
   before_action :admin_account, only: :destroy
@@ -12,12 +11,16 @@ class PlayersController < ApplicationController
     if  signed_in?
       redirect_to root_url
     end
+
     @player = Player.new
   end
 
   def show
     @player = Player.find(params[:id])
-    @games = Game.where(["player_a_id = ? or player_b_id = ?", @player.id, @player.id]).load.paginate(page: params[:page], :per_page => 10)
+    @games = Game.where(["player_a_id = ? or player_b_id = ?", @player.id, @player.id]).load.paginate(:page => params[:page], :per_page => 10)
+
+    # Game.find(:all, :conditions => ["winner_id = ?", self]).size
+    # Game.find(:all, :conditions => ["player_x_id = ? and is_tie_game = true", self]).size
   end
 
   def create

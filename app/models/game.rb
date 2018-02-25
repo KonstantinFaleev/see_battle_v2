@@ -13,6 +13,9 @@ class Game < ActiveRecord::Base
   belongs_to :player_b, :foreign_key => 'player_b_id', :class_name => 'Player'
   belongs_to :winner, :foreign_key => 'winner_id', :class_name => 'Player'
 
+  #to differ cases when ship is hit and player should move again
+  attr_accessor :move_again
+
   # Returns a new Game object with the associated players A and Bot
   def self.start_game(player_a, player_b)
     g = Game.new
@@ -21,6 +24,7 @@ class Game < ActiveRecord::Base
     g.player_a_board = new_board
     g.player_b_board = new_board
     g.game_log = "Game has started."
+    g.move_again = false
 
     g.save
 
@@ -103,18 +107,32 @@ class Game < ActiveRecord::Base
   end
 
   # The do move method is intended to process player moves
-  def do_move(x, y)
+  def do_move(player, x, y)
+    flag = self.player_a == player
 
-    if self.player_b_board[x][y] == 1
-      self.player_b_board[x][y] = 3
-      self.player_b_ships -= 1
-      self.game_log = "#{self.player_a.name} shoots #{('A'..'J').to_a[y]}#{x} and hits the target!\n" + self.game_log
+    board = flag ? self.player_b_board : self.player_a_board
+    ships = flag ? self.player_b_ships : self.player_a_ships
+
+    if board[x][y] == 1
+      board[x][y] = 3
+      ships -= 1
+      self.move_again = true
+      self.game_log = "#{player.name} shoots #{('A'..'J').to_a[y]}#{x} and hits the target!\n" + self.game_log
     else
-      self.player_b_board[x][y] = 4
-      self.game_log = "#{self.player_a.name} shoots #{('A'..'J').to_a[y]}#{x} and misses.\n" + self.game_log
+      board[x][y] = 4
+      self.move_again = false
+      self.game_log = "#{player.name} shoots #{('A'..'J').to_a[y]}#{x} and misses.\n" + self.game_log
     end
 
-    set_play_status player_a
+    if flag
+      self.player_b_board = board
+      self.player_b_ships = ships
+    else
+      self.player_a_board = board
+      self.player_a_ships = ships
+    end
+
+    set_play_status player
   end
 
   # Method that sets the play_status member
@@ -136,21 +154,5 @@ class Game < ActiveRecord::Base
       looser.update_attribute('rating', looser.rating - 50)
       player.update_attribute('rating', player.rating + 100)
     end
-  end
-
-  # Method that creates and returns application moves
-  # Uses random numbers to determine what move to tr
-  def create_move(x, y)
-
-    if self.player_a_board[x][y] == 1
-      self.player_a_board[x][y] = 3
-      self.player_a_ships -= 1
-      self.game_log = "#{self.player_b.name} shoots #{('A'..'J').to_a[y]}#{x} and hits the target!\n" + self.game_log
-    else
-      self.player_a_board[x][y] = 4
-      self.game_log = "#{self.player_b.name} shoots #{('A'..'J').to_a[y]}#{x} and misses.\n" + self.game_log
-    end
-
-    set_play_status player_b
   end
 end
