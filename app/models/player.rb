@@ -1,6 +1,5 @@
 class Player < ActiveRecord::Base
   has_secure_password
-  has_many :games, :foreign_key => 'player_a_id', :class_name => 'Game'
   default_scope -> { order('rating DESC') }
   before_save { self.email = email.downcase }
   before_create :create_remember_token

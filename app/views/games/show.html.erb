@@ -12,7 +12,10 @@
     <td>
       <table>
         <thead>
-        <th colspan='11'><%= @game.player_a.name %></th>
+        <th colspan='11'>
+          <%= link_to @game.player_a.name, @game.player_a %><br>
+          <small><%= @game.player_a.rating %> pts.</small>
+        </th>
         </thead>
         <tbody>
         <tr>
@@ -48,7 +51,10 @@
     <td>
       <table>
         <thead>
-        <th colspan='11'><%= @game.player_b.name %></th>
+        <th colspan='11'>
+          <%= link_to @game.player_b.name, @game.player_b %><br>
+          <small><%= @game.player_b.rating %> pts.</small>
+        </th>
         </thead>
         <tbody>
         <tr>

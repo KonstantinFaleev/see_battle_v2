@@ -4,6 +4,52 @@
 <% else %>
     <h1><%= @player.name %> profile</h1>
 <% end %>
-<p>Name: <%= @player.name %> </p>
-<p>Rating: <%= @player.rating %> pts. </p>
-<%= button_to "Play new game", games_path, class: "Button", :method => :post %>
+<div class="row">
+  <aside class="span3">
+    <section>
+      <p>Name: <%= @player.name %> </p>
+      <p>Rating: <%= @player.rating %> pts. </p>
+    </section>
+  </aside>
+  <div class="span5">
+    <% if current_player == @player %>
+        <%= button_to "Play new game", games_path, class: "Button", :method => :post %>
+    <% end %>
+    <table class="table table-hover">
+      <thead>
+      <th style="text-align: center;" colspan="2">Games list</th>
+      </thead>
+      <tbody>
+      <% if @games.any? %>
+          <% @games.each do |game| %>
+              <% if game.winner.nil? %>
+                  <% status = "In progress" %>
+                  <tr class="warning">
+              <% elsif game.winner.id == @player.id %>
+                  <% status = "Win" %>
+                  <tr class="success">
+              <% else %>
+                  <% status = "Lose" %>
+                  <tr class="error">
+              <% end %>
+              <td>
+                <%= link_to game do %>
+                    <%= game.player_a.name %> vs. <%= game.player_b.name %>.
+                <% end %>
+              </td>
+              <td>
+                <%= "#{status}" %>
+              </td>
+              </tr>
+          <% end %>
+      <% else %>
+          <tr class="info">
+            <td colspan="2">
+              No games so far.
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

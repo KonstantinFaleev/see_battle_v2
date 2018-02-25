@@ -1,4 +1,6 @@
 class Game < ActiveRecord::Base
+  default_scope -> { order('created_at DESC') }
+
   serialize(:player_a_board, Array)
   serialize(:player_b_board, Array)
 
