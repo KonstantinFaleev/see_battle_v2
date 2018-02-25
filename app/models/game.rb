@@ -121,13 +121,19 @@ class Game < ActiveRecord::Base
       # forced to use update_attributes explicitly?
       #self.winner = player
       self.update_attributes :winner => player
-      self.game_log = "Game is over. #{player.name} celebrates the victory.\n" + self.game_log
-
-      if self.winner == self.player_a then
+      if self.winner == self.player_a
         self.play_status = "You have won this game. Congratulations!"
+        looser = self.player_b
       else
         self.play_status = "You've lost to #{self.player_b.name}. Better luck next time!"
+        looser = self.player_a
       end
+
+      self.game_log = "Game is over. #{player.name} celebrates the victory.\n#{player.name}
+							 receives 100 pts.\n#{looser.name} loses 50 pts." + self.game_log
+
+      looser.rating -= 50;
+      player.rating += 100;
     end
   end
 

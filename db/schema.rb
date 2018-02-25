@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180222101952) do
+ActiveRecord::Schema.define(version: 20180222150549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20180222101952) do
     t.text "player_a_board"
     t.text "player_b_board"
     t.string "play_status"
+    t.text "game_log"
   end
 
   create_table "players", force: :cascade do |t|

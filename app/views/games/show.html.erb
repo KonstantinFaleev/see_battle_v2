@@ -29,13 +29,13 @@
               <% for j in 0..9 %>
                   <td class="board">
                     <% if @game.player_a_board[i][j] == 0 %>
-                        <%= image_tag 'empty.png' %>
+                        <%= image_tag '/empty.png' %>
                     <% elsif @game.player_a_board[i][j] == 1 %>
-                        <%= image_tag 'ship.png' %>
+                        <%= image_tag '/ship.png' %>
                     <% elsif @game.player_a_board[i][j] == 3 %>
-                        <%= image_tag 'hit.png' %>
+                        <%= image_tag '/hit.png' %>
                     <% else %>
-                        <%= image_tag 'miss.png' %>
+                        <%= image_tag '/miss.png' %>
                     <% end %>
                   </td>
               <% end %>
@@ -67,12 +67,12 @@
                     <% if @game.player_b_board[i][j] == 0 || @game.player_b_board[i][j] == 1 %>
                         <% cell = "#{i}_#{j}" %>
                         <%= link_to "/move/#{@game.id}/cell=#{cell}" do %>
-                            <%= image_tag 'empty.png' %>
+                            <%= image_tag '/empty.png' %>
                         <% end %>
                     <% elsif @game.player_b_board[i][j] == 3 %>
-                        <%= image_tag 'hit.png' %>
+                        <%= image_tag '/hit.png' %>
                     <% else %>
-                        <%= image_tag 'miss.png' %>
+                        <%= image_tag '/miss.png' %>
                     <% end %>
                   </td>
               <% end %>

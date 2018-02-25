@@ -1,6 +1,10 @@
 class GamesController < ApplicationController
   def show
-    @game = Game.find(params[:id])
+    if signed_in?
+      @game = Game.find(params[:id])
+    else
+      redirect_to signin_path, notice: "Please sign in."
+    end
   end
 
   def create
