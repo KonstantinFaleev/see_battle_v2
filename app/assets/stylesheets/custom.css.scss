@@ -189,6 +189,8 @@ input, textarea, select, .uneditable-input {
   width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 input {
@@ -299,6 +301,8 @@ textarea {
 .page_content {
   width: 70%;
   vertical-align: top;
+  align: center;
+  margin-left: 0px;
 }
 
 .right_sb {

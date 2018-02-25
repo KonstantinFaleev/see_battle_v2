@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       redirect_back_or player
     else
       flash.now[:error] = 'Invalid email/password combination'
-      render 'static_pages/home'
+      render 'new'
     end
   end
 

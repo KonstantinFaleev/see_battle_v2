@@ -12,16 +12,26 @@
                   My Account <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to "Profile", current_player %></li>
-                  <li><%= link_to "Settings", edit_player_path(current_player) %></li>
+                  <li>
+                    <%= link_to current_player do %>
+                        <i class="icon-user"></i> Profile
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to edit_player_path(current_player) do %>
+                        <i class="icon-wrench"></i> Settings
+                    <% end %>
+                  </li>
                   <li class="divider"></li>
                   <li>
-                    <%= link_to "Sign out", signout_path, method: "delete" %>
+                    <%= link_to signout_path, method: "delete" do %>
+                        <i class="icon-off"></i> Sign out
+                    <% end %>
                   </li>
                 </ul>
               </li>
           <% else %>
-              <li><%= link_to "Sign in", root_path %></li>
+              <li><%= link_to "Sign in", signin_path %></li>
           <% end %>
         </ul>
       </nav>

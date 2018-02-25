@@ -1,15 +1,13 @@
 <% provide(:title, 'Sign Up') %>
 <h1>Sign Up</h1>
 <div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@player) do |f| %>
+  <%= form_for(@player) do |f| %>
 
-        <%= render 'fields', f: f %>
+      <%= render 'fields', f: f %>
 
-        <%= f.submit "Register", class: "Button" %>
+      <%= f.submit "Register", class: "Button" %>
 
-    <% end %>
-  </div>
+  <% end %>
 </div>
 
 <p>Already a member? <%= link_to "Sign in.", signin_path %></p>
