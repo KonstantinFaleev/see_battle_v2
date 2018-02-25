@@ -131,11 +131,10 @@ class Game < ActiveRecord::Base
         looser = self.player_a
       end
 
-      self.game_log = "Game is over. #{player.name} celebrates the victory.\n#{player.name}
-							 receives 100 pts.\n#{looser.name} loses 50 pts." + self.game_log
+      self.game_log = "Game is over. #{player.name} celebrates the victory.\n#{player.name} receives 100 pts.\n#{looser.name} loses 50 pts.\n" + self.game_log
 
-      looser.rating -= 50;
-      player.rating += 100;
+      looser.update_attribute('rating', looser.rating - 50)
+      player.update_attribute('rating', player.rating + 100)
     end
   end
 
