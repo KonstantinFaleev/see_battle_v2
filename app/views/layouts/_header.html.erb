@@ -6,7 +6,7 @@
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
           <% if signed_in? %>
-              <li><%= link_to "Players", players_path %></li>
+              <li><%= link_to "Players", players_path, :rel => "external" %></li>
               <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   My Account <b class="caret"></b>

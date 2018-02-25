@@ -42,7 +42,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 2em;
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
@@ -251,17 +251,12 @@ label{
 
 /* Players index */
 
-.players {
-  width:50%;
-  margin-left:25%;
-  margin-right:25%;
-  margin-left:auto;
-  margin-right:auto;
-  overflow: auto;
-  padding: 10px 0;
-  text-align:left;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+.dataTables_filter{
+  width: 50%;
+}
+
+table#players tbody td {
+  height:10px;
 }
 
 /* Game specific */

@@ -60,3 +60,5 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'sprockets'
 gem 'rubocop', require: false
+gem 'jquery-datatables-rails', '~> 2.2.3'
+gem 'jquery-ui-rails'

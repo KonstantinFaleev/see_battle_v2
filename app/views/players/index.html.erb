@@ -1,16 +1,28 @@
 <% provide(:title, 'All players') %>
-
-<table class="players">
+<h1>All Players</h1>
+<table id="players" class="display">
+  <thead style="text-align: left;">
+  <th>#</th>
+  <th>Name</th>
+  <th>Rating</th>
+  <% if current_player.admin? %>
+      <th>Action</th>
+  <% end %>
+  </thead>
+  <tbody>
   <% i=0 %>
   <% @players.each do |player| %>
       <% i+=1 %>
       <tr>
         <td><%= "#{i}" %></td>
         <td><%= link_to player.name, player %></td>
-        <td><%= player.rating %> pts.</td>
+        <td><%= player.rating %></td>
         <% if current_player.admin? && !current_player?(player) %>
             <td><%= link_to "delete", player, method: :delete, data: { confirm: "Are you sure?" } %></td>
+        <% else %>
+            <td>&nbsp;</td>
         <% end %>
       </tr>
   <% end %>
+  </tbody>
 </table>
