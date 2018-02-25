@@ -251,6 +251,17 @@ label{
 
 /* Players index */
 
+.delete-link {
+  color:red;
+  &:hover {
+    color:red;
+  }
+}
+
+delete-link hover {
+  color:red;
+}
+
 .dataTables_filter{
   width: 50%;
 }
@@ -267,7 +278,7 @@ table#players tbody td {
 }
 
 .board {
-  border: 1px dashed grey
+  border: 1px solid grey
 }
 
 .board_container {

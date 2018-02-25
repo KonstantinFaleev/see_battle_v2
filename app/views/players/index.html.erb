@@ -5,9 +5,6 @@
   <th>#</th>
   <th>Name</th>
   <th>Rating</th>
-  <% if current_player.admin? %>
-      <th>Action</th>
-  <% end %>
   </thead>
   <tbody>
   <% i=0 %>
@@ -15,13 +12,13 @@
       <% i+=1 %>
       <tr>
         <td><%= "#{i}" %></td>
-        <td><%= link_to player.name, player %></td>
+        <td>
+          <%= link_to player.name, player %>
+          <% if current_player.admin? && !current_player?(player) %>
+              (<%= link_to "delete", player, method: :delete, data: { confirm: "Are you sure?" }, :class => "delete-link" %>)
+          <% end %>
+        </td>
         <td><%= player.rating %></td>
-        <% if current_player.admin? && !current_player?(player) %>
-            <td><%= link_to "delete", player, method: :delete, data: { confirm: "Are you sure?" } %></td>
-        <% else %>
-            <td>&nbsp;</td>
-        <% end %>
       </tr>
   <% end %>
   </tbody>

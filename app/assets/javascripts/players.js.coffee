@@ -5,15 +5,13 @@
 ready = ->
   $('#players').dataTable( {
     "iDisplayLength": 15,
-
     "order": [[ 2, "desc" ]]
     "bFilter": false,
     "bLengthChange": false,
     "columns": [
       {'bSortable': false, "width": "5%" },
       {},
-      {},
-      {'bSortable': false }
+      {}
     ]
   } );
 
