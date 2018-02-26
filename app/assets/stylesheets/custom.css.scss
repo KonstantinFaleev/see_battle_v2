@@ -24,7 +24,7 @@ table.main_container {
 }
 
 .left_sb {
-  width: 200px;
+  width: 150px;
   vertical-align: top;
   border-right: 1px solid grey;
   padding:5px;
@@ -39,7 +39,7 @@ table.main_container {
 }
 
 .right_sb {
-  width:200px;
+  width:150px;
   vertical-align: top;
   margin-right:0;
   border-left: 1px solid grey;
@@ -55,7 +55,6 @@ html {
 body {
   padding-top: 60px;
   background-image: image-url('background.jpg');
-  background-repeat: no-repeat;
   background-size: 100%;
 }
 

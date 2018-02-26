@@ -7,7 +7,7 @@ class PlayersController < ApplicationController
     if params[:search]
       @players = Player.search(params[:search])
     else
-      @players = Player.paginate(page: params[:page])
+      @players = Player.all
     end
   end
 

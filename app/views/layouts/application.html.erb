@@ -15,7 +15,7 @@
     <tbody>
     <tr>
       <td class="left_sb">
-        Left SideBar
+        <%= render 'layouts/left_sidebar' %>
       </td>
       <td class="page_content">
         <% flash.each do |key, value| %>
@@ -24,7 +24,7 @@
         <%= yield %>
       </td>
       <td class="right_sb">
-        Right SideBar
+        <%= render 'layouts/right_sidebar' %>
       </td>
     </tr>
     </tbody>

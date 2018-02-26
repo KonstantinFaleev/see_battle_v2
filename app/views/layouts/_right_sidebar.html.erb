@@ -1,0 +1,13 @@
+<h5>Now online:</h5>
+<ul>
+  <% online_players.each do |p| %>
+      <% if p.admin %>
+          <li style="font-style: italic; font-weight: bold;">
+      <% else %>
+          <li>
+      <% end %>
+      <%= link_to "#{p.name}", player_path(p) %>
+      </li>
+  <% end %>
+</ul>
+<hr>

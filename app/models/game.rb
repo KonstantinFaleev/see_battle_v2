@@ -44,7 +44,11 @@ class Game < ActiveRecord::Base
     return grid
   end
 
+  #randomly determines coordinates for a ship with the corresponding length
+  #if space is available places ship
+  #or calss itself recursively if ship cannot be placed
   def self.place_ship(grid, ship)
+    #ship direction
     dir = rand(2) #1 for horizontal, 0 for vertical
 
     if dir == 0

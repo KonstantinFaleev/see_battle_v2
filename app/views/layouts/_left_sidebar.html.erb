@@ -1,0 +1,15 @@
+<table class="table table-striped">
+  <thead>
+  <th>Best Players</th>
+  </thead>
+  <% i = 1 %>
+  <% top_players.each do |p| %>
+      <tr>
+        <td>
+          <%= i %>. <%= link_to "#{p.name}", player_path(p) %><br>
+          <small><strong><%= "#{p.rating}" %> pts.</strong></small>
+        </td>
+      </tr>
+      <% i += 1 %>
+  <% end %>
+</table>
