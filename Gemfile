@@ -63,3 +63,4 @@ gem 'rubocop', require: false
 gem 'jquery-datatables-rails', '~> 2.2.3'
 gem 'jquery-ui-rails'
 gem 'nokogiri'
+gem 'jquery'

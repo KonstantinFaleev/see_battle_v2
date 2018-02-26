@@ -5,7 +5,7 @@
     <h1><%= @player.name %> profile</h1>
 <% end %>
 <div class="row">
-  <aside class="span3">
+  <aside class="span4">
     <section>
       <table class="table">
         <thead >
@@ -21,8 +21,7 @@
       <% end %>
     </section>
   </aside>
-  <div class="span5">
-
+  <div class="span6">
     <table class="table table-hover">
       <thead>
       <th style="text-align: center;" colspan="2">Games list</th>
@@ -34,10 +33,10 @@
                   <% status = "In progress" %>
                   <tr class="warning">
               <% elsif game.winner.id == @player.id %>
-                  <% status = "Win" %>
+                  <% status = "Victory" %>
                   <tr class="success">
               <% else %>
-                  <% status = "Lose" %>
+                  <% status = "Defeat" %>
                   <tr class="error">
               <% end %>
               <td>

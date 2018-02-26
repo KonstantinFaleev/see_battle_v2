@@ -83,6 +83,7 @@ GEM
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    jquery (0.0.1)
     jquery-datatables-rails (2.2.3)
       jquery-rails
       sass-rails
@@ -218,6 +219,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   faker
   jbuilder (~> 2.5)
+  jquery
   jquery-datatables-rails (~> 2.2.3)
   jquery-ui-rails
   listen (>= 3.0.5, < 3.2)

@@ -10,8 +10,9 @@
 </head>
 <body>
 <%= render 'layouts/header' %>
-<div class="container">
+<div class="container-fluid">
   <table class="main_container">
+    <tbody>
     <tr>
       <td class="left_sb">
         Left SideBar
@@ -26,12 +27,15 @@
         Right SideBar
       </td>
     </tr>
+    </tbody>
+    <tfoot>
     <tr>
       <td colspan='3'>
         <%= render 'layouts/footer' %>
         <%= debug(params) if Rails.env.development? %>
       </td>
     </tr>
+    </tfoot>
   </table>
 </div>
 </body>
