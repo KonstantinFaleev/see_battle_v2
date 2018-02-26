@@ -19,7 +19,7 @@
       </td>
       <td class="page_content">
         <% flash.each do |key, value| %>
-            <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+            <%= content_tag(:div, value, class: "alert alert-#{key}", :style => "padding-left: 100px;") %>
         <% end %>
         <%= yield %>
       </td>

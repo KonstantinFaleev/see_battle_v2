@@ -99,6 +99,10 @@ h4 {
   text-align: center;
 }
 
+h5 {
+  padding-left: 8px;
+}
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -123,10 +127,21 @@ p {
   }
 }
 
-.logo{
-  width:35%;
-  height:35%;
+.navbar-text {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
+  background-color: white;
+}
 
+.logo{
+  position: absolute;
+}
+
+.login-button {
+  background: url(login.png);
 }
 
 /* footer */
@@ -247,6 +262,11 @@ input {
     list-style: none;
     margin: 0 0 18px 0;
   }
+}
+
+#notice {
+  padding-left: 100px;
+  margin: 50px;
 }
 
 .field_with_errors {

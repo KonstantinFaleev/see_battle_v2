@@ -1,0 +1,46 @@
+<table class="table table-hover">
+  <thead>
+  <th style="text-align: center;" colspan="2">Games list</th>
+  </thead>
+  <tbody>
+  <% if @games.any? %>
+      <% @games.each do |game| %>
+          <% if game.winner.nil? %>
+              <% status = "In progress" %>
+              <tr class="warning">
+          <% elsif game.winner.id == @player.id %>
+              <% status = "Victory" %>
+              <tr class="success">
+          <% else %>
+              <% status = "Defeat" %>
+              <tr class="error">
+          <% end %>
+          <td>
+            <%= link_to game do %>
+                <%= game.player_a.name %> vs. <%= game.player_b.name %>.
+            <% end %>
+          </td>
+          <td>
+            <%= "#{status}" %>
+          </td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr class="info">
+        <td colspan="2">
+          No games so far.
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan='2' style="margin-left: auto; margin-right: auto; display: block;">
+      <%= will_paginate @games %>
+    </td>
+  </tr>
+  </tfoot>
+</table>
+<% if current_player == @player %>
+    <%= button_to "Play new game", games_path, class: "Button", :method => :post %>
+<% end %>
