@@ -1,5 +1,5 @@
 @import "bootstrap";
-
+$blue: #3bbfce;
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
@@ -53,6 +53,9 @@ html {
 
 body {
   padding-top: 60px;
+  background-image: image-url('background.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 section {
@@ -123,8 +126,8 @@ p {
 /* footer */
 
 footer {
-  margin-top: 45px;
-  padding-top: 5px;
+  margin-top: 10px;
+  padding: 5px;
   border-top: 1px solid $grayMediumLight;
   color: #999;
   a {
@@ -195,7 +198,7 @@ aside {
     }
     &:hover {
       text-decoration: none;
-      color: #049cdb;
+      color: $blue;
     }
   }
   strong {
@@ -221,7 +224,7 @@ aside {
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  width: 100%;
+  width: 50%;
   margin-bottom: 15px;
   @include box_sizing;
   margin-right: auto;
@@ -293,7 +296,7 @@ label{
   }
 }
 
-delete-link hover {
+.delete-link hover {
   color:red;
 }
 
@@ -326,27 +329,4 @@ textarea {
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
-
-/* Application Layout */
-
-.main_container {
-  width: 100%;
-}
-
-.left_sb {
-  width: 15%;
-  vertical-align: top;
-}
-
-.page_content {
-  width: 70%;
-  vertical-align: top;
-  align: center;
-  margin-left: 0px;
-}
-
-.right_sb {
-  widht: 15%;
-  vertical-align: top;
 }
