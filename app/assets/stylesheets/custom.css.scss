@@ -15,6 +15,7 @@ $grayMediumLight: #eaeaea;
 table.main_container {
   background-color:#FFF;
   width:70%;
+  height:500px;
   margin-left:auto;
   margin-right:auto;
   table-layout:fixed;
@@ -121,6 +122,12 @@ p {
     color: white;
     text-decoration: none;
   }
+}
+
+.logo{
+  width:35%;
+  height:35%;
+
 }
 
 /* footer */

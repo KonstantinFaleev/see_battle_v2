@@ -1,7 +1,10 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
+  <%= favicon_link_tag 'favicon.ico' %>
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "logo place", root_path, id: "logo" %>
+      <%= link_to root_path, id: "logo" do %>
+          <%= image_tag 'index.png', :class => "logo" %>
+      <% end %>
       <nav>
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
