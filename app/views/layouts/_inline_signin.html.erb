@@ -3,7 +3,7 @@
       Signed in as <%= link_to "#{current_player.name}", player_path(current_player) %>.
       (<small><%= link_to 'sign out', signout_path, method: "delete" %></small>)
     </p>
-<% elsif full_title(yield(:title)) == 'Sea Battle | Sign in' %>
+<% elsif full_title(yield(:title)).include? 'Sign in' %>
     <!-- do nothing -->
 <% else %>
     <%= form_for(:session, url: sessions_path, :html => {:class => 'form-inline', :style => "padding-top: 5px; padding-bot: 0;"}) do |f| %>

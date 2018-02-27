@@ -22,9 +22,6 @@ class PlayersController < ApplicationController
   def show
     @player = Player.find(params[:id])
     @games = Game.where(["player_a_id = ? or player_b_id = ?", @player.id, @player.id]).load.paginate(:page => params[:page], :per_page => 10)
-
-    # Game.find(:all, :conditions => ["winner_id = ?", self]).size
-    # Game.find(:all, :conditions => ["player_x_id = ? and is_tie_game = true", self]).size
   end
 
   def create

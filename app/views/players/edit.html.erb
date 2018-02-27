@@ -2,8 +2,6 @@
 <h1>Update your profile</h1>
 
 <%= form_for(@player) do |f| %>
-
     <%= render 'fields', f: f %>
-
     <%= f.submit "Update", class: 'Button' %>
 <% end %>

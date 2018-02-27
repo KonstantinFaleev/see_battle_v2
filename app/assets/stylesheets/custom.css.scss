@@ -1,8 +1,14 @@
 @import "bootstrap";
-$blue: #3bbfce;
+
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
+$grayLight: #999;
+$grayDarker: #222;
+$grayLighter: #eee;
+$blue: #049cdb;
+
+
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -56,6 +62,7 @@ body {
   padding-top: 60px;
   background-image: image-url('background.jpg');
   background-size: 100%;
+  background-color: #5c5e50;
 }
 
 section {
@@ -92,7 +99,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #999;
+  color: $grayLight;
 }
 
 h4 {
@@ -141,7 +148,7 @@ p {
 }
 
 .login-button {
-  background: url(login.png);
+  background: url(logo.png);
 }
 
 /* footer */
@@ -150,11 +157,11 @@ footer {
   margin-top: 10px;
   padding: 5px;
   border-top: 1px solid $grayMediumLight;
-  color: #999;
+  color: $grayLight;
   a {
     color: $gray;
     &:hover {
-      color: #222;
+      color: $grayDarker;
     }
   }
   small {
@@ -186,7 +193,7 @@ footer {
 aside {
   section {
     padding: 10px 0;
-    border-top: 1px solid #eee;
+    border-top: 1px solid $grayLighter;
     &:first-child {
       border: 0;
       padding-top: 0;
@@ -211,7 +218,7 @@ aside {
   a {
     float: left;
     padding: 0 10px;
-    border-left: 1px solid #eee;
+    border-left: 1px solid $grayLighter;
     color: gray;
     &:first-child {
       padding-left: 0;
@@ -243,6 +250,10 @@ aside {
 
 /* forms */
 
+input {
+  height: auto !important;
+}
+
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 50%;
@@ -252,8 +263,18 @@ input, textarea, select, .uneditable-input {
   margin-left: auto;
 }
 
-input {
-  height: auto !important;
+label{
+  float:left;
+  clear: left;
+  width:30%;
+  padding-right:10px;
+  padding-top:5px;
+  text-align:right;
+  margin:0;
+  font-size:13px;
+  line-height:20px;
+  border-bottom:0;
+  overflow: hidden;
 }
 
 #error_explanation {
@@ -275,17 +296,6 @@ input {
 
 .control-group{
   margin-bottom:15px
-}
-
-label{
-  float:left;
-  width:30%;
-  padding:10px;
-  text-align:right;
-  margin:0;
-  font-size:13px;
-  line-height:20px;
-  border-bottom:0
 }
 
 .Button{

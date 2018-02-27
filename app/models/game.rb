@@ -122,7 +122,7 @@ class Game < ActiveRecord::Base
       ships -= 1
       self.move_again = true
       self.game_log = "#{player.name} shoots #{('A'..'J').to_a[y]}#{x} and hits the target!\n" + self.game_log
-    else
+    elsif board[x][y] == 0
       board[x][y] = 4
       self.move_again = false
       self.game_log = "#{player.name} shoots #{('A'..'J').to_a[y]}#{x} and misses.\n" + self.game_log
