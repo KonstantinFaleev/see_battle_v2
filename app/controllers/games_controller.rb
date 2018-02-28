@@ -18,12 +18,14 @@ class GamesController < ApplicationController
 
   def receive_move
     @game = Game.find_by_id(params[:id])
-    if(!@game.game_over?)
-      do_move_by_player params[:cell]
-      if(!@game.game_over? && !@game.move_again)
-        do_move_by_application
-        while(@game.move_again)
+    if current_player == @game.player_a
+      if(!@game.game_over?)
+        do_move_by_player params[:cell]
+        if(!@game.game_over? && !@game.move_again)
           do_move_by_application
+          while(@game.move_again)
+            do_move_by_application
+          end
         end
       end
     end
