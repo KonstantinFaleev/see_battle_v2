@@ -1,0 +1,24 @@
+<% if @game.game_over? %>
+    <center><h3><%= @game.play_status %></h3></center>
+<% else %>
+    <center><h3>Game in progress...</h3></center>
+<% end %>
+
+<table class="board_container">
+  <tr>
+    <td>
+      <div id="player_board">
+        <%= render 'player_board' %>
+      </div>
+    </td>
+    <td style="width: 25%;"><%= image_tag 'transparent.png', :class => "style_img" %></td>
+    <td>
+      <div id="bot_board">
+        <%= render 'bot_board' %>
+      </div>
+    </td>
+  </tr>
+</table>
+<br>
+<h4>Game Log:</h4>
+<%= text_area_tag(:message, "#{@game.game_log}", readonly: true, size: "24x6") %>

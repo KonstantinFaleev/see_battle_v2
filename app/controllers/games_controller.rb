@@ -14,6 +14,8 @@ class GamesController < ApplicationController
     redirect_to g
   end
 
+  respond_to :html, :js
+
   def receive_move
     @game = Game.find_by_id(params[:id])
     if(!@game.game_over?)
@@ -26,7 +28,10 @@ class GamesController < ApplicationController
       end
     end
 
-    redirect_to @game
+    respond_to do |format|
+      format.html { redirect_to @game }
+      format.js
+    end
   end
 
   def do_move_by_player(cell)

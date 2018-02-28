@@ -13,7 +13,7 @@ module GamesHelper
     elsif ua.include? "dolphin"
       false
     else
-      false
+      true
     end
   end
 end

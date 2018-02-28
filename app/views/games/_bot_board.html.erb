@@ -1,0 +1,41 @@
+<table>
+  <thead>
+  <th colspan='11'>
+    <%= link_to @game.player_b.name, @game.player_b %><br>
+    <small><%= @game.player_b.rating %> pts.</small>
+  </th>
+  </thead>
+  <tbody>
+  <tr>
+    <td></td>
+    <% ('A'..'J').each do |i| %>
+        <td><%= i %></td>
+    <% end %>
+  </tr>
+  <% for i in 0..9 %>
+      <tr>
+        <td style="padding-right: 10px;"><%= i %></td>
+        <% for j in 0..9 %>
+            <td class="board">
+              <% if @game.player_b_board[i][j] == 0 || @game.player_b_board[i][j] == 1 %>
+                  <% cell = "#{i}_#{j}" %>
+                  <% if !Rails.env.test? && !user_agent_ok? %>
+                      <%= link_to "/move/#{@game.id}/cell=#{cell}", :data => { disable_with: '' }, :remote => true do %>
+                          <%= image_tag '/empty.png' %>
+                      <% end %>
+                  <% else %>
+                      <%= link_to "/move/#{@game.id}/cell=#{cell}", :remote => true do %>
+                          <%= image_tag '/empty.png' %>
+                      <% end %>
+                  <% end %>
+              <% elsif @game.player_b_board[i][j] == 3 %>
+                  <%= image_tag '/hit.png' %>
+              <% else %>
+                  <%= image_tag '/miss.png' %>
+              <% end %>
+            </td>
+        <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

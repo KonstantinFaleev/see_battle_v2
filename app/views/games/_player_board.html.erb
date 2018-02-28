@@ -1,0 +1,34 @@
+<table>
+  <thead>
+  <th colspan='11'>
+    <%= link_to @game.player_a.name, @game.player_a %><br>
+    <small><%= @game.player_a.rating %> pts.</small>
+  </th>
+  </thead>
+  <tbody>
+  <tr>
+    <td></td>
+    <% ('A'..'J').each do |i| %>
+        <td><%= i %></td>
+    <% end %>
+  </tr>
+  <% for i in 0..9 %>
+      <tr>
+        <td style="padding-right: 10px;"><%= i %></td>
+        <% for j in 0..9 %>
+            <td class="board">
+              <% if @game.player_a_board[i][j] == 0 %>
+                  <%= image_tag '/empty.png' %>
+              <% elsif @game.player_a_board[i][j] == 1 %>
+                  <%= image_tag '/ship.png' %>
+              <% elsif @game.player_a_board[i][j] == 3 %>
+                  <%= image_tag '/hit.png' %>
+              <% else %>
+                  <%= image_tag '/miss.png' %>
+              <% end %>
+            </td>
+        <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
