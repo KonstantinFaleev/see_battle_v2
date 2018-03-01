@@ -10,4 +10,4 @@ Rails.application.routes.draw do
   match '/about', to: 'static_pages#about', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
-end
+ end
