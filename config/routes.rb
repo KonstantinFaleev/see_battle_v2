@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :players
-  resources :games, only: [:show,:create]
+  resources :games, only: [:show, :create]
   resources :sessions, only: [:new, :create, :destroy]
 
-  root  'static_pages#home'
+  root 'static_pages#home'
+  #get 'games', to: :show, controller: 'games'
   match '/signup', to: 'players#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
