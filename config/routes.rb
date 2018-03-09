@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   root 'static_pages#home'
-  #get 'games', to: :show, controller: 'games'
+  get 'games' => 'games#show'
+  #match '/games', to: 'games#show', via: 'get'
+  #get '/games/:id', to: 'games#show'
   match '/signup', to: 'players#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
