@@ -1,0 +1,15 @@
+<% @newsposts.each do |post| %>
+    <li id="<%= post.id %>">
+      <span class="title"><%= post.title %></span>
+      <span class="timestamp"><%= post.created_at.strftime("%d %b. %Y") %></span>
+      <% if current_player.admin? %>
+          <%= render 'shared/post_admin_buttons', post: post %>
+      <% end %>
+
+      <% if post.body.length > 256 %>
+          <span class="post-body"><%= post.body[0, 256] %>...<%= link_to "Read more.", post %></span>
+      <% else %>
+          <span class="post-body"><%= post.body %></span>
+      <% end %>
+    </li>
+<% end %>

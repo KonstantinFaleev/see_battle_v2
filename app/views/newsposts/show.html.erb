@@ -1,0 +1,12 @@
+<%= provide(:title, "#{@newspost.title}") %>
+<h1><%= @newspost.title %></h1>
+<p class="timestamp">
+  <%= @newspost.created_at.strftime("%d %b. %Y") %>
+</p>
+<p class="post-body">
+  <%= @newspost.body %>
+</p>
+
+<% if current_player.admin? %>
+    <%= render 'shared/post_admin_buttons', post: @newspost %>
+<% end %>

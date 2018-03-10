@@ -368,8 +368,38 @@ table#players tbody td {
   text-align: center;
 }
 
-textarea {
+.game-log {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* newsposts */
+
+.newsposts {
+  list-style: none;
+  margin: 10px 0 0 0;
+
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+.title {
+  font-size:20px;
+  padding-left:10px;
+}
+.post-body {
+  display: block;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: justify;
+}
+.timestamp {
+  color: $grayLight;
+  font-size:1em;
+  text-align:right;
+  padding-right:5px;
+  font-style: italic;
 }

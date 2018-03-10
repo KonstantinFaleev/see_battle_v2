@@ -2,7 +2,16 @@
 
 <h1>Sea Battle</h1>
 <% if signed_in? %>
-    <p style="text-align: center"> What's new? </p>
+    <p style="text-align: center;">What's new?</p>
+    <% if current_player.admin? %>
+        <%= link_to "Add new post", post_path, :class => "btn btn-inverse" %>
+    <% end %>
+    <% if @newsposts.any? %>
+        <ol class="newsposts">
+          <%= render "shared/newsposts" %>
+        </ol>
+        <%= will_paginate @newsposts %>
+    <% end %>
 <% else %>
     <p style="text-align: center">
       Welcome to the Sea Battle app.

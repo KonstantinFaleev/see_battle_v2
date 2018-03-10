@@ -1,0 +1,8 @@
+<% provide(:title, 'New post') %>
+<h1>New Post</h1>
+<div class="row">
+  <%= form_for(@newspost) do |f| %>
+      <%= render 'fields', f: f %>
+      <%= f.submit "Post", class: "Button" %>
+  <% end %>
+</div>

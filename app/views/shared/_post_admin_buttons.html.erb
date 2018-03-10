@@ -1,0 +1,6 @@
+<span style="display: inline-block; margin-right: 25px; margin-left: 15px; height: 23px;">
+	<%= button_to "Edit", edit_newspost_path(post), class: "btn btn-mini btn-warning", :style => "width: 50px;", :method => :get %>
+</span>
+<span style="display: inline-block; height: 23px;">
+	<%= link_to "Delete", post, method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-mini btn-danger" %>
+</span>

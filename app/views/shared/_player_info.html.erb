@@ -8,6 +8,13 @@
       Name: <%= @player.name %>
     </td>
   </tr>
+  <% if current_player == @player %>
+      <tr>
+        <td>
+          Email: <%= @player.email %>
+        </td>
+      </tr>
+  <% end %>
   <tr>
     <td>
       Rating: <%= @player.rating %> pts.

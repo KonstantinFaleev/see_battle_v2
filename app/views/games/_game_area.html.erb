@@ -1,5 +1,5 @@
 <% if @game.game_over? %>
-    <h4><%= @game.play_status %></h4>
+    <center><h3><%= @game.play_status %></h3></center>
 <% end %>
 
 <table class="board_container">
@@ -19,4 +19,4 @@
 </table>
 <br>
 <h4>Game Log:</h4>
-<%= text_area_tag(:message, "#{@game.game_log}", readonly: true, size: "24x6") %>
+<%= text_area_tag(:message, "#{@game.game_log}", readonly: true, size: "24x6", :class => "game-log") %>
