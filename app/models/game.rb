@@ -11,6 +11,7 @@ class Game < ActiveRecord::Base
 
   belongs_to :player_a, :foreign_key => 'player_a_id', :class_name => 'Player'
   belongs_to :player_b, :foreign_key => 'player_b_id', :class_name => 'Player'
+  belongs_to :looser, :foreign_key => 'looser_id', :class_name => 'Player'
   belongs_to :winner, :foreign_key => 'winner_id', :class_name => 'Player'
 
   #to differ cases when ship is hit and player should move again
@@ -147,15 +148,15 @@ class Game < ActiveRecord::Base
       self.update_attributes :winner => player
       if self.winner == self.player_a
         self.play_status = "You have won this game. Congratulations!"
-        looser = self.player_b
+        self.update_attributes :looser => player_b
       else
         self.play_status = "You've lost to #{self.player_b.name}. Better luck next time!"
-        looser = self.player_a
+        self.update_attributes :looser => player_a
       end
 
       self.game_log = "Game is over. #{player.name} celebrates the victory.\n#{player.name} receives 100 pts.\n#{looser.name} loses 50 pts.\n" + self.game_log
 
-      looser.update_attribute('rating', looser.rating - 50)
+      self.looser.update_attribute('rating', self.looser.rating - 50)
       player.update_attribute('rating', player.rating + 100)
     end
   end
