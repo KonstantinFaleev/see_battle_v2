@@ -10,7 +10,7 @@ class NewspostsController < ApplicationController
   end
 
   def show
-    @newspost = Newspost.find_by(params[:id])
+    @newspost = Newspost.find(params[:id])
   end
 
   def create
