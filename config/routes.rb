@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :newsposts
   resources :players
-  resources :boards, only: [:show, :create]
+  resources :boards, only: [:show, :create, :update]
   resources :games, only: [:show, :create]
   resources :sessions, only: [:new, :create, :destroy]
 
@@ -17,5 +17,5 @@ Rails.application.routes.draw do
 
   match '/attempt/:id/:cell/', to: 'boards#place_ship', via: 'get'
   match '/direction/:id', to: 'boards#change_ship_direction', via: 'get'
-  match '/saveboard/:id', to: 'boards#save_board', via: 'get'
+  match '/forget/:id', to: 'boards#forget_board', via: 'get'
 end

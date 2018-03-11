@@ -23,20 +23,18 @@ class Game < ActiveRecord::Base
     g = Game.new
     g.player_a = player_a
     g.player_b = player_b
-    if board.nil?
+    if board.nil? || !Board.find_by_id(board).is_ready?
       g.player_a_board = new_random_board
-    elsif !Board.find_by_id(board).is_ready?
-      g.player_a_board = new_random_board
-      Board.find_by_id(board).destroy
     else
       g.player_a_board = Board.find_by_id(board).grid
-      Board.find_by_id(board).destroy unless Board.find_by_id(board).isSaved
     end
     g.player_b_board = new_random_board
     g.game_log = "Game has started."
     g.move_again = false
 
     g.save
+
+    Board.where("player_id = ? AND isSaved = ?", player_a.id, false).delete_all
 
     return g
   end

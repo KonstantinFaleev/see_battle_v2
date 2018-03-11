@@ -9,9 +9,9 @@
     <section>
       <%= render "player_info" %>
     </section>
-    <% if current_player == @player && @player.boards.any? %>
+    <% if current_player == @player && @saved_boards.any? %>
         <section>
-          <%= render "saved_boards" %>
+          <%= render "saved_boards", boards: @saved_boards %>
         </section>
     <% end %>
   </aside>

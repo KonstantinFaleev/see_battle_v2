@@ -5,6 +5,7 @@ class Board < ActiveRecord::Base
 
   belongs_to :player
   validates :player_id, presence: true
+  validates :title, presence: true
 
   def is_ready?
     available_ships.empty?
@@ -106,14 +107,6 @@ class Board < ActiveRecord::Base
           end
         end
       end
-    end
-  end
-
-  def save_board
-    if self.isSaved
-      self.isSaved = false
-    else
-      self.isSaved = true
     end
   end
 end

@@ -1,5 +1,7 @@
-<% if @board.is_ready? %>
+<% if @board.is_ready? && @board.title == "No title" %>
     <h4>You are ready to play!</h4>
+<% elsif @board.title != "No title" %>
+    <h4><%= @board.title %></h4>
 <% else %>
     <h4>Move your fleet to the board</h4>
     <p class="center">Choose the top left coordinate for a given ship</p>
@@ -70,9 +72,9 @@
     <% btn_class = "btn btn-success" %>
     <% btn_name = "Play" %>
 <% else %>
-    <% header = "Or let AI randomly place your ships" %>
+    <% header = "Let AI randomly place your ships" %>
     <% btn_name = "Random positioning" %>
     <% btn_class = "btn btn-warning" %>
 <% end %>
 <h4 style="padding-top: 10px"><%= header %></h4>
-<%= button_to "#{btn_name}", games_path(:board_id => @board), class: "#{btn_class}", :style => "display:block; marghin-left: auto; marghin-right: auto; margin-top: 15px; width: 200px;", :method => :post %>
+<%= button_to "#{btn_name}", games_path(:board_id => @board), class: "#{btn_class}", :style => "display:block; marghin-left: auto; marghin-right: auto; margin-top: 15px; width: 200px;", :data => { disable_with: "Starting new game..." }, :method => :post %>

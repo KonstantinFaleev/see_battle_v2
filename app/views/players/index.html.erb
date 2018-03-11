@@ -16,6 +16,8 @@
   <th>Games played</th>
   <th>Victories</th>
   <th>Defeats</th>
+  <th>Ships destroyed</th>
+  <th>Ships lost</th>
   <th>Rating</th>
   </thead>
   <tbody>
@@ -33,6 +35,8 @@
         <td><%= player.victories.size + player.defeats.size %></td>
         <td><%= player.victories.size %></td>
         <td><%= player.defeats.size %></td>
+        <td><%= player.ships_destroyed %></td>
+        <td><%= player.ships_lost %></td>
         <td><%= player.rating %></td>
       </tr>
   <% end %>

@@ -80,6 +80,12 @@ textarea {
   }
 }
 
+.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .right {
   float: right;
 }
@@ -332,7 +338,26 @@ label{
   white-space:normal
 }
 
-/* Players index */
+/* Players & players index */
+
+.centered-table {
+  margin-left:auto;
+  margin-right:auto;
+  text-align: center;
+  padding: 5px;
+  width: 100%;
+    th, td, tr {
+      text-align: center;
+      border-bottom: 1px solid #DDD;
+      padding: 5px;
+    }
+    tr:hover {
+      background-color:$grayMediumLight;
+    }
+    th:hover{
+      background-color:transparent;
+    }
+}
 
 .delete-link {
   color:red;
@@ -416,4 +441,10 @@ table#players tbody td {
   text-align:right;
   padding-right:5px;
   font-style: italic;
+}
+
+.timestamp-bright {
+  font-size:1em;
+  text-align:center;
+  font-style:italic;
 }

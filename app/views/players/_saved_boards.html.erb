@@ -1,14 +1,20 @@
-<table class="table">
-  <thead >
-  <th style="text-align: center;">Saved positions</th>
-  </thead>
+<h5 style="text-align:center;">Saved positions</h5>
+<table class="centered-table">
   <tbody>
-  <% @boards.each do |board| %>
+  <% i=1 %>
+  <% boards.each do |board| %>
       <tr>
         <td>
-          <% if board.isSaved %>
-              <%= link_to "#{board.id}", board %>
-          <% end %>
+          <%= i %>
+          <% i += 1 %>
+        </td>
+        <td>
+          <%= link_to "#{board.title}", board %>
+        </td>
+        <td>
+          <span class="timestamp-bright">
+            <%= board.created_at.strftime("%d %b. %Y") %>
+          </span>
         </td>
       </tr>
   <% end %>

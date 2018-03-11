@@ -1,4 +1,4 @@
-<% if @game.game_over? %>
+<% if @game.game_over? && current_player == @game.player_a %>
     <h4><%= @game.play_status %></h4>
 <% end %>
 

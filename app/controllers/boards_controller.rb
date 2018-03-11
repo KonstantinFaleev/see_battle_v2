@@ -21,6 +21,7 @@ class BoardsController < ApplicationController
 
   def show
     @board = Board.find(params[:id])
+    @saved_boards = Board.where("player_id = ? AND isSaved = ?", @board.player_id, true).load
 
     redirect_to root_url unless current_player == @board.player
   end
@@ -52,14 +53,32 @@ class BoardsController < ApplicationController
     end
   end
 
-  def save_board
+  def forget_board
     @board = Board.find(params[:id])
-    @board.save_board
-    @board.save
+    @board.update_attribute('isSaved', false)
 
     respond_to do |format|
       format.html { redirect_to @board }
       format.js
     end
+  end
+
+  def update
+    @board = Board.find(params[:id])
+    if @board.update_attributes(board_params)
+      @board.update_attribute('isSaved', true)
+      respond_to do |format|
+        format.html { redirect_to @board }
+        format.js
+      end
+    else
+      render 'show'
+    end
+  end
+
+  private
+
+  def board_params
+    params.require(:board).permit(:title)
   end
 end

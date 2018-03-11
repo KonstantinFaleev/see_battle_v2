@@ -1,6 +1,6 @@
 <table class="table table-hover">
   <thead>
-  <th style="text-align: center;" colspan="2">Games list</th>
+  <th style="text-align: center;" colspan="3">Games list</th>
   </thead>
   <tbody>
   <% if @games.any? %>
@@ -16,6 +16,11 @@
               <tr class="error">
           <% end %>
           <td>
+					<span class="timestamp-bright">
+						<%= game.created_at.strftime("%d %b.") %>
+					</span>
+          </td>
+          <td>
             <%= link_to game do %>
                 <%= game.player_a.name %> vs. <%= game.player_b.name %>.
             <% end %>
@@ -27,7 +32,7 @@
       <% end %>
   <% else %>
       <tr class="info">
-        <td colspan="2">
+        <td colspan="3">
           No games so far.
         </td>
       </tr>
