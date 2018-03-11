@@ -17,12 +17,12 @@
         <td style="padding-right: 10px;"><%= i %></td>
         <% for j in 0..9 %>
             <td class="board">
-              <% if @game.player_a_board[i][j] == 0 %>
+              <% if @game.player_a_board[i][j][0] == 0 %>
                   <%= image_tag '/empty.png' %>
-              <% elsif @game.player_a_board[i][j] == 1 %>
+              <% elsif @game.player_a_board[i][j][0] == 1 %>
                   <%= image_tag '/ship.png' %>
-              <% elsif @game.player_a_board[i][j] == 3 %>
-                  <%= image_tag '/hit.png' %>
+              <% elsif @game.player_a_board[i][j][0] == 3 %>
+                  <%= image_tag '/sunk.png' %>
               <% else %>
                   <%= image_tag '/miss.png' %>
               <% end %>

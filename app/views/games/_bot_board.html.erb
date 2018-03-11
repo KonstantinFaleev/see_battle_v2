@@ -17,7 +17,7 @@
         <td style="padding-right: 10px;"><%= i %></td>
         <% for j in 0..9 %>
             <td class="board">
-              <% if @game.player_b_board[i][j] == 0 || @game.player_b_board[i][j] == 1 %>
+              <% if @game.player_b_board[i][j][0] == 0 || @game.player_b_board[i][j][0] == 1 %>
                   <% cell = "#{i}_#{j}" %>
                   <% if !Rails.env.test? && !user_agent_ok? %>
                       <%= link_to "/move/#{@game.id}/cell=#{cell}", :data => { disable_with: '' }, :remote => true do %>
@@ -28,10 +28,12 @@
                           <%= image_tag '/empty.png' %>
                       <% end %>
                   <% end %>
-              <% elsif @game.player_b_board[i][j] == 3 %>
-                  <%= image_tag '/hit.png' %>
-              <% else %>
+              <% elsif @game.player_b_board[i][j][0] == 4 %>
                   <%= image_tag '/miss.png' %>
+              <% elsif @game.player_b_board[i][j][0] == 3 && @game.player_b_board[i][j][1].reload.is_sunk? %>
+                  <%= image_tag '/sunk.png' %>
+              <% else %>
+                  <%= image_tag '/damaged.png' %>
               <% end %>
             </td>
         <% end %>

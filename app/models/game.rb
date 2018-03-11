@@ -13,6 +13,7 @@ class Game < ActiveRecord::Base
   belongs_to :player_b, :foreign_key => 'player_b_id', :class_name => 'Player'
   belongs_to :looser, :foreign_key => 'looser_id', :class_name => 'Player'
   belongs_to :winner, :foreign_key => 'winner_id', :class_name => 'Player'
+  has_many :ships,:foreign_key => 'game_id', :class_name => 'Ship'
 
   #to differ cases when ship is hit and player should move again
   attr_accessor :move_again
@@ -32,14 +33,28 @@ class Game < ActiveRecord::Base
     return g
   end
 
+  #each cell of the board is array of two elements.
+  #the first element shows cell content
+  #the second one is 0 if cell is empty, or contains a link to a ship object
+  #cell content:
+  #0 - not checked cell, empty
+  #1 - not checked cell, contains deck of a ship
+  #3 - damaged or sunk ship
+  #4 - checked empty cell
   def self.new_board
     grid = []
     10.times do
-      grid << [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      row = []
+      10.times do
+        row << [0, 0]
+      end
+      grid << row
     end
-    ships = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
+    decks = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
     #set Battleship
-    ships.each do |ship|
+    decks.each do |d|
+      ship = Ship.new(decks: d)
+      ship.save
       grid = place_ship(grid, ship)
     end
     return grid
@@ -53,49 +68,49 @@ class Game < ActiveRecord::Base
     dir = rand(2) #1 for horizontal, 0 for vertical
 
     if dir == 0
-      x = rand(10-ship) + ship
+      x = rand(10-ship.decks) + ship.decks
       y = rand(10)
     else
-      y = rand(10-ship) + ship
+      y = rand(10-ship.decks) + ship.decks
       x = rand(10)
     end
 
     #check if the area is available
     flag = true
     if dir == 0
-      top_x = x - ship
+      top_x = x - ship.decks
       top_y = (y - 1 >= 0) ? y - 1 : 0
       bot_x = (x + 1 <= 9) ? x + 1 : 9
       bot_y = (y + 1 <= 9) ? y + 1 : 9
       for i in top_x..bot_x
         for j in top_y..bot_y
-          if grid[i][j] == 1
+          if grid[i][j][0] == 1
             flag = false
           end
         end
       end
       if flag
-        for i in x-ship+1..x
-          grid[i][y] = 1
+        for i in x-ship.decks+1..x
+          grid[i][y] = [1, ship]
         end
       else
         place_ship(grid, ship)
       end
     else
-      top_x = (x - 1 >= 0) ? x - ship : 0
-      top_y = y - ship
+      top_x = (x - 1 >= 0) ? x - ship.decks : 0
+      top_y = y - ship.decks
       bot_x = (x + 1 <= 9) ? x + 1 : 9
       bot_y = (y + 1 <= 9) ? y + 1 : 9
       for i in top_x..bot_x
         for j in top_y..bot_y
-          if grid[i][j] == 1
+          if grid[i][j][0] == 1
             flag = false
           end
         end
       end
       if flag
-        for i in y-ship+1..y
-          grid[x][i] = 1
+        for i in y-ship.decks+1..y
+          grid[x][i] = [1, ship]
         end
       else
         place_ship(grid, ship)
@@ -118,13 +133,15 @@ class Game < ActiveRecord::Base
     board = flag ? self.player_b_board : self.player_a_board
     ships = flag ? self.player_b_ships : self.player_a_ships
 
-    if board[x][y] == 1
-      board[x][y] = 3
+    if board[x][y][0] == 1
+      board[x][y][0] = 3
+      ship = board[x][y][1].reload
+      ship.update_attribute('decks', ship.decks-1)
       ships -= 1
       self.move_again = true
       self.game_log = "#{player.name} shoots #{('A'..'J').to_a[y]}#{x} and hits the target!\n" + self.game_log
-    elsif board[x][y] == 0
-      board[x][y] = 4
+    elsif board[x][y][0] == 0
+      board[x][y][0] = 4
       self.move_again = false
       self.game_log = "#{player.name} shoots #{('A'..'J').to_a[y]}#{x} and misses.\n" + self.game_log
     end
