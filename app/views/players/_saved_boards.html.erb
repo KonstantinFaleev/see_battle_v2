@@ -1,0 +1,14 @@
+<table class="table">
+  <thead >
+  <th style="text-align: center;">Saved positions</th>
+  </thead>
+  <tbody>
+  <% @boards.each do |board| %>
+      <tr>
+        <td>
+          <%= link_to "#{board.id}", board %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

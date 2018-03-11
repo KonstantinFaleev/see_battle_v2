@@ -21,6 +21,7 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
+    @boards = @player.boards.paginate(page: params[:page])
     @games = Game.where(["player_a_id = ? or player_b_id = ?", @player.id, @player.id]).load.paginate(:page => params[:page], :per_page => 10)
   end
 

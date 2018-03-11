@@ -1,11 +1,8 @@
 <header class="navbar navbar-inverse">
-  <%= favicon_link_tag 'favicon.ico' %>
-  <link rel="shortcut icon" href="assets/myicon.ico" type="image/x-icon" />
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
   <div class="navbar-inner">
     <div class="container">
       <div class="span2">
-        <%= link_to root_path, id: "logo" do %>
+        <%= link_to root_path do %>
             <%= image_tag 'logo.png', :class => "logo" %>
         <% end %>
       </div>

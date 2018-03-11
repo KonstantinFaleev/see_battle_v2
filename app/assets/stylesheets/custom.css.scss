@@ -80,6 +80,10 @@ textarea {
   }
 }
 
+.right {
+  float: right;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -358,7 +362,17 @@ table#players tbody td {
 
 .board {
   border: 1px solid grey;
-  background-color: #cfcbcb
+  background-color: #cfcbcb;
+  height: 30px;
+  width: 30px;
+}
+
+.board:hover{
+  background-color: grey;
+}
+
+.highlight{
+  background-color: grey;
 }
 
 .board_container {

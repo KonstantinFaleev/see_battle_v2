@@ -19,12 +19,20 @@ class Game < ActiveRecord::Base
   attr_accessor :move_again
 
   # Returns a new Game object with the associated players A and Bot
-  def self.start_game(player_a, player_b)
+  def self.start_game(player_a, player_b, board)
     g = Game.new
     g.player_a = player_a
     g.player_b = player_b
-    g.player_a_board = new_board
-    g.player_b_board = new_board
+    if board.nil?
+      g.player_a_board = new_random_board
+    elsif !Board.find_by_id(board).is_ready?
+      g.player_a_board = new_random_board
+      Board.find_by_id(board).destroy
+    else
+      g.player_a_board = Board.find_by_id(board).grid
+      Board.find_by_id(board).destroy unless Board.find_by_id(board).isSaved
+    end
+    g.player_b_board = new_random_board
     g.game_log = "Game has started."
     g.move_again = false
 
@@ -41,7 +49,7 @@ class Game < ActiveRecord::Base
   #1 - not checked cell, contains deck of a ship
   #3 - damaged or sunk ship
   #4 - checked empty cell
-  def self.new_board
+  def self.new_random_board
     grid = []
     10.times do
       row = []
@@ -192,5 +200,4 @@ class Game < ActiveRecord::Base
     self.player_a_ships = 0
     set_play_status player_b, true
   end
-
 end

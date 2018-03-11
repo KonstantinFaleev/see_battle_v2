@@ -1,0 +1,16 @@
+<%= provide(:title, "Run-up...") %>
+<head>
+  <script type="text/javascript">
+      function take_ship(){
+          $(document).mousemove(function(e) {
+              $('.ship').offset({
+                  left: e.pageX-10,
+                  top: e.pageY+5
+              });
+          });
+      }
+  </script>
+</head>
+<div id="board_area">
+  <%= render 'board_area' %>
+</div>

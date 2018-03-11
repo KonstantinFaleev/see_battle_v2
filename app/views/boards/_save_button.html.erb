@@ -1,0 +1,11 @@
+<% if @board.isSaved? %>
+    <p style="padding: 10px; height:100px;">
+      This position is saved and can be found on your profile page. Do you want to forget it after the next game?
+    </p>
+    <%= link_to "Forget it.", "/saveboard/#{@board.id}", :class => "btn btn-danger", :data => { disable_with: 'Forgetting...' }, :style => 'display:block; margin-left:auto; margin-right:auto; width: 200px;', remote: true %>
+<% else %>
+    <p style="padding: 10px; height:100px;">
+      You may save this position for the future games. Otherwise it will dissapear after the next game.
+    </p>
+    <%= link_to "Save this position", "/saveboard/#{@board.id}", :class => "btn btn-info", :data => { disable_with: 'Saving...' }, :style => 'display:block; margin-left:auto; margin-right:auto; width: 200px;', remote: true %>
+<% end %>

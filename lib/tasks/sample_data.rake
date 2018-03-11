@@ -8,7 +8,7 @@ namespace :db do
                    rating: 10000,
                    admin: true)
     99.times do |n|
-      name  = Faker::Name.first_name
+      name  = "#{Faker::Name.first_name} Bot"
       email = "pirate-#{n+1}@test.com"
       password  = "password"
       Player.create!(name: name,

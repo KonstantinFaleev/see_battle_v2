@@ -18,12 +18,12 @@
         <% for j in 0..9 %>
             <td class="board">
               <% if !@game.game_over? && (@game.player_b_board[i][j][0] == 0 || @game.player_b_board[i][j][0] == 1) %>
-                  <% if !Rails.env.test? && !user_agent_ok? %>
-                      <%= link_to "/move/#{@game.id}/cell=#{i}_#{j}", :data => { disable_with: '' }, :remote => true do %>
+                  <% if !Rails.env.test? && user_agent_ok? %>
+                      <%= link_to "/move/#{@game.id}/cell=#{i}_#{j}", :remote => true do %>
                           <%= image_tag '/empty.png' %>
                       <% end %>
                   <% else %>
-                      <%= link_to "/move/#{@game.id}/cell=#{i}_#{j}", :remote => true do %>
+                      <%= link_to "/move/#{@game.id}/cell=#{i}_#{j}", :data => { disable_with: '' }, :remote => true do %>
                           <%= image_tag '/empty.png' %>
                       <% end %>
                   <% end %>

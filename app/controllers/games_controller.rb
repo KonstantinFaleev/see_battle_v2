@@ -13,7 +13,11 @@ class GamesController < ApplicationController
     while(p2 == p1)
       p2 = Player.find_by_id(rand(Player.all.size) + 1)
     end
-    g = Game.start_game(p1, p2)
+    if params[:board_id].blank?
+      g = Game.start_game(p1, p2, nil)
+    else
+      g = Game.start_game(p1, p2, params[:board_id])
+    end
     redirect_to g
   end
 

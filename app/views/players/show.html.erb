@@ -7,10 +7,15 @@
 <div class="row">
   <aside class="span4">
     <section>
-      <%= render "shared/player_info" %>
+      <%= render "player_info" %>
     </section>
+    <% if current_player == @player && @player.boards.any? %>
+        <section>
+          <%= render "saved_boards" %>
+        </section>
+    <% end %>
   </aside>
   <div class="span6">
-    <%= render "shared/player_games" %>
+    <%= render "player_games" %>
   </div>
 </div>
