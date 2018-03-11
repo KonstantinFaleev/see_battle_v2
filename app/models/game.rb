@@ -154,27 +154,43 @@ class Game < ActiveRecord::Base
       self.player_a_ships = ships
     end
 
-    set_play_status player
+    set_play_status player, false
   end
 
   # Method that sets the play_status member
-  def set_play_status(player)
+  def set_play_status(player, surrender)
     if game_over?
       # forced to use update_attributes explicitly?
       #self.winner = player
       self.update_attributes :winner => player
       if self.winner == self.player_a
-        self.play_status = "You have won this game. Congratulations!"
         self.update_attributes :looser => player_b
+        self.play_status = "You have won this game. Congratulations!"
       else
-        self.play_status = "You've lost to #{self.player_b.name}. Better luck next time!"
         self.update_attributes :looser => player_a
+        if surrender
+          self.play_status = "You have surrendered."
+        else
+          self.play_status = "You've lost to #{self.player_b.name}. Better luck next time!"
+        end
       end
 
-      self.game_log = "Game is over. #{player.name} celebrates the victory.\n#{player.name} receives 100 pts.\n#{looser.name} loses 50 pts.\n" + self.game_log
+      self.game_log = "#{player.name} receives 100 pts.\n#{looser.name} loses 50 pts.\n" + self.game_log
+
+      if surrender
+        self.game_log = "Game is over. #{self.looser.name} has surrendered.\n" + self.game_log
+      else
+        self.game_log = "Game is over. #{player.name} celebrates the victory.\n" + self.game_log
+      end
 
       self.looser.update_attribute('rating', self.looser.rating - 50)
       player.update_attribute('rating', player.rating + 100)
     end
   end
+
+  def surrender_game
+    self.player_a_ships = 0
+    set_play_status player_b, true
+  end
+
 end

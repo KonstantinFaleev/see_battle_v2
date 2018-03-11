@@ -36,6 +36,14 @@ class GamesController < ApplicationController
     end
   end
 
+  def surrender
+    @game = Game.find_by_id(params[:id])
+    @game.surrender_game
+    @game.save
+
+    redirect_to @game
+  end
+
   def do_move_by_player(cell)
     # parse the x and y coordinates out of the string
     # format is x_y

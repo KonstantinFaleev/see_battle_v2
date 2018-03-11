@@ -20,6 +20,7 @@
       </td>
       <td class="page_content">
         <%= render 'layouts/play_button' %>
+        <hr>
         <% flash.each do |key, value| %>
             <%= content_tag(:div, value, class: "alert alert-#{key}", :style => "padding-left: 100px;") %>
         <% end %>
@@ -35,7 +36,7 @@
       <td colspan='3'>
         <%= render 'layouts/footer' %>
         <%= debug(params) if Rails.env.development? %>
-        <%#= request.user_agent if Rails.env.development? %>
+        <%= request.user_agent if Rails.env.development? %>
       </td>
     </tr>
     </tfoot>

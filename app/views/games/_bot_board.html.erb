@@ -17,17 +17,20 @@
         <td style="padding-right: 10px;"><%= i %></td>
         <% for j in 0..9 %>
             <td class="board">
-              <% if @game.player_b_board[i][j][0] == 0 || @game.player_b_board[i][j][0] == 1 %>
-                  <% cell = "#{i}_#{j}" %>
+              <% if !@game.game_over? && (@game.player_b_board[i][j][0] == 0 || @game.player_b_board[i][j][0] == 1) %>
                   <% if !Rails.env.test? && !user_agent_ok? %>
-                      <%= link_to "/move/#{@game.id}/cell=#{cell}", :data => { disable_with: '' }, :remote => true do %>
+                      <%= link_to "/move/#{@game.id}/cell=#{i}_#{j}", :data => { disable_with: '' }, :remote => true do %>
                           <%= image_tag '/empty.png' %>
                       <% end %>
                   <% else %>
-                      <%= link_to "/move/#{@game.id}/cell=#{cell}", :remote => true do %>
+                      <%= link_to "/move/#{@game.id}/cell=#{i}_#{j}", :remote => true do %>
                           <%= image_tag '/empty.png' %>
                       <% end %>
                   <% end %>
+              <% elsif @game.player_b_board[i][j][0] == 0 %>
+                  <%= image_tag '/empty.png' %>
+              <% elsif @game.player_b_board[i][j][0] == 1 %>
+                  <%= image_tag '/ship.png' %>
               <% elsif @game.player_b_board[i][j][0] == 4 %>
                   <%= image_tag '/miss.png' %>
               <% elsif @game.player_b_board[i][j][0] == 3 && @game.player_b_board[i][j][1].reload.is_sunk? %>
