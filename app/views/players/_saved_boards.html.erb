@@ -6,7 +6,9 @@
   <% @boards.each do |board| %>
       <tr>
         <td>
-          <%= link_to "#{board.id}", board %>
+          <% if board.isSaved %>
+              <%= link_to "#{board.id}", board %>
+          <% end %>
         </td>
       </tr>
   <% end %>

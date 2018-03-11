@@ -140,6 +140,7 @@ class Game < ActiveRecord::Base
 
     board = flag ? self.player_b_board : self.player_a_board
     ships = flag ? self.player_b_ships : self.player_a_ships
+    other_player = flag ? self.player_b : self.player_a
 
     if board[x][y][0] == 1
       board[x][y][0] = 3
@@ -148,6 +149,10 @@ class Game < ActiveRecord::Base
       ships -= 1
       self.move_again = true
       self.game_log = "#{player.name} shoots #{('A'..'J').to_a[y]}#{x} and hits the target!\n" + self.game_log
+      if ship.reload.is_sunk?
+        player.update_attribute('ships_destroyed', player.ships_destroyed+=1)
+        other_player.update_attribute('ships_lost', other_player.ships_lost+=1)
+      end
     elsif board[x][y][0] == 0
       board[x][y][0] = 4
       self.move_again = false
@@ -200,4 +205,5 @@ class Game < ActiveRecord::Base
     self.player_a_ships = 0
     set_play_status player_b, true
   end
+
 end

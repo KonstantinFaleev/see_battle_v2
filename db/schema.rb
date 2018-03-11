@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180311195822) do
+ActiveRecord::Schema.define(version: 20180311212742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 20180311195822) do
     t.string "remember_token"
     t.boolean "admin", default: false
     t.boolean "isOnline", default: false
+    t.integer "ships_lost", default: 0
+    t.integer "ships_destroyed", default: 0
     t.index ["email"], name: "index_players_on_email", unique: true
     t.index ["remember_token"], name: "index_players_on_remember_token"
   end
