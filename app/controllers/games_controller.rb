@@ -9,7 +9,10 @@ class GamesController < ApplicationController
 
   def create
     p1 = current_player
-    p2 = Player.find_by_id(rand(Player.all.size) + 2)
+    p2 = Player.find_by_id(rand(Player.all.size) + 1)
+    while(p2 == p1)
+      p2 = Player.find_by_id(rand(Player.all.size) + 1)
+    end
     g = Game.start_game(p1, p2)
     redirect_to g
   end
