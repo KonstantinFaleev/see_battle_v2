@@ -1,0 +1,9 @@
+<div id="top_button">
+  <% if signed_in? %>
+      <% if !@game.nil? && !@game.game_over? && current_player == @game.player_a %>
+          <%= button_to "Surrender", "/surrender/#{@game.id}", class: "btn btn-danger", :style => "display:block; marghin-left: auto; marghin-right: auto; margin-top: 15px; width: 200px;", :method => :get %>
+      <% else %>
+          <%= button_to "Play new game", games_path, class: "btn btn-success", :style => "display:block; marghin-left: auto; marghin-right: auto; margin-top: 15px; width: 200px;", :method => :post %>
+      <% end %>
+  <% end %>
+</div>
