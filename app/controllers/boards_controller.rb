@@ -21,7 +21,7 @@ class BoardsController < ApplicationController
 
   def show
     @board = Board.find(params[:id])
-    @saved_boards = Board.where("player_id = ? AND isSaved = ?", @board.player_id, true).load
+    @saved_boards = Board.where("player_id = ? AND saved = ?", @board.player_id, true).load
 
     redirect_to root_url unless current_player == @board.player
   end
@@ -55,7 +55,7 @@ class BoardsController < ApplicationController
 
   def forget_board
     @board = Board.find(params[:id])
-    @board.update_attribute('isSaved', false)
+    @board.update_attribute('saved', false)
 
     respond_to do |format|
       format.html { redirect_to @board }
@@ -66,7 +66,7 @@ class BoardsController < ApplicationController
   def update
     @board = Board.find(params[:id])
     if @board.update_attributes(board_params)
-      @board.update_attribute('isSaved', true)
+      @board.update_attribute('saved', true)
       respond_to do |format|
         format.html { redirect_to @board }
         format.js

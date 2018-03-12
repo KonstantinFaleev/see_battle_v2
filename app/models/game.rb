@@ -34,7 +34,7 @@ class Game < ActiveRecord::Base
 
     g.save
 
-    Board.where("player_id = ? AND isSaved = ?", player_a.id, false).delete_all
+    Board.where("player_id = ? AND saved = ?", player_a.id, false).delete_all
 
     return g
   end
