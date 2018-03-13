@@ -14,6 +14,6 @@ module ApplicationHelper
   end
 
   def online_players
-    Player.where(:isOnline => true).load
+    Player.where('last_response_at > ?', 10.minutes.ago).load
   end
 end

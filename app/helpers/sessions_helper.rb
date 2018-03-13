@@ -4,7 +4,6 @@ module SessionsHelper
     remember_token = Player.new_remember_token
     cookies.permanent[:remember_token] = remember_token
     player.update_attribute(:remember_token, Player.encrypt(remember_token))
-    player.update_attribute(:isOnline, true)
     self.current_player = player
   end
 
@@ -27,7 +26,7 @@ module SessionsHelper
 
   def sign_out
     current_player.update_attribute(:remember_token, Player.encrypt(Player.new_remember_token))
-    current_player.update_attribute(:isOnline, false)
+    current_player.update_attribute(:last_response_at, nil)
     cookies.delete(:remember_token)
     self.current_player = nil
   end
