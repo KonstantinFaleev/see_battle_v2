@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    player = Player.find_by(name: params[:session][:name])
+    player = Player.where("lower(name) = ?", params[:session][:name].downcase).first
     if player && player.authenticate(params[:session][:password])
       sign_in player
       redirect_back_or player
