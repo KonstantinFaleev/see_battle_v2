@@ -5,10 +5,10 @@ namespace :db do
                    email: "flint@test.com",
                    password: "piastres",
                    password_confirmation: "piastres",
-                   rating: 10000,
+                   rating: 100,
                    admin: true)
     99.times do |n|
-      name  = "#{Faker::Name.first_name} Bot"
+      name  = ('a'..'z').to_a.shuffle[0..7].join + " Bot"
       email = "pirate-#{n+1}@test.com"
       password  = "password"
       Player.create!(name: name,
