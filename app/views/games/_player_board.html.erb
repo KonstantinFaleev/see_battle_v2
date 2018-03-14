@@ -16,17 +16,23 @@
       <tr>
         <td style="padding-right: 10px;"><%= i %></td>
         <% for j in 0..9 %>
-            <td class="board">
-              <% if @game.player_a_board[i][j][0] == 0 %>
-                  <%= image_tag '/empty.png' %>
-              <% elsif @game.player_a_board[i][j][0] == 1 %>
-                  <%= image_tag '/ship.png' %>
-              <% elsif @game.player_a_board[i][j][0] == 3 %>
-                  <%= image_tag '/sunk.png' %>
-              <% else %>
-                  <%= image_tag '/miss.png' %>
-              <% end %>
-            </td>
+            <% if @game.player_a_board[i][j][0] == 0 %>
+                <td class="board">
+                  <%= image_tag '/transparent.png', :style => "width:28px;height:28px;" %>
+                </td>
+            <% elsif @game.player_a_board[i][j][0] == 1 %>
+                <td class="board" style="">
+                  <%= image_tag '/transparent.png', :style => "width:22px;height:22px;border:3px solid black;" %>
+                </td>
+            <% elsif @game.player_a_board[i][j][0] == 3 %>
+                <td class="board">
+                  <div class="sunk">&#10006;</div>
+                </td>
+            <% else %>
+                <td class="board">
+                  <div class="miss">&bull;</div>
+                </td>
+            <% end %>
         <% end %>
       </tr>
   <% end %>

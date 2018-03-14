@@ -1,6 +1,6 @@
 <% if @board.saved %>
     <p style="padding: 10px; height:100px;">
-      This position is saved and can be found on your profile page. Do you want to forget it after the next game?
+      This position has been saved. You may find it on your profile page now. Do you want to forget it after the next game?
     </p>
     <%= link_to "Forget it.", "/forget/#{@board.id}", :class => "btn btn-danger", :data => { disable_with: 'Forgetting...' }, :style => 'display:block; margin-left:auto; margin-right:auto; width: 200px;', remote: true %>
 <% else %>

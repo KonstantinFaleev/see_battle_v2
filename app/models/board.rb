@@ -21,7 +21,7 @@ class Board < ActiveRecord::Base
 
   def place_ship(x, y)
     #(x, y) is ship top left coordinate
-    #direction: true-vertical, 0-horizontal
+    #direction: true-vertical, false-horizontal
     #check if ship crosses board borders
     ship_length = self.available_ships[0]
     coordinates_are_valid = false
