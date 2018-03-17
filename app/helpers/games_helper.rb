@@ -2,15 +2,15 @@ module GamesHelper
 
   def user_agent_ok?
     ua = request.env['HTTP_USER_AGENT']
-    if ua.include? "MSIE"
+    if ua.downcase.include? "msie"
       true
-    elsif ua.include? "Firefox"
+    elsif ua.downcase.include? "firefox"
       true
-    elsif ua.include? "safari"
-      true
-    elsif ua.include? "Chrome"
+    elsif ua.downcase.include? "safari"
       false
-    elsif ua.include? "dolphin"
+    elsif ua.downcase.include? "chrome"
+      false
+    elsif ua.downcase.include? "dolphin"
       false
     else
       true

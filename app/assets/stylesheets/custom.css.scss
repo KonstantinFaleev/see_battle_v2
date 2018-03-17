@@ -166,7 +166,18 @@ p {
   background: url(logo.png);
 }
 
-/* footer */
+/* Home page */
+.browsers {
+  display: table; margin: 10px auto;
+}
+.browsers li {
+  float: left;
+  list-style: none;
+  margin-left: 5px;
+  padding: 5px 0;
+}
+
+  /* footer */
 
 footer {
   margin-top: 10px;
@@ -319,28 +330,23 @@ label{
 }
 
 .Button{
+  width: 100px !important;
+  display:block;
+  marghin-left: auto;
+  marghin-right: auto;
   -webkit-appearance:none;
   background:transparent;
   border-color:currentcolor;
   border-style:solid;
   border-width:1px;
-  -moz-box-sizing:border-box;
-  box-sizing:border-box;
   color:inherit;
-  cursor:pointer;
-  display:block;
-  margin:0 auto;
   font:inherit;
   line-height:normal;
   padding:.4em .75em;
-  position:relative;
   text-align:center;
   text-decoration:none;
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
   user-select:none;
-  white-space:normal
+  white-space:normal;
 }
 
 /* Players & players index */
