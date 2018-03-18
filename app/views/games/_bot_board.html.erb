@@ -16,36 +16,29 @@
       <tr>
         <td style="padding-right: 10px;"><%= i %></td>
         <% for j in 0..9 %>
-            <% if !@game.game_over? && (@game.player_b_board[i][j][0] == 0 || @game.player_b_board[i][j][0] == 1) %>
-                <td class="board">
-                  <% if !Rails.env.test? && user_agent_ok? %>
-                      <%= link_to "/move/#{@game.id}/cell=#{i}_#{j}", :remote => true do %>
-                          <%= image_tag '/transparent.png', :style => "width:28px;height:28px;" %>
-                      <% end %>
-                  <% else %>
-                      <%= link_to "/move/#{@game.id}/cell=#{i}_#{j}", :data => { disable_with: '' }, :remote => true do %>
-                          <%= image_tag '/transparent.png', :style => "width:28px;height:28px;" %>
-                      <% end %>
+            <td class="board">
+              <% if !@game.game_over? && (@game.player_b_board[i][j][0] == 0 || @game.player_b_board[i][j][0] == 1) %>
+                  <%= link_to "/move/#{@game.id}/cell=#{i}_#{j}", :data => { disable_with: '' }, :remote => true do %>
+                      <%= image_tag '/transparent.png', :style => "width:28px;height:28px;" %>
                   <% end %>
-            <% elsif @game.player_b_board[i][j][0] == 0 %>
-                <td class="board">
+              <% elsif @game.player_b_board[i][j][0] == 0 %>
                   <%= image_tag '/transparent.png', :style => "width:25px;height:25px;3px solid transparent;" %>
-            <% elsif @game.player_b_board[i][j][0] == 1 %>
-                <td class="board">
+              <% elsif @game.player_b_board[i][j][0] == 1 %>
                   <%= image_tag '/transparent.png', :style => "width:25px;height:25px;" %>
-            <% elsif @game.player_b_board[i][j][0] == 4 %>
-                <td class="board">
-                  <div class="miss">&bull;</div>
-                </td>
-            <% elsif @game.player_b_board[i][j][0] == 3 && @game.player_b_board[i][j][1].reload.is_sunk? %>
-                <td class="board">
-                  <div class="sunk">&#10006;</div>
-                </td>
-            <% else %>
-                <td class="board">
-                  <div class="hit">&#10006;</div>
-                </td>
-            <% end %>
+              <% elsif @game.player_b_board[i][j][0] == 4 %>
+                  <div class="miss">
+                    <span style="display:inline-block; vertical-align:middle">&bull;</span>
+                  </div>
+              <% elsif @game.player_b_board[i][j][0] == 3 && @game.player_b_board[i][j][1].reload.is_sunk? %>
+                  <div class="sunk">
+                    <span style="display:inline-block; vertical-align:middle">&Chi;</span>
+                  </div>
+              <% else %>
+                  <div class="hit">
+                    <span style="display:inline-block; vertical-align:middle">&Chi;</span>
+                  </div>
+              <% end %>
+            </td>
         <% end %>
       </tr>
   <% end %>

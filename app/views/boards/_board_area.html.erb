@@ -33,11 +33,11 @@
                             <% end %>
                         <% end %>
                     <% elsif @board.grid[i][j][0] == 0 %>
-                        <%= image_tag '/empty.png' %>
+                        <%= image_tag '/transparent.png', :style => "width:30px;height:30px;" %>
                     <% elsif @board.grid[i][j][0] == 1 %>
-                        <%= image_tag '/ship.png' %>
+                        <%= image_tag '/transparent.png', :style => "width:26px;height:26px;border:3px solid black;" %>
                     <% elsif @board.grid[i][j][0] == 2 %>
-                        <%= image_tag '/miss.png' %>
+                        <div class="miss">&bull;</div>
                     <% end %>
                   </td>
               <% end %>

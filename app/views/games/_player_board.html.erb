@@ -16,23 +16,21 @@
       <tr>
         <td style="padding-right: 10px;"><%= i %></td>
         <% for j in 0..9 %>
-            <% if @game.player_a_board[i][j][0] == 0 %>
-                <td class="board">
+            <td class="board">
+              <% if @game.player_a_board[i][j][0] == 0 %>
                   <%= image_tag '/transparent.png', :style => "width:28px;height:28px;" %>
-                </td>
-            <% elsif @game.player_a_board[i][j][0] == 1 %>
-                <td class="board" style="">
+              <% elsif @game.player_a_board[i][j][0] == 1 %>
                   <%= image_tag '/transparent.png', :style => "width:22px;height:22px;border:3px solid black;" %>
-                </td>
-            <% elsif @game.player_a_board[i][j][0] == 3 %>
-                <td class="board">
-                  <div class="sunk">&#10006;</div>
-                </td>
-            <% else %>
-                <td class="board">
-                  <div class="miss">&bull;</div>
-                </td>
-            <% end %>
+              <% elsif @game.player_a_board[i][j][0] == 3 %>
+                  <div class="sunk">
+                    <span style="display:inline-block; vertical-align:middle">&Chi;</span>
+                  </div>
+              <% else %>
+                  <div class="miss">
+                    <span style="display:inline-block; vertical-align:middle">&bull;</span>
+                  </div>
+              <% end %>
+            </td>
         <% end %>
       </tr>
   <% end %>

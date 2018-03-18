@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   root  'static_pages#home'
 
-  get '/game/:id', to: 'games#show'
+  #get '/game/:id', to: 'games#show'
   #match '/randompositioning', to: 'games#create', via: 'post'
   #match '/play/:id', to: 'games#show', via: 'get'
   match '/signup', to: 'players#new', via: 'get'

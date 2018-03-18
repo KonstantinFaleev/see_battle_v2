@@ -7,7 +7,7 @@
     </td>
   </tr>
   <tr>
-    <td style="margin-top:30px;height:200px;display:block; margin-left:auto; margin-right:auto; width: 150px;">
+    <td style="margin-top:30px; height:200px; display:block; margin-left:auto; margin-right:auto; width: 150px;">
       <% unless @board.is_ready? %>
           <% link="" %>
           <% if @board.direction && @board.available_ships[0] != 1 %>
@@ -15,12 +15,9 @@
           <% else %>
               <% link = "/x#{@board.available_ships[0]}1.png" %>
           <% end %>
-          <% unless Rails.env.test? || !user_agent_ok? %>
-              <%= link_to '#', :onclick => "take_ship()" do %>
-                  <%= image_tag "#{link}", :class => "ship", :style => "margin-left:5%;" %>
-              <% end %>
-          <% else %>
-              <%= image_tag "#{link}", :class => "ship", :style => "margin-left:5%;" %>
+
+          <%= link_to '#', :onclick => "take_ship()" do %>
+              <%= image_tag "#{link}", :class => "ship" %>
           <% end %>
       <% end %>
     </td>
