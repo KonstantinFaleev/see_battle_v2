@@ -1,19 +1,9 @@
 class BoardsController < ApplicationController
-
   respond_to :html, :js
 
   def create
     @board = current_player.boards.build
-    @board.available_ships = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
-    grid = []
-    10.times do
-      row = []
-      10.times do
-        row << [0, 0]
-      end
-      grid << row
-    end
-    @board.grid = grid
+    @board.initialize_board
     @board.save
 
     redirect_to @board
@@ -32,7 +22,7 @@ class BoardsController < ApplicationController
     @board.save
 
     respond_to do |format|
-      format.html { redirect_to @board }
+      format.html { render 'boards/current_ship' }
       format.js
     end
   end
@@ -53,22 +43,16 @@ class BoardsController < ApplicationController
     end
   end
 
-  def forget_board
-    @board = Board.find(params[:id])
-    @board.update_attribute('saved', false)
-
-    respond_to do |format|
-      format.html { redirect_to @board }
-      format.js
-    end
-  end
-
   def update
     @board = Board.find(params[:id])
     if @board.update_attributes(board_params)
-      @board.update_attribute('saved', true)
+      if @board.saved
+        @board.update_attribute('saved', false)
+      else
+        @board.update_attribute('saved', true)
+      end
       respond_to do |format|
-        format.html { redirect_to @board }
+        format.html { render 'boards/save_button' }
         format.js
       end
     else

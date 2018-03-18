@@ -1,5 +1,4 @@
 class Board < ActiveRecord::Base
-
   serialize(:available_ships, Array)
   serialize(:grid, Array)
 
@@ -17,6 +16,19 @@ class Board < ActiveRecord::Base
     else
       self.direction = true
     end
+  end
+
+  def initialize_board
+    self.available_ships = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
+    grid = []
+    10.times do
+      row = []
+      10.times do
+        row << [0, 0]
+      end
+      grid << row
+    end
+    self.grid = grid
   end
 
   def place_ship(x, y)

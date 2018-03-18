@@ -2,7 +2,11 @@
     <p style="padding: 10px; height:100px;">
       This position has been saved. You may find it on your profile page now. Do you want to forget it after the next game?
     </p>
-    <%= link_to "Forget it.", "/forget/#{@board.id}", :class => "btn btn-danger", :data => { disable_with: 'Forgetting...' }, :style => 'display:block; margin-left:auto; margin-right:auto; width: 200px;', remote: true %>
+    <%= form_for(@board, :remote=>true) do |f| %>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+        <%= f.submit "Forget it.", class: 'btn btn-danger', :data => { disable_with: 'Forgetting...' }, :style => 'display:block; margin-left:auto; margin-right:auto; width: 200px;' %>
+    <% end %>
 <% else %>
     <p style="padding: 10px; height:100px;">
       You may save this position for the future games. Otherwise it will dissapear after the next game.

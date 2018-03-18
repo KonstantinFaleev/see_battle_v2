@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180314204319) do
+ActiveRecord::Schema.define(version: 20180318203706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 20180314204319) do
     t.integer "ships_lost", default: 0
     t.integer "ships_destroyed", default: 0
     t.datetime "last_response_at"
-    t.index ["email"], name: "index_players_on_email", unique: true
     t.index ["last_response_at"], name: "index_players_on_last_response_at"
     t.index ["name"], name: "index_players_on_name", unique: true
     t.index ["remember_token"], name: "index_players_on_remember_token"
