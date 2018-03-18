@@ -65,4 +65,5 @@ gem 'jquery-ui-rails'
 gem 'nokogiri'
 gem 'jquery-rails'
 gem 'responders'
-gem 'json'
+gem 'json', '~> 1.8', '>= 1.8.3'
+gem 'whenever', :require => false
