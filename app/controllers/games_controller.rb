@@ -30,7 +30,7 @@ class GamesController < ApplicationController
         do_move_by_player params[:cell]
         if(!@game.game_over? && !@game.move_again)
           do_move_by_application
-          while(@game.move_again)
+          while(@game.move_again && !@game.game_over?)
             do_move_by_application
           end
         end
@@ -65,13 +65,7 @@ class GamesController < ApplicationController
 
   # creates the move by application by randomizing x,y and calling do_move method
   def do_move_by_application
-    x = rand(10)
-    y = rand(10)
-
-    while @game.player_a_board[x][y] == 3 || @game.player_a_board[x][y] == 4
-      x = rand(10)
-      y = rand(10)
-    end
+    x, y = @game.get_move_for_ai
 
     @game.do_move @game.player_b, x, y
 

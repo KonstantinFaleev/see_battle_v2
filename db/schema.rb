@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180318203706) do
+ActiveRecord::Schema.define(version: 20180319194215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20180318203706) do
     t.string "play_status"
     t.text "game_log"
     t.integer "looser_id"
+    t.text "ai_moves_pull"
+    t.text "ai_neglected_moves"
   end
 
   create_table "newsposts", force: :cascade do |t|

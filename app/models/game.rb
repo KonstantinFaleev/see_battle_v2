@@ -3,6 +3,8 @@ class Game < ActiveRecord::Base
 
   serialize(:player_a_board, Array)
   serialize(:player_b_board, Array)
+  serialize(:ai_moves_pull, Array)
+  serialize(:ai_neglected_moves, Array)
 
   validates :player_a_id, presence: true
   validates :player_b_id, presence: true
@@ -31,6 +33,8 @@ class Game < ActiveRecord::Base
     g.player_b_board = new_random_board
     g.game_log = "Game has started."
     g.move_again = false
+    g.ai_neglected_moves = []
+    g.ai_moves_pull = []
 
     g.save
 
@@ -150,8 +154,14 @@ class Game < ActiveRecord::Base
       if ship.reload.is_sunk?
         player.update_attribute('ships_destroyed', player.ships_destroyed+=1)
         other_player.update_attribute('ships_lost', other_player.ships_lost+=1)
-        self.game_log = "#{other_player.name}'s is now destroyed!\n" + self.game_log
+        self.game_log = "#{other_player.name}'s ship is now destroyed!\n" + self.game_log
       end
+
+      #AI next move coordinates determination
+      if !flag
+        set_ai_next_move x, y
+      end
+
     elsif board[x][y][0] == 0
       board[x][y][0] = 4
       self.move_again = false
@@ -164,6 +174,7 @@ class Game < ActiveRecord::Base
     else
       self.player_a_board = board
       self.player_a_ships = ships
+      self.ai_neglected_moves << [x,y]
     end
 
     set_play_status player, false
@@ -203,6 +214,77 @@ class Game < ActiveRecord::Base
   def surrender_game
     self.player_a_ships = 0
     set_play_status player_b, true
+  end
+
+  def get_move_for_ai
+
+    if self.ai_moves_pull.empty?
+      x = rand(10)
+      y = rand(10)
+
+      while self.ai_neglected_moves.include?([x,y])
+        x = rand(10)
+        y = rand(10)
+      end
+
+      return x,y
+    else
+      ind = rand(self.ai_moves_pull.size)
+      x,y = self.ai_moves_pull[ind]
+      self.ai_moves_pull.delete_at(ind)
+
+      return x,y
+    end
+  end
+
+  def set_ai_next_move(x,y)
+
+    if self.player_a_board[x][y][1].reload.is_sunk?
+      for i in x-1..x+1
+        for j in y-1..y+1
+          self.ai_neglected_moves << [i, j]
+        end
+      end
+      self.ai_moves_pull = []
+    else
+      self.ai_neglected_moves << [x+1, y+1]
+      self.ai_neglected_moves << [x-1, y-1]
+      self.ai_neglected_moves << [x+1, y-1]
+      self.ai_neglected_moves << [x-1, y+1]
+      if  self.ai_moves_pull.empty?
+        self.ai_moves_pull << [x-1, y] unless x-1 < 0 || self.ai_neglected_moves.include?([x-1, y])
+        self.ai_moves_pull << [x+1, y] unless x+1 > 9 || self.ai_neglected_moves.include?([x+1, y])
+        self.ai_moves_pull << [x, y-1] unless y-1 < 0 || self.ai_neglected_moves.include?([x, y-1])
+        self.ai_moves_pull << [x, y+1] unless y+1 > 9 || self.ai_neglected_moves.include?([x, y+1])
+      else
+        x1 = y1 = x2 = y2 = 0
+        self.ai_moves_pull.each do |e|
+          if e[0] == x
+            x1,y1 = e
+            if e[1] < y
+              x2,y2 = x,y+1 unless y+1 > 9
+            else
+              x2,y2 = x,y-1 unless y-1 < 0
+            end
+          elsif e[1] == y
+            x1,y1 = e
+            if e[0] < x
+              x2,y2 = x+1,y unless x+1 > 9
+            else
+              x2,y2 = x-1,y unless x-1 < 0
+            end
+          end
+        end
+        self.ai_moves_pull.each do |e|
+          if e != [x1,y1]
+            self.ai_neglected_moves << e
+          end
+        end
+        self.ai_moves_pull = []
+        self.ai_moves_pull << [x1,y1] unless [x1,y1] == [0,0]
+        self.ai_moves_pull << [x2,y2] unless [x2,y2] == [0,0]
+      end
+    end
   end
 
 end
