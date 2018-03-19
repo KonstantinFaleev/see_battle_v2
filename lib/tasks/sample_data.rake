@@ -15,6 +15,12 @@ namespace :db do
   end
 
   def make_bots
+    Player.create!(name: "Easy Bot",
+                   email: "easybot@sbattle.com",
+                   password: "c3w4mlWqYmUYrgn",
+                   password_confirmation: "c3w4mlWqYmUYrgn",
+                   rating: 1000,
+                   admin: true)
     15.times do |n|
       name = Faker::Name.first_name + rand(1000).to_s
       password = "password"

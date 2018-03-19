@@ -1,23 +1,19 @@
 class GamesController < ApplicationController
+  before_action :signed_in_player, only: [:show]
+
+  respond_to :html, :js
+
   def show
-    if signed_in?
-      @game = Game.find(params[:id])
-    else
-      redirect_to signin_path, notice: "Please sign in."
-    end
+    @game = Game.find(params[:id])
   end
 
   def create
-    p1 = current_player
-    p2 = Player.find_by_id(rand(Player.all.size) + 1)
-    while(p2 == p1)
-      p2 = Player.find_by_id(rand(Player.all.size) + 1)
-    end
     if params[:board_id].blank?
-      g = Game.start_game(p1, p2, nil)
+      g = Game.start_game(current_player, Player.find_by_id(2), nil)
     else
-      g = Game.start_game(p1, p2, params[:board_id])
+      g = Game.start_game(current_player, Player.find_by_id(2), params[:board_id])
     end
+
     redirect_to g
   end
 
@@ -35,10 +31,7 @@ class GamesController < ApplicationController
       end
     end
 
-    respond_to do |format|
-      format.html { redirect_to @game }
-      format.js
-    end
+    respond_with 'games/game_area', 'layouts/top_button'
   end
 
   def surrender
@@ -52,21 +45,24 @@ class GamesController < ApplicationController
   def do_move_by_player(cell)
     # parse the x and y coordinates out of the string
     # format is x_y
-    coordinates = cell.split('_')
-    x = coordinates[0].to_i;
-    y = coordinates[1].to_i;
-
-    @game.do_move @game.player_a, x, y
-
+    x,y = cell.split('_')
+    @game.do_move @game.player_a, x.to_i, y.to_i
     @game.save
   end
 
   # creates the move by application by randomizing x,y and calling do_move method
   def do_move_by_application
     x, y = @game.get_move_for_ai
-
     @game.do_move @game.player_b, x, y
-
     @game.save
+  end
+
+  private
+
+  def signed_in_player
+    unless signed_in?
+      store_location
+      redirect_to signin_path, notice: "Please sign in."
+    end
   end
 end

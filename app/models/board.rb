@@ -32,7 +32,6 @@ class Board < ActiveRecord::Base
     self.grid = grid
   end
 
-
   #(x, y) is ship top left coordinate
   #direction: true-vertical, false-horizontal
   #grid element meanings:

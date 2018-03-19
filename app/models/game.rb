@@ -52,81 +52,15 @@ class Game < ActiveRecord::Base
   #3 - damaged or sunk ship
   #4 - checked empty cell
   def self.new_random_board
-    grid = []
-    10.times do
-      row = []
-      10.times do
-        row << [0, 0]
-      end
-      grid << row
-    end
-    decks = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
-    #set Battleship
-    decks.each do |d|
-      ship = Ship.new(decks: d)
-      ship.save
-      grid = place_ship(grid, ship)
-    end
-    return grid
-  end
+    board = Board.new
+    board.initialize_board
 
-  #randomly determines coordinates for a ship with the corresponding length
-  #if space is available places ship
-  #or calss itself recursively if ship cannot be placed
-  def self.place_ship(grid, ship)
-    #ship direction
-    dir = rand(2) #1 for horizontal, 0 for vertical
-
-    if dir == 0
-      x = rand(10-ship.decks) + ship.decks
-      y = rand(10)
-    else
-      y = rand(10-ship.decks) + ship.decks
-      x = rand(10)
+    while !board.is_ready?
+      board.direction = rand(2) == 1 ? true : false
+      board.place_ship(rand(10), rand(10))
     end
 
-    #check if the area is available
-    flag = true
-    if dir == 0
-      top_x = x - ship.decks
-      top_y = (y - 1 >= 0) ? y - 1 : 0
-      bot_x = (x + 1 <= 9) ? x + 1 : 9
-      bot_y = (y + 1 <= 9) ? y + 1 : 9
-      for i in top_x..bot_x
-        for j in top_y..bot_y
-          if grid[i][j][0] == 1
-            flag = false
-          end
-        end
-      end
-      if flag
-        for i in x-ship.decks+1..x
-          grid[i][y] = [1, ship]
-        end
-      else
-        place_ship(grid, ship)
-      end
-    else
-      top_x = (x - 1 >= 0) ? x - ship.decks : 0
-      top_y = y - ship.decks
-      bot_x = (x + 1 <= 9) ? x + 1 : 9
-      bot_y = (y + 1 <= 9) ? y + 1 : 9
-      for i in top_x..bot_x
-        for j in top_y..bot_y
-          if grid[i][j][0] == 1
-            flag = false
-          end
-        end
-      end
-      if flag
-        for i in y-ship.decks+1..y
-          grid[x][i] = [1, ship]
-        end
-      else
-        place_ship(grid, ship)
-      end
-    end
-    return grid
+    return board.grid
   end
 
   def game_over?
