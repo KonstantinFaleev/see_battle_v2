@@ -11,7 +11,8 @@
     </section>
     <% if current_player == @player && @saved_boards.any? %>
         <section>
-          <%= render "saved_boards", boards: @saved_boards %>
+          <h5 style="text-align:center;">Saved positions:</h5>
+          <%= render partial: "players/saved_boards", collection: @saved_boards, as: :board, :locals => {:current_board_id => nil } %>
         </section>
     <% end %>
   </aside>

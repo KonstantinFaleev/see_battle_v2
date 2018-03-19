@@ -39,7 +39,7 @@ class BoardsController < ApplicationController
   def update
     @board = Board.find(params[:id])
     @board.update_attributes(board_params)
-    respond_with 'board/save_button'
+    respond_with 'boards/save_button'
   end
 
   private

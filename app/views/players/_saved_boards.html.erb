@@ -1,13 +1,7 @@
-<h5 style="text-align:center;">Saved positions</h5>
 <table class="centered-table">
   <tbody>
-  <% i=1 %>
-  <% boards.each do |board| %>
-      <tr>
-        <td>
-          <%= i %>
-          <% i += 1 %>
-        </td>
+  <tr>
+    <% unless current_board_id == board.id %>
         <td>
           <%= link_to "#{board.title}", board %>
         </td>
@@ -16,7 +10,7 @@
             <%= board.created_at.strftime("%d %b. %Y") %>
           </span>
         </td>
-      </tr>
-  <% end %>
+    <% end %>
+  </tr>
   </tbody>
 </table>

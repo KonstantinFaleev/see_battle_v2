@@ -5,13 +5,17 @@
   <tbody>
   <tr>
     <td>
-      Name: <%= @player.name %>
+      Name: <i><%= @player.name %></i>
     </td>
   </tr>
   <% if current_player == @player %>
       <tr>
         <td>
-          Email: <%= @player.email %>
+          Email: <i><% if !@player.email.empty? %>
+              <%= @player.email %>
+          <% else %>
+              not specified.
+          <% end %></i>
         </td>
       </tr>
   <% end %>
