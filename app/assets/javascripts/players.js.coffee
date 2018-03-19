@@ -4,6 +4,8 @@
 
 ready = ->
   $('#players').dataTable( {
+    "bPaginate": false,
+    "bInfo": false,
     "iDisplayLength": 15,
     "order": [[ 7, "desc" ]]
     "bFilter": false,
@@ -19,6 +21,8 @@ ready = ->
       {}
     ]
   } );
+
+
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
