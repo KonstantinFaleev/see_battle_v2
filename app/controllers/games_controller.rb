@@ -21,8 +21,6 @@ class GamesController < ApplicationController
     redirect_to g
   end
 
-  respond_to :html, :js
-
   def receive_move
     @game = Game.find_by_id(params[:id])
     if current_player == @game.player_a

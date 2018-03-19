@@ -15,14 +15,18 @@
               <% status = "Defeat" %>
               <tr class="error">
           <% end %>
-          <td style="width: 47px;">
+          <td>
 					<span class="timestamp-bright">
 						<%= game.created_at.strftime("%d %b.") %>
 					</span>
           </td>
           <td>
             <%= link_to game do %>
-                <%= game.player_a.name %> vs. <%= game.player_b.name %>.
+                <% if game.player_a == @player %>
+                    <%= game.player_a.name %> vs. <%= game.player_b.name %>.
+                <% else %>
+                    <%= game.player_b.name %> vs. <%= game.player_a.name %>
+                <% end %>
             <% end %>
           </td>
           <td>

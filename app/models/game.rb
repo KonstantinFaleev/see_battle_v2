@@ -208,6 +208,8 @@ class Game < ActiveRecord::Base
 
       self.looser.update_attribute('rating', self.looser.rating - 50)
       player.update_attribute('rating', player.rating + 100)
+
+      self.ai_moves_pull = self.ai_neglected_moves = nil
     end
   end
 

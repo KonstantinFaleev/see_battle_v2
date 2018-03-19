@@ -13,7 +13,7 @@ class BoardsController < ApplicationController
     @board = Board.find(params[:id])
     @saved_boards = Board.where("player_id = ? AND saved = ?", @board.player_id, true).load
 
-    redirect_to root_url unless current_player == @board.player
+    redirect_to root_url unless current_player?(@board.player)
   end
 
   def change_ship_direction
@@ -21,48 +21,30 @@ class BoardsController < ApplicationController
     @board.change_ship_direction
     @board.save
 
-    respond_to do |format|
-      format.html { render 'boards/current_ship' }
-      format.js
-    end
+    respond_with 'boards/current_ship'
   end
 
   def place_ship
     @board = Board.find(params[:id])
 
-    coordinates = params[:cell].split('_')
-    x = coordinates[0].to_i;
-    y = coordinates[1].to_i;
+    x,y = params[:cell].split('_')
 
-    @board.place_ship x, y
-    @board.save
-
-    respond_to do |format|
-      format.html { redirect_to @board }
-      format.js
+    if @board.place_ship x.to_i, y.to_i
+      @board.save
     end
+
+    respond_with @board
   end
 
   def update
     @board = Board.find(params[:id])
-    if @board.update_attributes(board_params)
-      if @board.saved
-        @board.update_attribute('saved', false)
-      else
-        @board.update_attribute('saved', true)
-      end
-      respond_to do |format|
-        format.html { render 'boards/save_button' }
-        format.js
-      end
-    else
-      render 'show'
-    end
+    @board.update_attributes(board_params)
+    respond_with 'board/save_button'
   end
 
   private
 
   def board_params
-    params.require(:board).permit(:title)
+    params.require(:board).permit(:title, :saved)
   end
 end
