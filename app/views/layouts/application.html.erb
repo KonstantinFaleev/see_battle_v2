@@ -23,12 +23,14 @@
       </td>
       <td style="width:10px;"></td>
       <td class="page_content">
-        <%= render 'layouts/top_button', :game => @game %>
-        <hr>
-        <% flash.each do |key, value| %>
-            <%= content_tag(:div, value, class: "alert alert-#{key}", :style => "padding-left: 100px;") %>
-        <% end %>
-        <%= yield %>
+        <div style="min-height:660px;">
+          <%= render 'layouts/top_button', :game => @game %>
+          <hr>
+          <% flash.each do |key, value| %>
+              <%= content_tag(:div, value, class: "alert alert-#{key}", :style => "padding-left: 100px;") %>
+          <% end %>
+          <%= yield %>
+        </div>
       </td>
       <td style="width:10px;"></td>
       <td style="vertical-align:top;">
