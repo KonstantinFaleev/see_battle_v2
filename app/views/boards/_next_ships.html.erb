@@ -1,7 +1,7 @@
 <table>
-  <% for i in 1..@board.available_ships.length-1 %>
+  <% for i in 1..board.available_ships.length-1 %>
       <tr><td>
-        <%= image_tag "/x#{@board.available_ships[i]}1.png", :class => "right" %>
+        <%= image_tag "/x#{board.available_ships[i]}1.png", :class => "right" %>
       </td></tr>
   <% end %>
 </table>

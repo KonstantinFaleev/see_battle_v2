@@ -7,16 +7,40 @@
 <div class="row">
   <aside class="span4" style="margin-left:55px;">
     <section>
-      <%= render "player_info" %>
+      <%= render "player_info", :player => @player %>
     </section>
     <% if current_player == @player && @saved_boards.any? %>
         <section>
           <h5 style="text-align:center;">Saved positions:</h5>
-          <%= render partial: "players/saved_boards", collection: @saved_boards, as: :board, :locals => {:current_board_id => nil } %>
+          <table class="centered-table">
+            <%= render partial: "shared/saved_boards", collection: @saved_boards, as: :board, :locals => {:current_board_id => nil } %>
+          </table>
         </section>
     <% end %>
   </aside>
   <div class="span5">
-    <%= render "player_games" %>
+    <table class="table table-hover">
+      <thead>
+      <th style="text-align: center;" colspan="3">Games list</th>
+      </thead>
+      <tbody>
+      <% if @games.any? %>
+          <%= render partial: 'player_games', collection: @games, as: :game %>
+      <% else %>
+          <tr class="info">
+            <td colspan="3">
+              No games so far.
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan='3'>
+          <%= will_paginate @games %>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <div id="top_button">
   <% if signed_in? %>
-      <% if !@game.nil? && !@game.game_over? && current_player == @game.player_a %>
-          <%= button_to "Surrender", "/surrender/#{@game.id}", class: "btn btn-danger", :style => "display:block; marghin-left: auto; marghin-right: auto; margin-top: 15px; width: 200px;", :method => :get %>
+      <% if !game.nil? && !game.game_over? && current_player == game.player_a %>
+          <%= button_to "Surrender", "/surrender/#{game.id}", class: "btn btn-danger", :style => "display:block; marghin-left: auto; marghin-right: auto; margin-top: 15px; width: 200px;", :method => :get %>
       <% elsif full_title(yield(:title)).include? 'Run-up...' %>
           <!-- show nothing -->
       <% else %>

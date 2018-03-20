@@ -145,6 +145,7 @@ class Game < ActiveRecord::Base
 
       self.ai_moves_pull = self.ai_neglected_moves = nil
     end
+    self.save
   end
 
   def surrender_game

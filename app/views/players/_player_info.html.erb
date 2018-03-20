@@ -1,31 +1,44 @@
-<table class="table">
-  <thead >
-  <th style="text-align: center;">Info</th>
+<% provide(:title, 'All players') %>
+<h1>All Players</h1>
+
+<%= form_tag players_path, :class => 'center', :method => 'get' do %>
+    <div class="controls">
+      <div class="input-prepend">
+        <span class="add-on"><i class="icon-search"></i></span><%= text_field_tag :search, params[:search], :class => 'search-input' %>
+      </div>
+    </div>
+<% end %>
+<table id="players" class="display" style="text-align: center;">
+  <thead>
+  <th>#</th>
+  <th style="text-align: left;">Name</th>
+  <th>Games played</th>
+  <th>Victories</th>
+  <th>Defeats</th>
+  <th>Ships destroyed</th>
+  <th>Ships lost</th>
+  <th>Rating</th>
   </thead>
   <tbody>
-  <tr>
-    <td>
-      Name: <i><%= @player.name %></i>
-    </td>
-  </tr>
-  <% if current_player == @player %>
+  <% i=0 %>
+  <% @players.each do |player| %>
+      <% i+=1 %>
       <tr>
-        <td>
-          Email: <i><% if !@player.email.empty? %>
-              <%= @player.email %>
-          <% else %>
-              not specified.
-          <% end %></i>
+        <td><%= i %></td>
+        <td style="text-align: left;">
+          <%= link_to player.name, player %>
+          <% if current_player.admin? && !current_player?(player) %>
+              (<%= link_to "delete", player, method: :delete, data: { confirm: "Are you sure?" }, :class => "delete-link" %>)
+          <% end %>
         </td>
+        <td><%= player.victories.size + player.defeats.size %></td>
+        <td><%= player.victories.size %></td>
+        <td><%= player.defeats.size %></td>
+        <td><%= player.ships_destroyed %></td>
+        <td><%= player.ships_lost %></td>
+        <td><%= player.rating %></td>
       </tr>
   <% end %>
-  <tr>
-    <td>
-      Rating: <%= @player.rating %> pts.
-    </td>
-  </tr>
   </tbody>
 </table>
-<% if current_player == @player %>
-    <%= button_to "Edit my info", edit_player_path(current_player), class: "Button", :method => :get %>
-<% end %>
+<%= will_paginate @players %>

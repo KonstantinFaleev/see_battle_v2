@@ -1,7 +1,7 @@
-<% if @board.is_ready? && @board.title == "No title" %>
+<% if board.is_ready? && board.title == "No title" %>
     <h4>You are ready to play!</h4>
-<% elsif @board.title != "No title" %>
-    <h4><%= @board.title %></h4>
+<% elsif board.title != "No title" %>
+    <h4><%= board.title %></h4>
 <% else %>
     <h4>Move your fleet to the board</h4>
     <div><p class="center" id="header">Click on the ship to take it.</p></div>
@@ -22,21 +22,21 @@
               <td style="padding-right: 10px;"><%= i %></td>
               <% for j in 0..9 %>
                   <td class="board">
-                    <% if @board.grid[i][j][0] == 0 && !@board.is_ready? %>
+                    <% if board.grid[i][j][0] == 0 && !board.is_ready? %>
                         <% if !Rails.env.test? && user_agent_ok? %>
-                            <%= link_to "/attempt/#{@board.id}/#{i}_#{j}/", remote: true do %>
+                            <%= link_to "/attempt/#{board.id}/#{i}_#{j}/", remote: true do %>
                                 <%= image_tag '/transparent.png', :style => "width:30px;height:30px;" %>
                             <% end %>
                         <% else %>
-                            <%= link_to "/attempt/#{@board.id}/#{i}_#{j}/", :data => { disable_with: "" }, remote: true do %>
+                            <%= link_to "/attempt/#{board.id}/#{i}_#{j}/", :data => { disable_with: "" }, remote: true do %>
                                 <%= image_tag '/transparent.png', :style => "width:30px;height:30px;" %>
                             <% end %>
                         <% end %>
-                    <% elsif @board.grid[i][j][0] == 0 %>
+                    <% elsif board.grid[i][j][0] == 0 %>
                         <%= image_tag '/transparent.png', :style => "width:30px;height:30px;" %>
-                    <% elsif @board.grid[i][j][0] == 1 %>
+                    <% elsif board.grid[i][j][0] == 1 %>
                         <%= image_tag '/transparent.png', :style => "width:22px;height:22px;border:3px solid black;" %>
-                    <% elsif @board.grid[i][j][0] == 2 %>
+                    <% elsif board.grid[i][j][0] == 2 %>
                         <div class="miss">&bull;</div>
                     <% end %>
                   </td>
@@ -46,19 +46,19 @@
         </tbody>
       </table>
     </td>
-    <% if !@board.is_ready? %>
+    <% if !board.is_ready? %>
         <td style="vertical-align: middle;">
           <div id="current_ship">
-            <%= render 'current_ship' %>
+            <%= render 'current_ship', :board => board %>
           </div>
         </td>
         <td>
-          <%= render 'next_ships' %>
+          <%= render 'next_ships', :board => board %>
         </td>
     <% else %>
         <td style="vertical-align: middle; width: 300px;">
           <div id="save_button">
-            <%= render 'save_button' %>
+            <%= render 'save_button', :board => board %>
           </div>
         </td>
     <% end %>
@@ -68,7 +68,7 @@
 <% btn_name = "" %>
 <% btn_class = "" %>
 <% header = "" %>
-<% if @board.is_ready? %>
+<% if board.is_ready? %>
     <% btn_class = "btn btn-success" %>
     <% btn_name = "Play" %>
 <% else %>
@@ -77,4 +77,4 @@
     <% btn_class = "btn btn-warning" %>
 <% end %>
 <h4 style="padding-top: 10px"><%= header %></h4>
-<%= button_to "#{btn_name}", games_path(:board_id => @board), class: "#{btn_class}", :style => "display:block; marghin-left: auto; marghin-right: auto; margin-top: 15px; width: 200px;", :data => { disable_with: "Starting new game..." }, :method => :post %>
+<%= button_to "#{btn_name}", games_path(:board_id => board), class: "#{btn_class}", :style => "display:block; marghin-left: auto; marghin-right: auto; margin-top: 15px; width: 200px;", :data => { disable_with: "Starting new game..." }, :method => :post %>

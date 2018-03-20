@@ -16,4 +16,8 @@ module ApplicationHelper
   def online_players
     Player.where('last_response_at > ?', 10.minutes.ago).load
   end
+
+  def latest_games
+    Game.where('winner_id NOT ?', nil).limit(10)
+  end
 end

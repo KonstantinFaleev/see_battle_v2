@@ -13,11 +13,13 @@
   </script>
 </head>
 <div id="board_area">
-  <%= render 'board_area' %>
+  <%= render 'board_area', :board => @board %>
 </div>
-<% if @saved_boards.size > 1 %>
+<% if @saved_boards.any? %>
     <div id="saved" class="centered" style="width: 300px;">
-      <h5 style="text-align:center;">Other saved positions:</h5>
-      <%= render partial: "players/saved_boards", collection: @saved_boards, as: :board, :locals => {:current_board_id => @board.id } %>
+      <h5 style="text-align:center;">Saved positions:</h5>
+      <table class="centered-table">
+        <%= render partial: "shared/saved_boards", collection: @saved_boards, as: :board, :locals => {:current_board_id => @board.id } %>
+      </table>
     </div>
 <% end %>

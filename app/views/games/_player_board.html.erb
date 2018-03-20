@@ -1,8 +1,8 @@
 <table>
   <thead>
   <th colspan='11'>
-    <%= link_to @game.player_a.name, @game.player_a %><br>
-    <small><%= @game.player_a.rating %> pts.</small>
+    <%= link_to game.player_a.name, game.player_a %><br>
+    <small><%= game.player_a.rating %> pts.</small>
   </th>
   </thead>
   <tbody>
@@ -17,11 +17,11 @@
         <td style="padding-right: 10px;"><%= i %></td>
         <% for j in 0..9 %>
             <td class="board">
-              <% if @game.player_a_board[i][j][0] == 0 %>
+              <% if game.player_a_board[i][j][0] == 0 %>
                   <%= image_tag '/transparent.png', :style => "width:28px;height:28px;" %>
-              <% elsif @game.player_a_board[i][j][0] == 1 %>
+              <% elsif game.player_a_board[i][j][0] == 1 %>
                   <%= image_tag '/transparent.png', :style => "width:22px;height:22px;border:3px solid black;" %>
-              <% elsif @game.player_a_board[i][j][0] == 3 %>
+              <% elsif game.player_a_board[i][j][0] == 3 %>
                   <div class="sunk">
                     <span style="display:inline-block; vertical-align:middle">&Chi;</span>
                   </div>

@@ -1,4 +1,5 @@
 class BoardsController < ApplicationController
+  before_action :find_board, only: [:show, :change_ship_direction, :place_ship, :update]
   respond_to :html, :js
 
   def create
@@ -10,23 +11,17 @@ class BoardsController < ApplicationController
   end
 
   def show
-    @board = Board.find(params[:id])
     @saved_boards = Board.where("player_id = ? AND saved = ?", @board.player_id, true).load
 
     redirect_to root_url unless current_player?(@board.player)
   end
 
   def change_ship_direction
-    @board = Board.find(params[:id])
     @board.change_ship_direction
     @board.save
-
-    respond_with 'boards/current_ship'
   end
 
   def place_ship
-    @board = Board.find(params[:id])
-
     x,y = params[:cell].split('_')
 
     if @board.place_ship x.to_i, y.to_i
@@ -37,14 +32,16 @@ class BoardsController < ApplicationController
   end
 
   def update
-    @board = Board.find(params[:id])
     @board.update_attributes(board_params)
-    respond_with 'boards/save_button'
   end
 
   private
 
   def board_params
     params.require(:board).permit(:title, :saved)
+  end
+
+  def find_board
+    @board = Board.find(params[:id])
   end
 end

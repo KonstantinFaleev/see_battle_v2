@@ -1,8 +1,8 @@
 <table>
   <thead>
   <th colspan='11'>
-    <%= link_to @game.player_b.name, @game.player_b %><br>
-    <small><%= @game.player_b.rating %> pts.</small>
+    <%= link_to game.player_b.name, game.player_b %><br>
+    <small><%= game.player_b.rating %> pts.</small>
   </th>
   </thead>
   <tbody>
@@ -17,19 +17,19 @@
         <td style="padding-right: 10px;"><%= i %></td>
         <% for j in 0..9 %>
             <td class="board">
-              <% if !@game.game_over? && (@game.player_b_board[i][j][0] == 0 || @game.player_b_board[i][j][0] == 1) %>
-                  <%= link_to "/move/#{@game.id}/cell=#{i}_#{j}", :data => { disable_with: '' }, :remote => true do %>
+              <% if !game.game_over? && (game.player_b_board[i][j][0] == 0 || game.player_b_board[i][j][0] == 1) %>
+                  <%= link_to "/move/#{game.id}/cell=#{i}_#{j}", :data => { disable_with: '' }, :remote => true do %>
                       <%= image_tag '/transparent.png', :style => "width:28px;height:28px;" %>
                   <% end %>
-              <% elsif @game.player_b_board[i][j][0] == 0 %>
+              <% elsif game.player_b_board[i][j][0] == 0 %>
                   <%= image_tag '/transparent.png', :style => "width:22px;height:22px;border:3px solid transparent;" %>
-              <% elsif @game.player_b_board[i][j][0] == 1 %>
+              <% elsif game.player_b_board[i][j][0] == 1 %>
                   <%= image_tag '/transparent.png', :style => "width:22px;height:22px;border:3px solid black;" %>
-              <% elsif @game.player_b_board[i][j][0] == 4 %>
+              <% elsif game.player_b_board[i][j][0] == 4 %>
                   <div class="miss">
                     <span style="display:inline-block; vertical-align:middle">&bull;</span>
                   </div>
-              <% elsif @game.player_b_board[i][j][0] == 3 && @game.player_b_board[i][j][1].reload.is_sunk? %>
+              <% elsif game.player_b_board[i][j][0] == 3 && game.player_b_board[i][j][1].reload.is_sunk? %>
                   <div class="sunk">
                     <span style="display:inline-block; vertical-align:middle">&Chi;</span>
                   </div>

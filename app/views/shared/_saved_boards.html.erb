@@ -1,0 +1,14 @@
+<tbody>
+<tr>
+  <% unless current_board_id == board.id %>
+      <td>
+        <span style="float:left;"><%= link_to "#{board.title}", board %></span>
+      </td>
+      <td>
+          <span class="timestamp-bright">
+            <%= board.created_at.strftime("%d %b. %Y") %>
+          </span>
+      </td>
+  <% end %>
+</tr>
+</tbody>

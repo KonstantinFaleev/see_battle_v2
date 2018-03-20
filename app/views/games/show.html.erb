@@ -1,5 +1,5 @@
 <%= provide(:title, "Game ##{@game.id}") %>
 
 <div id="game_area">
-  <%= render 'game_area' %>
+  <%= render 'game_area', :game => @game %>
 </div>
