@@ -84,7 +84,8 @@ class Game < ActiveRecord::Base
       ship.update_attribute('decks', ship.decks-1)
       ships -= 1
       self.move_again = true
-      self.game_log = "#{player.name} shoots #{('A'..'J').to_a[y]}#{x} and damages #{other_player.name}'s ship!\n" + self.game_log
+      self.game_log = "#{player.name} shoots #{('A'..'J').to_a[y]}#{x} and " \
+                      "damages #{other_player.name}'s ship!\n" + self.game_log
       if ship.reload.is_sunk?
         player.update_attribute('ships_destroyed', player.ships_destroyed+=1)
         other_player.update_attribute('ships_lost', other_player.ships_lost+=1)

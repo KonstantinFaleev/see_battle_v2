@@ -5,7 +5,7 @@ class PlayersController < ApplicationController
 
   def index
     if params[:search]
-      @players = Player.where("lower(name) LIKE ?", "%#{params[:search].downcase}%").load.paginate(:page => params[:page], :per_page => 10)
+      @players = Player.search(params[:search]).paginate(:page => params[:page], :per_page => 10)
     else
       @players = Player.all.paginate(:page => params[:page], :per_page => 10)
     end
