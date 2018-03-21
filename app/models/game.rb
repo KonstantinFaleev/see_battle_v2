@@ -22,16 +22,15 @@ class Game < ActiveRecord::Base
 
   # Returns a new Game object with the associated players A and Bot
   def self.start_game(player_a, player_b, board)
-    g = Game.new
-    g.player_a = player_a
-    g.player_b = player_b
+    g = Game.new(player_a: player_a, player_b: player_b)
+
     if board.nil? || !Board.find_by_id(board).is_ready?
       g.player_a_board = new_random_board
     else
       g.player_a_board = Board.find_by_id(board).grid
     end
+
     g.player_b_board = new_random_board
-    g.game_log = "Game has started."
     g.move_again = false
     g.ai_neglected_moves = []
     g.ai_moves_pull = []
@@ -53,7 +52,6 @@ class Game < ActiveRecord::Base
   #4 - checked empty cell
   def self.new_random_board
     board = Board.new
-    board.initialize_board
 
     while !board.is_ready?
       board.direction = rand(2) == 1 ? true : false
@@ -87,8 +85,8 @@ class Game < ActiveRecord::Base
       self.game_log = "#{player.name} shoots #{('A'..'J').to_a[y]}#{x} and " \
                       "damages #{other_player.name}'s ship!\n" + self.game_log
       if ship.reload.is_sunk?
-        player.update_attribute('ships_destroyed', player.ships_destroyed+=1)
-        other_player.update_attribute('ships_lost', other_player.ships_lost+=1)
+        player.increment!(:ships_destroyed, by = 1)
+        other_player.increment!(:ships_lost, by = 1)
         self.game_log = "#{other_player.name}'s ship is now destroyed!\n" + self.game_log
       end
 

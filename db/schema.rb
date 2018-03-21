@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180319194215) do
+ActiveRecord::Schema.define(version: 20180321213705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 20180319194215) do
     t.text "player_a_board"
     t.text "player_b_board"
     t.string "play_status"
-    t.text "game_log"
     t.integer "looser_id"
     t.text "ai_moves_pull"
     t.text "ai_neglected_moves"
+    t.text "game_log", default: "Game has started."
   end
 
   create_table "newsposts", force: :cascade do |t|

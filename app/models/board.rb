@@ -1,10 +1,29 @@
 class Board < ActiveRecord::Base
+  after_initialize :add_board
+
   serialize(:available_ships, Array)
   serialize(:grid, Array)
 
   belongs_to :player
   validates :player_id, presence: true
   validates :title, presence: true
+
+  def add_board
+    if self.new_record?
+      self.available_ships = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
+
+      grid = []
+      10.times do
+        row = []
+        10.times do
+          row << [0, 0]
+        end
+        grid << row
+      end
+
+      self.grid = grid
+    end
+  end
 
   def is_ready?
     available_ships.empty?
@@ -16,20 +35,7 @@ class Board < ActiveRecord::Base
     else
       self.direction = true
     end
-  end
-
-  def initialize_board
-    self.available_ships = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
-
-    grid = []
-    10.times do
-      row = []
-      10.times do
-        row << [0, 0]
-      end
-      grid << row
-    end
-    self.grid = grid
+    self.save
   end
 
   #(x, y) is ship top left coordinate

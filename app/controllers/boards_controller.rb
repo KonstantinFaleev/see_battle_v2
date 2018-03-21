@@ -3,9 +3,7 @@ class BoardsController < ApplicationController
   respond_to :html, :js
 
   def create
-    @board = current_player.boards.build
-    @board.initialize_board
-    @board.save
+    @board = current_player.boards.create!
 
     redirect_to @board
   end
@@ -18,7 +16,6 @@ class BoardsController < ApplicationController
 
   def change_ship_direction
     @board.change_ship_direction
-    @board.save
   end
 
   def place_ship
