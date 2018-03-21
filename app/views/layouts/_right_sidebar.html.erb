@@ -1,13 +1,30 @@
-<h5>Now online:</h5>
-<ul>
-  <% online_players.each do |p| %>
-      <% if p.admin %>
-          <li style="font-style: italic; font-weight: bold;">
-      <% else %>
-          <li>
+<h5 style="text-align:center;">Now online</h5>
+<% if online_players.any? %>
+    <ul>
+      <% online_players.each do |p| %>
+          <li style="color:green;">
+            <% if p.admin %>
+                <b><%= link_to "#{p.name}", player_path(p) %></b>
+            <% else %>
+                <%= link_to "#{p.name}", player_path(p) %>
+            <% end %>
+          </li>
       <% end %>
-      <%= link_to "#{p.name}", player_path(p) %>
-      </li>
-  <% end %>
-</ul>
+    </ul>
+<% else %>
+    <p class="center">None</p>
+<% end %>
 <hr>
+
+<h5 style="text-align:center;">Latest winners</h5>
+<% if latest_games.any? %>
+    <ul>
+      <% latest_games.each do |g| %>
+          <li style="list-style:none;margin-top:5px;">
+      <span style="font-size:12px;font-weight:bold;"><%= g.winner.name %></span> (<%= link_to "vs. #{g.looser.name}", g %>)
+          </li>
+      <% end %>
+    </ul>
+<% else %>
+    <p class="center">None</p>
+<% end %>
