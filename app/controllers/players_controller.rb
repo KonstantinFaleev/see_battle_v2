@@ -50,14 +50,18 @@ class PlayersController < ApplicationController
 
   def destroy
     player = Player.find(params[:id])
-    unless current_player?(player)
-      a = Player.find(params[:id]).name
+    unless player.admin?
       Player.find(params[:id]).destroy
-      flash[:success] = "Account '#{a}' has been deleted"
+      flash[:success] = "Account '#{player.name}' has been deleted."
     else
-      flash[:error] = "Salvation Through Destruction is not allowed :)"
+      flash[:error] = "Admin accounts cannot be deleted."
     end
-    redirect_to players_url
+
+    if current_player.admin?
+      redirect_to players_url
+    else
+      redirect_to root_url
+    end
   end
 
   private
@@ -79,6 +83,6 @@ class PlayersController < ApplicationController
   end
 
   def admin_account
-    redirect_to root_url unless current_player.admin?
+    redirect_to root_url unless current_player.admin? || current_player == Player.find(params[:id])
   end
 end

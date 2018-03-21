@@ -5,3 +5,7 @@
     <%= render 'fields', f: f %>
     <%= f.submit "Update", class: 'Button' %>
 <% end %>
+
+<div style="margin-left:15px;">
+  <%= button_to "Delete my account", @player, method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-mini btn-danger" %>
+</div>

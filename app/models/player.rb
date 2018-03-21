@@ -8,7 +8,7 @@ class Player < ActiveRecord::Base
   before_save { self.email = email.downcase }
   before_create :create_remember_token
 
-  validates :name, presence: true, length: { maximum: 20, minimum: 3 },
+  validates :name, presence: true, length: { in: 3..20 },
             uniqueness: { case_sensitive: false }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
