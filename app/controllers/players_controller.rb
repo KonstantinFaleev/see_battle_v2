@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
   before_action :signed_in_player, only: [:index, :edit, :update]
   before_action :correct_player, only: [:edit, :update]
-  before_action :admin_account, only: :destroy
+  before_action :destroy_action, only: :destroy
 
   def index
     if params[:search]
@@ -82,7 +82,7 @@ class PlayersController < ApplicationController
     redirect_to root_url unless current_player?(@player)
   end
 
-  def admin_account
+  def destroy_action
     redirect_to root_url unless current_player.admin? || current_player == Player.find(params[:id])
   end
 end

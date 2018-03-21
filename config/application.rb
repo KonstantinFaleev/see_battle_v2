@@ -17,6 +17,8 @@ module SeeBattleV2
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     I18n.enforce_available_locales = false
 
+    config.action_dispatch.default_headers.clear
+
     config.before_initialize do |app|
       app.config.paths.add 'app/models', :eager_load => true
     end
