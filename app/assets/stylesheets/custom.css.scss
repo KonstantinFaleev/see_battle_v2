@@ -62,44 +62,6 @@ textarea {
   height: 50%;
 }
 
-/* Application Layout */
-
-table.main_container {
-  background-color:transparent;
-  width:auto !important;
-  margin-left:auto;
-  margin-right:auto;
-  table-layout:fixed;
-  overflow: hidden;
-}
-
-.sidebar {
-  background-color:#FFF;
-  vertical-align: top;
-  padding:5px;
-  border-radius:5px;
-  margin-top:45px;
-  height: auto !important;
-  min-width: 150px;
-}
-
-.page_content {
-  background-color:#FFF;
-  width:781px;
-  vertical-align: top;
-  margin-left:auto;
-  margin-right:auto;
-  padding:5px;
-  border-top-left-radius:5px;
-  border-top-right-radius:5px;
-}
-
-._footer {
-  background-color:#FFF;
-  vertical-align: top;
-  padding:5px;
-}
-
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -167,8 +129,8 @@ h5 {
 
 /* Home page */
 .inline-list {
-  display: table;
-  margin: 10px auto;
+  display: table; margin:
+        10px auto;
 }
 .inline-list li {
   float: left;
@@ -205,32 +167,6 @@ h5 {
   overflow: auto;
 }
 
-  /* footer */
-
-footer {
-  margin-top: 10px;
-  padding: 5px;
-  border-top: 1px solid $grayMediumLight;
-  color: $grayLight;
-  a {
-    color: $gray;
-    &:hover {
-      color: $grayDarker;
-    }
-  }
-  small {
-    float: left;
-  }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 10px;
-    }
-  }
-}
-
 /* miscellaneous */
 
 .debug_dump {
@@ -240,7 +176,6 @@ footer {
   margin-top: 45px;
   @include box_sizing;
 }
-
 
 /* sidebar */
 
@@ -385,17 +320,17 @@ label{
   text-align: center;
   padding: 5px;
   width: 100%;
-    th, td, tr {
-      text-align: center;
-      border-bottom: 1px solid #DDD;
-      padding: 5px;
-    }
-    tr:hover {
-      background-color:$grayMediumLight;
-    }
-    th:hover{
-      background-color:transparent;
-    }
+  th, td, tr {
+    text-align: center;
+    border-bottom: 1px solid #DDD;
+    padding: 5px;
+  }
+  tr:hover {
+    background-color:$grayMediumLight;
+  }
+  th:hover{
+    background-color:transparent;
+  }
 }
 
 .delete-link {
@@ -428,7 +363,6 @@ table#players tbody td {
   border: 1px solid grey;
   background-color: #cfcbcb;
 }
-
 .board:hover{
   background-color: grey;
 }
@@ -458,14 +392,14 @@ table#players tbody td {
   font-family: Arial, "Arial (Hebrew)", "David (Hebrew)";
   font-size: 2em;
   color: black;
-  width: 30px;
-  height: 30px;
+  width: 22px;
+  height: 22px;
   border: 3px solid transparent;
 }
 
 .sunk {
   font-family: Arial, "Arial (Hebrew)", "David (Hebrew)";
-  font-size: 1.8em;
+  font-size:1.8em;
   color: red;
   width: 22px;
   height: 22px;
@@ -513,7 +447,6 @@ table#players tbody td {
   padding-right:5px;
   font-style: italic;
 }
-
 .timestamp-bright {
   font-size:1em;
   text-align:center;

@@ -16,12 +16,12 @@
 <% end %>
 <hr>
 
-<h5 style="text-align:center;">Latest winners</h5>
+<h5 style="text-align:center;">Latest games</h5>
 <% if latest_games.any? %>
     <ul>
       <% latest_games.each do |g| %>
           <li style="list-style:none;margin-top:5px;">
-      <span style="font-size:12px;font-weight:bold;"><%= g.winner.name %></span> (<%= link_to "vs. #{g.looser.name}", g %>)
+            <%= link_to g.title, g %>
           </li>
       <% end %>
     </ul>

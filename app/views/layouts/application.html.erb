@@ -11,47 +11,30 @@
   <%= render 'layouts/shim' %>
 </head>
 <body>
-<%= render 'layouts/header' %>
 <div>
-  <table class="main_container">
-    <tbody>
-    <tr style="vertical-align:top;">
-      <td>
-        <div id="right-sidebar" class="sidebar">
-          <%= render 'layouts/left_sidebar' %>
-        </div>
-      </td>
-      <td style="width:10px;"></td>
-      <td class="page_content">
-        <div style="min-height:660px;">
-          <%= render 'layouts/top_button', :game => @game %>
-          <hr>
-          <% flash.each do |key, value| %>
-              <%= content_tag(:div, value, class: "alert alert-#{key}", :style => "padding-left: 100px;") %>
-          <% end %>
-          <%= yield %>
-        </div>
-      </td>
-      <td style="width:10px;"></td>
-      <td style="vertical-align:top;">
-        <div id="right-sidebar" class="sidebar">
-          <%= render 'layouts/right_sidebar' %>
-        </div>
-      </td>
-    </tr>
-    </tbody>
-    <tfoot>
-    <tr>
-      <td colspan='2'></td>
-      <td class="_footer">
-        <%= render 'layouts/footer' %>
-        <%= debug(params) if Rails.env.development? %>
-        <%#= request.user_agent if Rails.env.development? %>
-      </td>
-      <td colspan='2'></td>
-    </tr>
-    </tfoot>
-  </table>
+  <%= render 'layouts/header' %>
+</div>
+<div id="columns">
+  <div id="lside">
+    <%= render 'layouts/left_sidebar' %>
+  </div>
+  <div id="main">
+    <div style="min-height:660px;">
+      <%= render 'layouts/top_button', :game => @game %>
+      <hr>
+      <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, class: "alert alert-#{key}", :style => "padding-left: 100px;") %>
+      <% end %>
+      <%= yield %>
+    </div>
+    <div id="footer">
+      <%= render 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
+  </div>
+  <div id="rside">
+    <%= render 'layouts/right_sidebar' %>
+  </div>
 </div>
 </body>
 </html>

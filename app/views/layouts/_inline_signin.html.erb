@@ -1,16 +1,18 @@
-<% if signed_in? %>
-    <p class="navbar-text">
-      Signed in as <%= link_to "#{current_player.name}", player_path(current_player) %>.
-      (<small><%= link_to 'sign out', signout_path, method: "delete" %></small>)
-    </p>
-<% elsif full_title(yield(:title)).include? 'Sign in' %>
-    <!-- do nothing -->
-<% else %>
-    <%= form_for(:session, url: sessions_path, :html => {:class => 'form-inline', :style => "padding-top: 5px; padding-bot: 0;"}) do |f| %>
+<div>
+  <% if signed_in? %>
+      <p class="navbar-text">
+        Signed in as <%= link_to "#{current_player.name}", player_path(current_player) %>.
+        (<small><%= link_to 'sign out', signout_path, method: "delete" %></small>)
+      </p>
+  <% elsif full_title(yield(:title)).include? 'Sign in' %>
+      <!-- do nothing -->
+  <% else %>
+      <%= form_for(:session, url: sessions_path, :html => {:class => 'form-inline', :style => "padding-top: 5px; padding-bot: 0;"}) do |f| %>
 
-        <%= f.text_field(:name, :class => "input-small", :placeholder => "name") %>
-        <%= f.password_field(:password, :class => "input-small", :placeholder => "password") %>
+          <%= f.text_field(:name, :class => "input-small", :placeholder => "name") %>
+          <%= f.password_field(:password, :class => "input-small", :placeholder => "password") %>
 
-        <%= f.submit "Log in", :type => :image, :src => "login-small.png", :style => "border-style:none;" %>
-    <% end %>
-<% end %>
+          <%= f.submit "Log in", :type => :image, :src => "/login-small.png", :style => "border-style:none;" %>
+      <% end %>
+  <% end %>
+</div>

@@ -24,6 +24,8 @@ class Game < ActiveRecord::Base
   def self.start_game(player_a, player_b, board)
     g = Game.new(player_a: player_a, player_b: player_b)
 
+    g.title = "#{player_a.name} vs. #{player_b.name}"
+
     if board.nil? || !Board.find_by_id(board).is_ready?
       g.player_a_board = new_random_board
     else

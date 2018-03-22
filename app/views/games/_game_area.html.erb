@@ -1,5 +1,7 @@
 <% if game.game_over? && current_player == game.player_a %>
     <h4><%= game.play_status %></h4>
+<% else %>
+    <h4>&nbsp;</h4>
 <% end %>
 
 <table class="board_container">
@@ -9,7 +11,7 @@
         <%= render 'player_board', :game => game %>
       </div>
     </td>
-    <td style="width: 15%;"><%= image_tag 'transparent.png', :class => "style_img" %></td>
+    <td style="width: 5%;"><%= image_tag 'transparent.png', :class => "style_img" %></td>
     <td>
       <div id="bot_board">
         <%= render 'bot_board', :game => game %>
