@@ -4,6 +4,8 @@ class PlayersController < ApplicationController
   before_action :destroy_action, only: :destroy
 
   def index
+    @count = 1
+
     if params[:search]
       @players = Player.search(params[:search]).paginate(:page => params[:page], :per_page => 10)
     else
