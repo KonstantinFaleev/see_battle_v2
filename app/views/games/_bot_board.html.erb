@@ -29,7 +29,7 @@
                   <div class="miss">
                     <span style="display:inline-block; vertical-align:middle">&bull;</span>
                   </div>
-              <% elsif game.player_b_board[i][j][0] == 3 && game.player_b_board[i][j][1].reload.is_sunk? %>
+              <% elsif game.player_b_board[i][j][0] == 3 && (game.player_b_board[i][j][1].reload.is_sunk? || game.game_over?) %>
                   <div class="sunk">
                     <span style="display:inline-block; vertical-align:middle">&Chi;</span>
                   </div>

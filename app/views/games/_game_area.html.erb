@@ -1,5 +1,13 @@
 <% if game.game_over? && current_player == game.player_a %>
-    <h4><%= game.play_status %></h4>
+    <% if game.winner == game.player_a %>
+        <h4>
+          <span id="game_title_win"><%= game.play_status %></span>
+        </h4>
+    <% else %>
+        <h4>
+          <span id="game_title_lose"><%= game.play_status %></span>
+        </h4>
+    <% end %>
 <% else %>
     <h4>&nbsp;</h4>
 <% end %>

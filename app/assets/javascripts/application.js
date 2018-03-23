@@ -13,9 +13,10 @@
 
 //= require jquery
 //= require jquery-ui
+//= require jquery-ui/effects/effect-blind
 //= require rails-ujs
 //= require turbolinks
-//= require_tree .
 //= require bootstrap
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/2/jquery.dataTables.bootstrap
+//= require_tree .
