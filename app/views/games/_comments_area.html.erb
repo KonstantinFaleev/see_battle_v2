@@ -4,8 +4,8 @@
                       :maxlength => 140, :style => "width:100%;margin-bottom:0px;" %>
       <span class="countdown"></span>
     </div>
-    <div>
-      <%= f.text_field :game_id %>
+    <div style="display:none;">
+      <%= f.text_field :game_id, :readonly => true %>
     </div>
     <%= f.submit "Post", class: "Button" %>
 <% end %>

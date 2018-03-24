@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_player.comments.build(comment_params)
-    @game = Game.find_by(comment_params[:game_id])
+    @game = Game.find_by(id: comment_params[:game_id])
     if @comment.save
       @comment = current_player.comments.build(game_id: @game.id)
       respond_with 'games/comments_area'
