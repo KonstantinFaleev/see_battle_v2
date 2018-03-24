@@ -1,0 +1,1 @@
+$("#comments_area").html("<%= escape_javascript(render :partial => 'games/comments_area', :locals => { :comment => @comment, :game => @game, :comments => @game.comments }) %>")

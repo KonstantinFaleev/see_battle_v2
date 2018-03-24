@@ -5,6 +5,7 @@ class GamesController < ApplicationController
   respond_to :html, :js
 
   def show
+    @comment = current_player.comments.build(game_id: @game.id)
   end
 
   def create
@@ -47,13 +48,6 @@ class GamesController < ApplicationController
   end
 
   private
-
-  def signed_in_player
-    unless signed_in?
-      store_location
-      redirect_to signin_path, notice: "Please sign in."
-    end
-  end
 
   def find_game
     @game = Game.find(params[:id])

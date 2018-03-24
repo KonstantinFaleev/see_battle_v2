@@ -4,12 +4,9 @@ Rails.application.routes.draw do
   resources :boards, only: [:show, :create, :update]
   resources :games, only: [:show, :create]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :comments, only: [:create, :destroy]
 
   root  'static_pages#home'
-
-  #get '/game/:id', to: 'games#show'
-  #match '/randompositioning', to: 'games#create', via: 'post'
-  #match '/play/:id', to: 'games#show', via: 'get'
   match '/signup', to: 'players#new', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'

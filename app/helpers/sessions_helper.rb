@@ -24,6 +24,13 @@ module SessionsHelper
     !current_player.nil?
   end
 
+  def signed_in_player
+    unless signed_in?
+      store_location
+      redirect_to signin_url, notice: "Please sign in."
+    end
+  end
+
   def sign_out
     current_player.update_attribute(:remember_token, Player.encrypt(Player.new_remember_token))
     current_player.update_attribute(:last_response_at, nil)

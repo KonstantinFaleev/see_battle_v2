@@ -16,6 +16,7 @@ class Game < ActiveRecord::Base
   belongs_to :looser, :foreign_key => 'looser_id', :class_name => 'Player'
   belongs_to :winner, :foreign_key => 'winner_id', :class_name => 'Player'
   has_many :ships,:foreign_key => 'game_id', :class_name => 'Ship'
+  has_many :comments
 
   #to differ cases when ship is hit and player should move again
   attr_accessor :move_again
