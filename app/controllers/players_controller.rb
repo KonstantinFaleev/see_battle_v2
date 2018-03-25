@@ -35,12 +35,15 @@ class PlayersController < ApplicationController
 
   def create_new_password
     @player = Player.find_by(email: params[:email])
-    if @player
+    if @player && @player.email != ""
       random_password = Array.new(10).map { (65 + rand(58)).chr }.join
       @player.password = random_password
       @player.password_confirmation = random_password
       @player.save!
       PlayerMailer.create_and_deliver_password_change(@player, random_password).deliver!
+    elsif @player.email == ""
+      redirect_to root_url, notice: "You must enter a valid email address"
+      return
     end
     redirect_to root_url, notice: "New password has been sent to your email."
   end
