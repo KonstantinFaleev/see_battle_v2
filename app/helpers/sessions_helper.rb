@@ -2,7 +2,13 @@ module SessionsHelper
 
   def sign_in(player)
     remember_token = Player.new_remember_token
-    cookies.permanent[:remember_token] = remember_token
+
+    if params[:remember_me]
+      cookies.permanent[:remember_token] = remember_token
+    else
+      cookies[:remember_token] = remember_token
+    end
+
     player.update_attribute(:remember_token, Player.encrypt(remember_token))
     self.current_player = player
   end
