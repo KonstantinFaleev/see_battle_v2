@@ -1,0 +1,39 @@
+<li>
+  <table>
+    <tr>
+      <td>
+        <span class="content">
+          <% if current_player?(c.player) %>
+            <%= link_to 'You', c.player %>
+          <% else %>
+            <%= link_to c.player.name, c.player %>
+          <% end %>
+          <%= "wrote: #{c.content}" %>.
+          <%= link_to 'View game', game_path(c.game) %>
+        </span>
+        <span class="timestamp">
+          Posted <%= time_ago_in_words(c.created_at) %> ago.
+        </span>
+      </td>
+      <td style="padding-left:25px;padding-right:25px;">
+        <% if current_player?(c.player) || current_player.admin? %>
+            <%= button_to "Delete", c, method: :delete,
+                          remote: true,
+                          :id => "btn-delete",
+                          :onclick => "btn = document.getElementById('btn-delete'); btn.disabled = true;
+                            btn.value = 'Deleted.';",
+                          :class => "btn btn-mini btn-danger" %>
+        <% end %>
+      </td>
+      <td>
+        <% if current_player.admin? %>
+            <%= button_to 'Approve', "/approve/#{c.id}", method: :post,
+                          :id => "btn-approve",
+                          :onclick => "btn = document.getElementById('btn-approve'); btn.disabled = true;
+                            btn.value = 'Approved.';",
+                          :class => 'btn btn-mini btn-success' %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+</li>

@@ -9,6 +9,11 @@
     <section>
       <%= render "player_info", :player => @player %>
     </section>
+    <section>
+      <% if @player.comments.any? %>
+          Posted <%= link_to pluralize(@player.comments.size, 'comment'), "/comments/#{@player.id}" %>.
+      <% end %>
+    </section>
     <% if current_player == @player && @saved_boards.any? %>
         <section>
           <h5 style="text-align:center;">Saved positions:</h5>

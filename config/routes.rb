@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :boards, only: [:show, :create, :update]
   resources :games, only: [:show, :create]
   resources :sessions, only: [:new, :create, :destroy]
-  resources :comments, only: [:create, :destroy]
+  resources :comments, only: [:create, :destroy, :index]
 
   root  'static_pages#home'
   match '/signup', to: 'players#new', via: 'get'
@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   match '/attempt/:id/:cell/', to: 'boards#place_ship', via: 'get'
   match '/direction/:id', to: 'boards#change_ship_direction', via: 'get'
   match '/forget/:id', to: 'boards#forget_board', via: 'get'
+  match '/comments/:id', to: 'players#comments', via: 'get'
+  match '/approve/:id', to: 'comments#approve', via: 'post'
 end

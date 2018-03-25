@@ -1,0 +1,14 @@
+<%= provide(:title, "#{@player.name}") %>
+<% if current_player == @player %>
+    <h1>My comments</h1>
+<% else %>
+    <h1><%= @player.name %> comments</h1>
+<% end %>
+
+<% if @player.comments.any? %>
+    <ol class="comments" style="margin-left: 25px;">
+      <%= render partial: 'shared/comment', collection: @player.comments, as: :c %>
+    </ol>
+<% else %>
+    You have not posted any comments yet.
+<% end %>

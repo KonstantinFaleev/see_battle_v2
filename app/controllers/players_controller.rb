@@ -2,6 +2,7 @@ class PlayersController < ApplicationController
   before_action :signed_in_player, only: [:index, :edit, :update]
   before_action :correct_player, only: [:edit, :update]
   before_action :destroy_action, only: :destroy
+  before_action :find_player, only: [:show, :destroy, :comments]
 
   def index
     @count = 1
@@ -22,9 +23,15 @@ class PlayersController < ApplicationController
   end
 
   def show
-    @player = Player.find(params[:id])
     @saved_boards = Board.where("player_id = ? AND saved = ?", @player.id, true).load.paginate(:page => params[:page], :per_page => 10)
     @games = Game.where(["player_a_id = ? or player_b_id = ?", @player.id, @player.id]).load.paginate(:page => params[:page], :per_page => 10)
+  end
+
+  def comments
+  end
+
+  def moderate_comments
+    @comments = Comment.all
   end
 
   def create
@@ -51,10 +58,9 @@ class PlayersController < ApplicationController
   end
 
   def destroy
-    player = Player.find(params[:id])
-    unless player.admin?
+    unless @player.admin?
       Player.find(params[:id]).destroy
-      flash[:success] = "Account '#{player.name}' has been deleted."
+      flash[:success] = "Account '#{@player.name}' has been deleted."
     else
       flash[:error] = "Admin accounts cannot be deleted."
     end
@@ -79,5 +85,9 @@ class PlayersController < ApplicationController
 
   def destroy_action
     redirect_to root_url unless current_player.admin? || current_player == Player.find(params[:id])
+  end
+
+  def find_player
+    @player = Player.find(params[:id])
   end
 end

@@ -31,6 +31,13 @@
                         <i class="icon-wrench"></i> Settings
                     <% end %>
                   </li>
+                  <% if current_player.admin? %>
+                      <li>
+                        <%= link_to comments_path do %>
+                            <i class="icon-list-alt"></i> Moderate comments
+                        <% end %>
+                      </li>
+                  <% end %>
                   <li class="divider"></li>
                   <li>
                     <%= link_to signout_path, method: "delete" do %>
