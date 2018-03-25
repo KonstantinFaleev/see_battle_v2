@@ -1,0 +1,9 @@
+<div class="row">
+  <%= form_tag '/reminder', method: :post do |f| %>
+      <%= label_tag :email %>
+      <%= text_field_tag :email, params[:email] %>
+      <div style="text-align:center;">
+        <%= submit_tag 'Yes, I forgot!', class: 'btn btn-default' %>
+      </div>
+  <% end %>
+</div>

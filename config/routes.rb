@@ -21,4 +21,6 @@ Rails.application.routes.draw do
   match '/forget/:id', to: 'boards#forget_board', via: 'get'
   match '/comments/:id', to: 'players#comments', via: 'get'
   match '/approve/:id', to: 'comments#approve', via: 'post'
+  match '/forgotten', to: 'players#forgotten', via: 'get'
+  match '/reminder', to: 'players#create_new_password', via: 'post'
 end
