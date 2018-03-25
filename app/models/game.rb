@@ -22,15 +22,15 @@ class Game < ActiveRecord::Base
   attr_accessor :move_again
 
   # Returns a new Game object with the associated players A and Bot
-  def self.start_game(player_a, player_b, board)
+  def self.start_game(player_a, player_b, board_id)
     g = Game.new(player_a: player_a, player_b: player_b)
 
     g.title = "#{player_a.name} vs. #{player_b.name}"
 
-    if board.nil? || !Board.find_by_id(board).is_ready?
+    if board_id.nil? || !Board.find_by(id: board_id).is_ready?
       g.player_a_board = new_random_board
     else
-      g.player_a_board = Board.find_by_id(board).grid
+      g.player_a_board = Board.find_by(id: board_id).grid
     end
 
     g.player_b_board = new_random_board
