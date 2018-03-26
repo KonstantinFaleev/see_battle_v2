@@ -77,4 +77,9 @@
     <% btn_class = "btn btn-warning" %>
 <% end %>
 <h4 style="padding-top: 10px"><%= header %></h4>
-<%= button_to "#{btn_name}", games_path(:board_id => board), class: "#{btn_class}", :style => "display:block; marghin-left: auto; marghin-right: auto; margin-top: 15px; width: 200px;", :data => { disable_with: "Starting new game..." }, :method => :post %>
+
+<%= button_to "#{btn_name}", games_path(:board_id => board),
+              class: "#{btn_class}",
+              :style => "display:block; marghin-left: auto; marghin-right: auto; margin-top: 15px; width: 200px;",
+              :data => { disable_with: "Starting new game..." },
+              :method => :post %>

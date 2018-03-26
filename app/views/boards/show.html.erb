@@ -13,7 +13,7 @@
   </script>
 </head>
 <div id="board_area">
-  <%= render 'board_area', :board => @board %>
+  <%= render 'board_area', :board => @board, :game => @game %>
 </div>
 <% if @saved_boards.any? %>
     <div id="saved" class="centered" style="width: 300px;">

@@ -9,8 +9,8 @@ class GamesController < ApplicationController
   end
 
   def create
-    g = Game.start_game(current_player, Player.find_by_id(2), params[:board_id])
-    redirect_to g
+    @game = Game.start_game(current_player, Player.find_by_id(2), params[:board_id])
+    redirect_to @game
   end
 
   def receive_move
