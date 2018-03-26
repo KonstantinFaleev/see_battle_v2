@@ -1,5 +1,5 @@
-<h5 style="text-align:center;">Now online</h5>
 <% if online_players.any? %>
+    <h5 style="text-align:center;">Now online</h5>
     <ul>
       <% online_players.each do |p| %>
           <li style="color:green;">
@@ -11,10 +11,8 @@
           </li>
       <% end %>
     </ul>
-<% else %>
-    <p class="center">None</p>
+    <hr>
 <% end %>
-<hr>
 
 <h5 style="text-align:center;">Latest games</h5>
 <% if latest_games.any? %>

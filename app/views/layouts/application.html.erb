@@ -14,12 +14,14 @@
 <div>
   <%= render 'layouts/header' %>
 </div>
-<div id="columns">
-  <div id="lside">
-    <%= render 'layouts/left_sidebar' %>
+<div class="row">
+  <div class="col-md-2">
+    <div id="left-side">
+      <%= render 'layouts/left_sidebar' %>
+    </div>
   </div>
-  <div id="main">
-    <div style="min-height:660px;">
+  <div class="col-md-8">
+    <div style="min-height:660px;" id="main">
       <%= render 'layouts/top_button', :game => @game %>
       <hr>
       <% flash.each do |key, value| %>
@@ -32,8 +34,10 @@
       <%= debug(params) if Rails.env.development? %>
     </div>
   </div>
-  <div id="rside">
-    <%= render 'layouts/right_sidebar' %>
+  <div class="col-md-2">
+    <div id="right-side">
+      <%= render 'layouts/right_sidebar' %>
+    </div>
   </div>
 </div>
 </body>

@@ -13,7 +13,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -53,20 +53,19 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.3.1'
+gem 'autoprefixer-rails'
 gem 'bcrypt-ruby'
 gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'sprockets'
 gem 'rubocop', require: false
-#gem 'jquery-datatables-rails', '~> 3.1.1'
 gem 'jquery-ui-rails'
-#gem 'jquery-turbolinks'
 gem 'nokogiri'
 gem 'jquery-rails'
 gem 'responders'
-gem 'json', '~> 1.8', '>= 1.8.3'
+gem 'json'
 gem 'whenever', :require => false
 gem 'rails_12factor'
 gem 'figaro'
