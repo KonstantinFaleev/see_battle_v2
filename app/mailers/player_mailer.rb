@@ -3,6 +3,6 @@ class PlayerMailer < ActionMailer::Base
 
   def create_and_deliver_password_change(player, randompassword)
     @password = randompassword
-    mail(:to => player.email, :subject=> "Password Recovery")
+    mail(:to => player.email, :subject=> "Battleship: Password Recovery")
   end
 end

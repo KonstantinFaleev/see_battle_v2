@@ -68,3 +68,4 @@ gem 'responders'
 gem 'json', '~> 1.8', '>= 1.8.3'
 gem 'whenever', :require => false
 gem 'rails_12factor'
+gem 'figaro'
