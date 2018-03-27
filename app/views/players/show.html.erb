@@ -9,7 +9,7 @@
     <section>
       <%= render "player_info", :player => @player %>
     </section>
-    <section>
+    <section style="margin: 20px 0 20px 0;">
       <% if @player.comments.any? %>
           Posted <%= link_to pluralize(@player.comments.size, 'comment'), "/comments/#{@player.id}" %>.
       <% end %>

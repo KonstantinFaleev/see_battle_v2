@@ -8,7 +8,7 @@
 <% end %>
 <div class="row">
   <div class="col-md-6 col-sm-12 text-center">
-    <table style="width: 330px; margin-left: auto; margin-right: auto;">
+    <table class="board_container">
       <tbody>
       <tr>
         <td></td>
@@ -34,7 +34,7 @@
                   <% elsif board.grid[i][j][0] == 0 %>
                       <%= image_tag '/transparent.png', :style => "width:30px;height:30px;" %>
                   <% elsif board.grid[i][j][0] == 1 %>
-                      <%= image_tag '/transparent.png', :style => "width:27px;height:27px;border:3px solid black;" %>
+                      <%= image_tag '/transparent.png', :style => "width:30px;height:30px;border:3px solid black;" %>
                   <% elsif board.grid[i][j][0] == 2 %>
                       <div class="bull">&bull;</div>
                   <% end %>

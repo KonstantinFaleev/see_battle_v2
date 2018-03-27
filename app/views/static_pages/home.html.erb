@@ -4,7 +4,7 @@
 <% if signed_in? %>
     <p style="text-align: center;">What's new?</p>
     <% if current_player.admin? %>
-        <%= link_to "Add new post", post_path, :class => "btn btn-inverse" %>
+        <%= link_to "Add new post", post_path, :class => "btn btn-default" %>
     <% end %>
     <% if @newsposts.any? %>
         <ol class="newsposts">

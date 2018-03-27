@@ -58,7 +58,6 @@ gem 'autoprefixer-rails'
 gem 'bcrypt-ruby'
 gem 'faker'
 gem 'will_paginate'
-gem 'bootstrap-will_paginate'
 gem 'sprockets'
 gem 'rubocop', require: false
 gem 'jquery-ui-rails'

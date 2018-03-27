@@ -1,6 +1,6 @@
-<table>
+<table class="board_container text-center">
   <thead>
-  <th colspan='11'>
+  <th colspan='11' class="text-center">
     <%= link_to game.player_a.name, game.player_a %><br>
     <small><%= game.player_a.rating %> pts.</small>
   </th>
@@ -20,14 +20,14 @@
               <% if game.player_a_board[i][j][0] == 0 %>
                   <%= image_tag '/transparent.png', :style => "width:28px;height:28px;" %>
               <% elsif game.player_a_board[i][j][0] == 1 %>
-                  <%= image_tag '/transparent.png', :style => "width:22px;height:22px;border:3px solid black;" %>
+                  <%= image_tag '/transparent.png', :style => "width:25px;height:25px;border:3px solid black;" %>
               <% elsif game.player_a_board[i][j][0] == 3 %>
                   <div class="sunk">
-                    <span style="display:inline-block; vertical-align:middle">&Chi;</span>
+                    &Chi;
                   </div>
               <% else %>
                   <div class="miss">
-                    <span style="display:inline-block; vertical-align:middle">&bull;</span>
+                    &bull;
                   </div>
               <% end %>
             </td>

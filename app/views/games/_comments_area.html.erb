@@ -1,5 +1,26 @@
+<a id = "comments_block"></a>
+
+<% comments.each do |c| %>
+    <ol class="comments">
+    <span class="content">
+    [<%= (c.created_at).strftime("%d %B, %H:%M:%S") %>]
+      <% if current_player?(c.player) %>
+        <%= link_to 'You', c.player %>
+      <% else %>
+        <%= link_to c.player.name, c.player %>
+      <% end %>
+      <%= "wrote: #{c.content}" %>
+      <% if current_player?(c.player) || current_player.admin? %>
+      <%= link_to c, method: :delete, remote: true, :style => "color: red;" do %>
+        <span class="glyphicon glyphicon-remove"></span>
+      <% end %>
+    <% end %>
+    </span>
+    </ol>
+<% end %>
+
 <%= form_for(comment, :remote=>true) do |f| %>
-    <div class="field" style="margin-bottom: 10px;">
+    <div class="field" style="margin-top: 10px;">
       <%= f.text_area :content, placeholder: "Add your comment...",
                       :maxlength => 140, :style => "width:100%;margin-bottom:0px;" %>
       <span class="countdown"></span>
@@ -7,28 +28,7 @@
     <div style="display:none;">
       <%= f.text_field :game_id, :readonly => true %>
     </div>
-    <%= f.submit "Post", class: "Button" %>
-<% end %>
-
-<a id = "comments_block"></a>
-
-<% comments.each do |c| %>
-    <ol class="comments">
-    <span class="content">
-      <% if current_player?(c.player) %>
-        <%= link_to 'You', c.player %>
-      <% else %>
-        <%= link_to c.player.name, c.player %>
-      <% end %>
-      <%= "wrote: #{c.content}" %>
-    </span>
-      <span class="timestamp">
-      Posted <%= time_ago_in_words(c.created_at) %> ago.
-    </span>
-      <% if current_player?(c.player) || current_player.admin? %>
-          <%= link_to "Delete", c, method: :delete,
-                      remote: true,
-                      :class => "btn btn-mini btn-danger" %>
-      <% end %>
-    </ol>
+    <div class="text-center">
+      <%= f.submit "Post", class: "btn btn-default" %>
+    </div>
 <% end %>

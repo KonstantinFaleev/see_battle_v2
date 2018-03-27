@@ -14,15 +14,11 @@
     <hr>
 <% end %>
 
-<h5 style="text-align:center;">Latest games</h5>
-<% if latest_games.any? %>
-    <ul>
+<div class="text-center">
+  <h5>Latest games</h5>
+  <% if latest_games.any? %>
       <% latest_games.each do |g| %>
-          <li style="list-style:none;margin-top:5px;">
-            <%= link_to g.title, g %>
-          </li>
+          <%= link_to g.title, g %><br>
       <% end %>
-    </ul>
-<% else %>
-    <p class="center">None</p>
-<% end %>
+  <% end %>
+</div>

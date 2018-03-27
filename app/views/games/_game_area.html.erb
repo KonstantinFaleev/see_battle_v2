@@ -12,21 +12,18 @@
     <h4>&nbsp;</h4>
 <% end %>
 
-<table class="board_container">
-  <tr>
-    <td>
-      <div id="player_board">
-        <%= render 'player_board', :game => game %>
-      </div>
-    </td>
-    <td style="width: 5%;"><%= image_tag 'transparent.png', :class => "style_img" %></td>
-    <td>
-      <div id="bot_board">
-        <%= render 'bot_board', :game => game %>
-      </div>
-    </td>
-  </tr>
-</table>
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <div id="player_board">
+      <%= render 'player_board', :game => game %>
+    </div>
+  </div>
+  <div class="col-md-6 col-sm-12">
+    <div id="bot_board">
+      <%= render 'bot_board', :game => game %>
+    </div>
+  </div>
+</div>
 <br>
 <h4>Game Log:</h4>
-<%= text_area_tag(:message, "#{game.game_log}", readonly: true, size: "24x6", :class => "game-log") %>
+<%= text_area_tag(:message, "#{game.game_log}", readonly: true, :class => "game-log") %>
