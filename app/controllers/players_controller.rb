@@ -74,7 +74,7 @@ class PlayersController < ApplicationController
       Player.find(params[:id]).destroy
       flash[:success] = "Account '#{@player.name}' has been deleted."
     else
-      flash[:error] = "Admin accounts cannot be deleted."
+      flash[:danger] = "Admin accounts cannot be deleted."
     end
 
     if current_player.admin?
