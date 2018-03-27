@@ -1,7 +1,5 @@
-<table>
-  <% for i in 1..board.available_ships.length-1 %>
-      <tr><td>
-        <%= image_tag "/x#{board.available_ships[i]}1.png", :class => "right" %>
-      </td></tr>
-  <% end %>
-</table>
+<% for i in 1..board.available_ships.length-1 %>
+    <div style="text-align: right; margin-bottom: 10px; margin-right: 5px;">
+      <%= image_tag "/x#{board.available_ships[i]}1.png" %>
+    </div>
+<% end %>

@@ -5,14 +5,14 @@
   <tbody>
   <tr>
     <td>
-      Name: <i><%= @player.name %></i>
+      Name: <i><%= player.name %></i>
     </td>
   </tr>
-  <% if current_player == @player %>
+  <% if current_player == player %>
       <tr>
         <td>
-          Email: <i><% if !@player.email.empty? %>
-              <%= @player.email %>
+          Email: <i><% if !player.email.empty? %>
+              <%= player.email %>
           <% else %>
               not specified.
           <% end %></i>
@@ -21,11 +21,14 @@
   <% end %>
   <tr>
     <td>
-      Rating: <%= @player.rating %> pts.
+      Rating: <%= player.rating %> pts.
     </td>
   </tr>
   </tbody>
 </table>
-<% if current_player == @player %>
-    <%= button_to "Edit my info", edit_player_path(current_player), class: "Button", :method => :get %>
-<% end %>
+<div class="text-center">
+  <% if current_player == player %>
+      <%= button_to "Edit my info", edit_player_path(current_player),
+                    class: "btn btn-default", :method => :get %>
+  <% end %>
+</div>

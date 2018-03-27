@@ -1,3 +1,4 @@
+@import "bootstrap-sprockets";
 @import "bootstrap";
 
 /* mixins, variables, etc. */
@@ -29,7 +30,6 @@ p {
 }
 
 body {
-  padding-top: 60px;
   background-image: image-url('background.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
@@ -81,7 +81,6 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $grayLight;
 }
 
 h4 {
@@ -94,33 +93,9 @@ h5 {
 
 /* header */
 
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-  line-height: 1;
-  &:hover {
-    color: white;
-    text-decoration: none;
-  }
-}
-
-.navbar-text {
-  margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 20px;
-  color: #333333;
-  padding-top: 10px
-}
-
 .logo{
   position: absolute;
+  z-index: 1000;
 }
 
 .login-button {
@@ -182,7 +157,7 @@ h5 {
 aside {
   section {
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid #eaeaea;
     &:first-child {
       border: 0;
       padding-top: 0;
@@ -207,7 +182,7 @@ aside {
   a {
     float: left;
     padding: 0 10px;
-    border-left: 1px solid $grayLighter;
+    border-left: 1px solid #eaeaea;
     color: gray;
     &:first-child {
       padding-left: 0;
@@ -215,7 +190,7 @@ aside {
     }
     &:hover {
       text-decoration: none;
-      color: $blue;
+      color: blue;
     }
   }
   strong {
@@ -236,39 +211,10 @@ aside {
   margin-right: 10px;
 }
 
-
-/* forms */
-
-input {
-  height: auto !important;
-}
-
-input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
-  width: 50%;
-  margin-bottom: 15px;
-  @include box_sizing;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-label{
-  float:left;
-  clear: left;
-  width:30%;
-  padding-right:10px;
-  padding-top:5px;
-  text-align:right;
-  margin:0;
-  font-size:13px;
-  line-height:20px;
-  border-bottom:0;
-  overflow: hidden;
-}
-
-.search-input{
-  width: 100%;
-  line-height: 1
+.session-form {
+  width: 400px;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 #error_explanation {
@@ -418,6 +364,16 @@ table#players tbody td {
   margin-left:5%;
 }
 
+.bull {
+  text-align: center;
+  vertical-align: middle;
+  font-family: Arial, "Arial (Hebrew)", "David (Hebrew)";
+  color: black;
+  width: 27px;
+  height: 27px;
+  border: 3px solid transparent;
+}
+
 /* newsposts */
 
 .newsposts {
@@ -441,7 +397,7 @@ table#players tbody td {
   text-align: justify;
 }
 .timestamp {
-  color: $grayLight;
+  color: #eaeaea;
   font-size:1em;
   text-align:right;
   padding-right:5px;
@@ -468,10 +424,10 @@ table#players tbody td {
   display: block;
 }
 .timestamp {
-  color: $grayLight;
+  color: #eaeaea;
 }
 
 .countdown {
   display: inline;
-  color: $grayLight;
+  color: #eaeaea;
 }
