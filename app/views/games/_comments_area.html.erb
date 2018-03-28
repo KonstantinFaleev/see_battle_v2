@@ -11,7 +11,7 @@
       <% end %>
       <%= "wrote: #{c.content}" %>
       <% if current_player?(c.player) || current_player.admin? %>
-      <%= link_to c, method: :delete, remote: true, :style => "color: red;" do %>
+      <%= link_to c, method: :delete, remote: true, :style => "color: red;", title: "Delete" do %>
         <span class="glyphicon glyphicon-remove"></span>
       <% end %>
     <% end %>

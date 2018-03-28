@@ -111,6 +111,8 @@ GEM
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     parallel (1.12.1)
+    paranoia (2.4.0)
+      activerecord (>= 4.0, < 5.2)
     parser (2.5.0.5)
       ast (~> 2.4.0)
     pg (1.0.0)
@@ -235,6 +237,7 @@ DEPENDENCIES
   json
   listen (>= 3.0.5, < 3.2)
   nokogiri
+  paranoia (~> 2.0)
   pg (>= 0.18, < 2.0)
   puma (~> 3.7)
   rails (~> 5.1.5)

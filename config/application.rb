@@ -26,7 +26,7 @@ module SeeBattleV2
     # Reload cached/serialized classes before every request (in development
     # mode) or on startup (in production mode)
     config.to_prepare do
-      Dir[ File.expand_path(Rails.root.join("app/models/*.rb")) ].each do |file|
+      Dir[File.expand_path(Rails.root.join("app/models/*.rb"))].each do |file|
         require_dependency file
       end
     end

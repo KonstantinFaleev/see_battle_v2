@@ -1,7 +1,12 @@
 <table class="board_container text-center">
   <thead>
   <th colspan='11' class="text-center">
-    <%= link_to game.player_a.name, game.player_a %><br>
+    <% if game.player_a.deleted_at %>
+        <%= game.player_a.name %>
+    <% else %>
+        <%= link_to game.player_a.name, game.player_a %>
+    <% end %>
+    <br />
     <small><%= game.player_a.rating %> pts.</small>
   </th>
   </thead>

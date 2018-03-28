@@ -68,3 +68,4 @@ gem 'json'
 gem 'whenever', :require => false
 gem 'rails_12factor'
 gem 'figaro'
+gem 'paranoia', '~> 2.0'

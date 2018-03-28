@@ -21,6 +21,10 @@ class Game < ActiveRecord::Base
   #to differ cases when ship is hit and player should move again
   attr_accessor :move_again
 
+  def player_a
+    Player.with_deleted.find(player_a_id)
+  end
+
   # Returns a new Game object with the associated players A and Bot
   def self.start_game(player_a, player_b, board_id)
     g = Game.new(player_a: player_a, player_b: player_b)

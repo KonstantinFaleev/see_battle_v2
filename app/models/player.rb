@@ -5,6 +5,8 @@ class Player < ActiveRecord::Base
   has_many :boards
   has_many :comments
 
+  acts_as_paranoid
+
   default_scope -> { order('rating DESC') }
   before_save { self.email = email.downcase }
   before_create :create_remember_token
