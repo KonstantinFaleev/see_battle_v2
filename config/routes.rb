@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :comments, only: [:create, :destroy, :index]
 
   root  'static_pages#home'
+  #get 'games', to: 'game#show'
+  #match 'games/:id', to: 'games#show', via: :all
   match '/signup', to: 'players#new', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
