@@ -1,0 +1,16 @@
+<%= provide(:title, "Admin") %>
+<div style="margin-left: 25px;">
+
+  <%= pluralize(@comments.size, 'comment') %> awaiting for moderation.
+  <br>
+  <% if @comments.any? %>
+      <div id="moderation">
+        <ol class="comments">
+          <%= render partial: 'shared/comment', collection: @comments, as: :c %>
+        </ol>
+      </div>
+  <% else %>
+      No comments to approve...
+  <% end %>
+
+</div>

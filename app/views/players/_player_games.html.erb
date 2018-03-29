@@ -1,0 +1,28 @@
+<% if game.winner.nil? %>
+    <% status = "In progress" %>
+    <tr class="warning">
+<% elsif game.winner.id == @player.id %>
+    <% status = "Victory" %>
+    <tr class="success">
+<% else %>
+    <% status = "Defeat" %>
+    <tr class="danger">
+<% end %>
+<td>
+    <span class="timestamp-bright">
+<%= game.created_at.strftime("%d %b.") %>
+    </span>
+</td>
+<td>
+  <%= link_to game do %>
+      <% if game.player_a == @player %>
+          <%= game.player_a.name %> vs. <%= game.player_b.name %>.
+      <% else %>
+          <%= game.player_b.name %> vs. <%= game.player_a.name %>
+      <% end %>
+  <% end %>
+</td>
+<td>
+  <%= "#{status}" %>
+</td>
+</tr>

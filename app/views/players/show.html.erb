@@ -5,12 +5,41 @@
     <h1><%= @player.name %> profile</h1>
 <% end %>
 <div class="row">
-  <aside class="span4">
+  <div class="col-md-4" style="padding-left: 50px;">
     <section>
-      <%= render "shared/player_info" %>
+      <%= render "player_info", :player => @player %>
     </section>
-  </aside>
-  <div class="span6">
-    <%= render "shared/player_games" %>
+    <section style="margin: 20px 0 20px 0;">
+      <% if @player.comments.any? %>
+          Posted <%= link_to pluralize(@player.comments.size, 'comment'), "/comments/#{@player.id}" %>.
+      <% end %>
+    </section>
+    <% if current_player == @player && @saved_boards.any? %>
+        <section>
+          <h5 class="text-center">Saved positions:</h5>
+          <table class="centered-table">
+            <%= render partial: "shared/saved_boards", collection: @saved_boards, as: :board, :locals => {:current_board_id => nil } %>
+          </table>
+        </section>
+    <% end %>
+  </div>
+  <div class="col-md-8 text-center">
+    <table class="table table-hover">
+      <thead>
+      <th style="text-align: center;" colspan="3">Games list</th>
+      </thead>
+      <tbody>
+      <% if @games.any? %>
+          <%= render partial: 'player_games', collection: @games, as: :game %>
+      <% else %>
+          <tr class="info">
+            <td colspan="3">
+              No games so far.
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @games %>
   </div>
 </div>

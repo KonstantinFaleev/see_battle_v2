@@ -1,0 +1,86 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+$grayMediumLight: #eaeaea;
+$grayLight: #999;
+$grayDarker: #222;
+$grayLighter: #eee;
+$blue: #049cdb;
+
+#main, #left-side, #right-side, #footer {
+  background:#FFF;
+}
+
+#main {
+  border-radius: 5px 5px 0px 0px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 5px;
+}
+
+#right-side {
+  padding: 5px;
+}
+
+#left-side {
+
+  .left-side-table {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+  }
+}
+
+#left-side, #right-side {
+  display: block;
+  margin-top: 20%;
+  max-width: 220px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+}
+
+#footer {
+  margin-left:auto;
+  margin-right:auto;
+  overflow: hidden;
+  text-align: left;
+
+  .footer {
+    margin-top: 10px;
+    padding: 5px;
+    border-top: 1px solid #eaeaea;
+    color: gray;
+    a {
+      color: gray;
+    }
+    small {
+      float: left;
+    }
+    ul {
+      float: right;
+      list-style: none;
+      li {
+        float: left;
+        margin-left: 10px;
+      }
+    }
+  }
+}

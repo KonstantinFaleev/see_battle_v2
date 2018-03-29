@@ -1,11 +1,13 @@
 <% provide(:title, 'Sign Up') %>
 <h1>Sign Up</h1>
-<div class="row">
+<div class="session-form">
   <%= form_for(@player) do |f| %>
 
       <%= render 'fields', f: f %>
 
-      <%= f.submit "Register", class: "Button" %>
+      <div class="text-center">
+        <%= f.submit "Register", class: "btn btn-success" %>
+      </div>
 
   <% end %>
 </div>

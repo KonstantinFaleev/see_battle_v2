@@ -1,0 +1,7 @@
+<% provide(:title, "Edit post") %>
+<h1>Edit post</h1>
+
+<%= form_for(@newspost) do |f| %>
+    <%= render 'fields', f: f %>
+    <%= f.submit "Update", class: 'Button' %>
+<% end %>

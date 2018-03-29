@@ -1,1 +1,7 @@
-$("#game_area").html("<%= escape_javascript(render('games/game_area')) %>")
+$("#game_area").html("<%= escape_javascript(render :partial => 'games/game_area', :locals => { :game => @game }) %>")
+$("#top_button").html("<%= escape_javascript(render :partial => 'layouts/top_button', :locals => { :game => @game }) %>")
+
+$('#game_title_win').css({'background-color':'#88ff88'}).
+animate({'background-color':'#FFF'}, 1000);
+$('#game_title_lose').css({'background-color':'#ff8888'}).
+animate({'background-color':'#FFF'}, 1000);

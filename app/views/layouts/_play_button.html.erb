@@ -1,4 +1,0 @@
-<% unless full_title(yield(:title)).include? 'Game' %>
-    <%= button_to "Play new game", games_path, class: "btn btn-success", :style => "display:block; marghin-left: auto; marghin-right: auto; margin-top: 15px; width: 200px;", :method => :post %>
-    <hr>
-<% end %>

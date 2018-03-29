@@ -2,33 +2,48 @@
 <h1>All Players</h1>
 
 <%= form_tag players_path, :class => 'center', :method => 'get' do %>
-    <div class="controls">
-      <div class="input-prepend">
-        <span class="add-on"><i class="icon-search"></i></span><%= text_field_tag :search, params[:search], :class => 'search-input' %>
+    <div class="text-center">
+      <div class="input-group" style="width:400px;margin-left:auto;margin-right:auto;">
+      <span class="input-group-addon" id="basic-addon1">
+        <span class="glyphicon glyphicon-search"></span>
+      </span>
+        <%= text_field_tag :search, params[:search], :class => 'form-control' %>
       </div>
     </div>
 <% end %>
-
-<table id="players" class="display">
-  <thead style="text-align: left;">
+<table id="players" class="table table-hover" style="text-align: center;">
+  <thead>
   <th>#</th>
-  <th>Name</th>
+  <th style="text-align: left;">Name</th>
+  <th><span title="Games played">Games</span></th>
+  <th><span title="Games won">W</span></th>
+  <th><span title="Games lost">L</span></th>
+  <th><span title="Ships destroyed">SD</span></th>
+  <th><span title="Ships lost">SL</span></th>
   <th>Rating</th>
   </thead>
   <tbody>
-  <% i=0 %>
+  <% i = 0 %>
   <% @players.each do |player| %>
-      <% i+=1 %>
+      <% i += 1 %>
       <tr>
-        <td><%= "#{i}" %></td>
-        <td>
+        <td><%= i + (@players.current_page-1)*10 %></td>
+        <td style="text-align: left;">
           <%= link_to player.name, player %>
           <% if current_player.admin? && !current_player?(player) %>
               (<%= link_to "delete", player, method: :delete, data: { confirm: "Are you sure?" }, :class => "delete-link" %>)
           <% end %>
         </td>
+        <td><%= player.victories.size + player.defeats.size %></td>
+        <td><%= player.victories.size %></td>
+        <td><%= player.defeats.size %></td>
+        <td><%= player.ships_destroyed %></td>
+        <td><%= player.ships_lost %></td>
         <td><%= player.rating %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
+<div class="text-center">
+  <%= will_paginate @players %>
+</div>

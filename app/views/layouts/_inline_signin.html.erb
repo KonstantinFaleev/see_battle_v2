@@ -1,20 +1,23 @@
-<% if signed_in? %>
-    <p class="navbar-text">
-      Signed in as <%= link_to "#{current_player.name}", player_path(current_player) %>.
-      (<small><%= link_to 'sign out', signout_path, method: "delete" %></small>)
-    </p>
-<% elsif full_title(yield(:title)).include? 'Sign in' %>
-    <!-- do nothing -->
-    <%= form_for(:session, url: sessions_path, :html => {:class => 'form-inline'}) do |f| %>
-        <div class="form-group">
-          <%= f.text_field(:name, :class => "form-conrol", :placeholder => "name") %>
-        </div>
-        <div class="form-group">
-          <%= f.password_field(:password, :class => "form-conrol",
-                               :placeholder => "password") %>
-        </div>
-        <div class="form-group">
-          <%= f.submit "Log in" %>
-        </div>
-    <% end %>
-<% end %>
+<div>
+  <% if signed_in? %>
+      <p class="navbar-text">
+        Signed in as <%= link_to "#{current_player.name}", player_path(current_player) %>.
+        (<small><%= link_to 'sign out', signout_path, method: "delete" %></small>)
+      </p>
+  <% elsif full_title(yield(:title)).include? 'Sign in' %>
+      <!-- do nothing -->
+  <% else %>
+      <%= form_for(:session, url: sessions_path, :html => {:class => 'form-inline'}) do |f| %>
+          <div class="form-group">
+            <%= f.text_field(:name, :class => "form-conrol", :placeholder => "name") %>
+          </div>
+          <div class="form-group">
+            <%= f.password_field(:password, :class => "form-conrol",
+                                 :placeholder => "password") %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "Log in" %>
+          </div>
+      <% end %>
+  <% end %>
+</div>

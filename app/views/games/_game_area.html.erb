@@ -1,22 +1,29 @@
-<% if @game.game_over? %>
-    <center><h3><%= @game.play_status %></h3></center>
+<% if game.game_over? && current_player == game.player_a %>
+    <% if game.winner == game.player_a %>
+        <h4>
+          <span id="game_title_win"><%= game.play_status %></span>
+        </h4>
+    <% else %>
+        <h4>
+          <span id="game_title_lose"><%= game.play_status %></span>
+        </h4>
+    <% end %>
+<% else %>
+    <h4>&nbsp;</h4>
 <% end %>
 
-<table class="board_container">
-  <tr>
-    <td>
-      <div id="player_board">
-        <%= render 'player_board' %>
-      </div>
-    </td>
-    <td style="width: 25%;"><%= image_tag 'transparent.png', :class => "style_img" %></td>
-    <td>
-      <div id="bot_board">
-        <%= render 'bot_board' %>
-      </div>
-    </td>
-  </tr>
-</table>
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <div id="player_board">
+      <%= render 'player_board', :game => game %>
+    </div>
+  </div>
+  <div class="col-md-6 col-sm-12">
+    <div id="bot_board">
+      <%= render 'bot_board', :game => game %>
+    </div>
+  </div>
+</div>
 <br>
 <h4>Game Log:</h4>
-<%= text_area_tag(:message, "#{@game.game_log}", readonly: true, size: "24x6") %>
+<%= text_area_tag(:message, "#{game.game_log}", readonly: true, :class => "game-log") %>

@@ -1,0 +1,24 @@
+<div style="height: 150px;">
+  <% unless board.is_ready? || board.available_ships[0] == 1 %>
+      <%= link_to 'Change ship direction',
+                  "/direction/#{board.id}",
+                  :class => "btn btn-default",
+                  :data => { disable_with: "Processing..." },
+                  :style => "margin-top: 25%; width: 170px;",
+                  remote: true %>
+  <% end %>
+</div>
+
+<div style="margin-top:30px;">
+  <% unless board.is_ready? %>
+      <% if board.direction && board.available_ships[0] != 1 %>
+          <% link = "/x#{board.available_ships[0]}0.png" %>
+      <% else %>
+          <% link = "/x#{board.available_ships[0]}1.png" %>
+      <% end %>
+
+      <%= link_to '#', :onclick => "take_ship()" do %>
+          <%= image_tag "#{link}", :class => "ship" %>
+      <% end %>
+  <% end %>
+</div>

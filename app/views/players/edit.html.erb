@@ -1,7 +1,19 @@
 <% provide(:title, "Edit profile") %>
 <h1>Update your profile</h1>
 
-<%= form_for(@player) do |f| %>
-    <%= render 'fields', f: f %>
-    <%= f.submit "Update", class: 'Button' %>
-<% end %>
+<div class="session-form">
+  <%= form_for(@player) do |f| %>
+      <%= render 'fields', f: f %>
+
+      <div class="text-center">
+        <%= f.submit "Update", class: 'btn btn-primary' %>
+      </div>
+  <% end %>
+</div>
+
+<div style="margin-left:15px;">
+  <%= form_for(@player, method: :delete) do |f| %>
+      <%= f.submit "Delete my account",
+                   data: { confirm: "Are you sure?" }, :class => "btn btn-sm btn-danger" %>
+  <% end %>
+</div>

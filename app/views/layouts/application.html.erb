@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <%= favicon_link_tag 'favicon.ico' %>
   <title><%= full_title(yield(:title)) %></title>
   <%= stylesheet_link_tag "application", media: "all",
                           "data-turbolinks-track" => true %>
@@ -11,35 +12,31 @@
 </head>
 <body>
 <%= render 'layouts/header' %>
-<div>
-  <table class="main_container">
-    <tbody>
-    <tr>
-      <td class="left_sb">
-        <%= render 'layouts/left_sidebar' %>
-      </td>
-      <td class="page_content">
-        <%= render 'layouts/play_button' %>
-        <% flash.each do |key, value| %>
-            <%= content_tag(:div, value, class: "alert alert-#{key}", :style => "padding-left: 100px;") %>
-        <% end %>
-        <%= yield %>
-      </td>
-      <td class="right_sb">
-        <%= render 'layouts/right_sidebar' %>
-      </td>
-    </tr>
-    </tbody>
-    <tfoot>
-    <tr>
-      <td colspan='3'>
-        <%= render 'layouts/footer' %>
-        <%= debug(params) if Rails.env.development? %>
-        <%#= request.user_agent if Rails.env.development? %>
-      </td>
-    </tr>
-    </tfoot>
-  </table>
+<div class="row">
+  <div class="col-md-2">
+    <div id="left-side">
+      <%= render 'layouts/left_sidebar' %>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div style="min-height:660px;" id="main">
+      <%= render 'layouts/top_button', :game => @game %>
+      <hr>
+      <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+      <% end %>
+      <%= yield %>
+    </div>
+    <div id="footer">
+      <%= render 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div id="right-side">
+      <%= render 'layouts/right_sidebar' %>
+    </div>
+  </div>
 </div>
 </body>
 </html>

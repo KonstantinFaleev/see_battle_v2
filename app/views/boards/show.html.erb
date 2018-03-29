@@ -1,0 +1,25 @@
+<%= provide(:title, "Run-up...") %>
+<head>
+  <script type="text/javascript">
+      function take_ship(){
+          $(document).mousemove(function(e) {
+              $('.ship').offset({
+                  left: e.pageX-10,
+                  top: e.pageY+5
+              });
+              document.getElementById('header').innerHTML = "Choose the top left coordinate for a given ship";
+          });
+      }
+  </script>
+</head>
+<div id="board_area">
+  <%= render 'board_area', :board => @board, :game => @game %>
+</div>
+<% if @saved_boards.any? %>
+    <div id="saved" class="centered" style="width: 300px;">
+      <h5 style="text-align:center;">Saved positions:</h5>
+      <table class="centered-table">
+        <%= render partial: "shared/saved_boards", collection: @saved_boards, as: :board, :locals => {:current_board_id => @board.id } %>
+      </table>
+    </div>
+<% end %>

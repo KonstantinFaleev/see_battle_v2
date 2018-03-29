@@ -1,5 +1,12 @@
 <%= provide(:title, "Game ##{@game.id}") %>
 
 <div id="game_area">
-  <%= render 'game_area' %>
+  <%= render 'game_area', :game => @game %>
+</div>
+
+<hr>
+
+<div id="comments_area" style="width:50%;" class="centered">
+  <%= render 'comments_area', :comment => @comment,
+             :game => @game, comments: @game.comments %>
 </div>

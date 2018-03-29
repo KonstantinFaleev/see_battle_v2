@@ -1,0 +1,15 @@
+<div class="session-form">
+  <%= form_tag '/reminder', method: :post do |f| %>
+
+      <div class="form-group">
+        <%= text_field_tag :email, params[:email],
+                           :class => "form-control",
+                           :placeholder => "Email" %>
+      </div>
+      <div class="text-center">
+        <%= submit_tag 'Yes, I forgot!', class: 'btn btn-default' %>
+      </div>
+  <% end %>
+</div>
+
+<p><%= link_to "Return to sign in.", signin_path %></p>

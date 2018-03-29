@@ -1,15 +1,19 @@
-<table class="table table-striped">
+<table class="table table-striped left-side-table">
   <thead>
-  <th>Best Players</th>
+  <th style="text-align:center;" colspan='2'>Best Players</th>
   </thead>
+  <tbody>
   <% i = 1 %>
   <% top_players.each do |p| %>
       <tr>
         <td>
-          <%= i %>. <%= link_to "#{p.name}", player_path(p) %><br>
+          <%= i %>. <%= link_to "#{p.name}", player_path(p) %>
+        </td>
+        <td>
           <small><strong><%= "#{p.rating}" %> pts.</strong></small>
         </td>
       </tr>
       <% i += 1 %>
   <% end %>
+  </tbody>
 </table>

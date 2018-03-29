@@ -1,13 +1,24 @@
-<h5>Now online:</h5>
-<ul>
-  <% online_players.each do |p| %>
-      <% if p.admin %>
-          <li style="font-style: italic; font-weight: bold;">
-      <% else %>
-          <li>
+<% if online_players.any? %>
+    <h5 style="text-align:center;">Now online</h5>
+    <ul>
+      <% online_players.each do |p| %>
+          <li style="color:green;">
+            <% if p.admin %>
+                <b><%= link_to "#{p.name}", player_path(p) %></b>
+            <% else %>
+                <%= link_to "#{p.name}", player_path(p) %>
+            <% end %>
+          </li>
       <% end %>
-      <%= link_to "#{p.name}", player_path(p) %>
-      </li>
+    </ul>
+    <hr>
+<% end %>
+
+<div class="text-center">
+  <h5>Latest games</h5>
+  <% if latest_games.any? %>
+      <% latest_games.each do |g| %>
+          <%= link_to g.title, g %><br>
+      <% end %>
   <% end %>
-</ul>
-<hr>
+</div>

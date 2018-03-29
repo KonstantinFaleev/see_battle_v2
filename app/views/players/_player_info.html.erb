@@ -1,0 +1,34 @@
+<table class="table">
+  <thead >
+  <th style="text-align: center;">Info</th>
+  </thead>
+  <tbody>
+  <tr>
+    <td>
+      Name: <i><%= player.name %></i>
+    </td>
+  </tr>
+  <% if current_player == player %>
+      <tr>
+        <td>
+          Email: <i><% if !player.email.empty? %>
+              <%= player.email %>
+          <% else %>
+              not specified.
+          <% end %></i>
+        </td>
+      </tr>
+  <% end %>
+  <tr>
+    <td>
+      Rating: <%= player.rating %> pts.
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="text-center">
+  <% if current_player == player %>
+      <%= button_to "Edit my info", edit_player_path(current_player),
+                    class: "btn btn-default", :method => :get %>
+  <% end %>
+</div>
