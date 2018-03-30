@@ -2,7 +2,7 @@ class GamesController < ApplicationController
   before_action :find_game, only: [:show, :receive_move, :surrender]
   before_action :signed_in_player, only: [:show]
 
-  respond_to :html, :js
+  #respond_to :html, :js
 
   def create
     @game = Game.start_game(current_player, Player.find_by_id(2), params[:board_id])
