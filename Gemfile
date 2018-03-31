@@ -63,7 +63,7 @@ gem 'rubocop', require: false
 gem 'jquery-ui-rails'
 gem 'nokogiri'
 gem 'jquery-rails'
-gem 'responders'
+#gem 'responders'
 gem 'json'
 gem 'whenever', :require => false
 gem 'rails_12factor'

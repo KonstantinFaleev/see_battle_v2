@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_action :correct_player,   only: :destroy
   before_action :admin, only: [:index, :approve]
 
-  respond_to :html, :js
+  #respond_to :html, :js
 
   def index
     @comments = Comment.not_approved
