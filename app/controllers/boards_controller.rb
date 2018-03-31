@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
   before_action :find_board, only: [:show, :change_ship_direction, :place_ship, :update]
-  #respond_to :html, :js
+  respond_to :html, :js
 
   def create
     @board = current_player.boards.create!
