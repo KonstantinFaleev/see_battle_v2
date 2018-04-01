@@ -1,1 +1,1 @@
-$("#save_button").html("<%= escape_javascript(render('boards/save_button')) %>")
+$("#current_ship").html("<%= escape_javascript(render :partial => 'boards/current_ship', :locals => { :board => @board }) %>")
