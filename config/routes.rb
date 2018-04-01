@@ -6,23 +6,22 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :comments, only: [:create, :destroy, :index]
 
-  root  'static_pages#home'
-  #get 'games', to: 'game#show'
-  #match 'games/:id', to: 'games#show', via: :all
-  match '/signup', to: 'players#new', via: 'get'
-  match '/about', to: 'static_pages#about', via: 'get'
-  match '/signin', to: 'sessions#new', via: 'get'
+  root 'static_pages#home'
+  get '/show/:id', to: 'games#show'
+  get '/signup', to: 'players#new'
+  get '/about', to: 'static_pages#about'
+  get '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: 'delete'
-  match '/post', to: 'newsposts#new', via: 'get'
+  get '/post', to: 'newsposts#new'
 
-  match '/move/:id/cell=:cell', to: 'games#receive_move', via: 'get'
-  match '/surrender/:id', to: 'games#surrender', via: 'get'
+  get '/move/:id/cell=:cell', to: 'games#receive_move'
+  get '/surrender/:id', to: 'games#surrender'
 
-  match '/attempt/:id/:cell/', to: 'boards#place_ship', via: 'get'
-  match '/direction/:id', to: 'boards#change_ship_direction', via: 'get'
-  match '/forget/:id', to: 'boards#forget_board', via: 'get'
-  match '/comments/:id', to: 'players#comments', via: 'get'
+  get '/attempt/:id/:cell/', to: 'boards#place_ship'
+  get '/direction/:id', to: 'boards#change_ship_direction'
+  get '/forget/:id', to: 'boards#forget_board'
+  get '/comments/:id', to: 'players#comments'
   match '/approve/:id', to: 'comments#approve', via: 'post'
-  match '/forgotten', to: 'players#forgotten', via: 'get'
+  get '/forgotten', to: 'players#forgotten'
   match '/reminder', to: 'players#create_new_password', via: 'post'
 end
