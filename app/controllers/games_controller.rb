@@ -4,13 +4,13 @@ class GamesController < ApplicationController
 
   respond_to :html, :js
 
+  def show
+    @comment = current_player.comments.build(game_id: @game.id)
+  end
+
   def create
     @game = Game.start_game(current_player, Player.find_by_id(2), params[:board_id])
     redirect_to @game
-  end
-
-  def show
-    @comment = current_player.comments.build(game_id: @game.id)
   end
 
   def receive_move
