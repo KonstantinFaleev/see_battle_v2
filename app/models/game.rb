@@ -26,7 +26,7 @@ class Game < ActiveRecord::Base
   end
 
   # Returns a new Game object with the associated players A and Bot
-  def self.start_game(player_a, player_b, board_id)
+  def start_game(player_a, player_b, board_id)
     g = Game.new(player_a: player_a, player_b: player_b)
 
     g.title = "#{player_a.name} vs. #{player_b.name}"
