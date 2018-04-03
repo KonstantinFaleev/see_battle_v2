@@ -2,13 +2,13 @@ Rails.application.routes.draw do
   resources :newsposts
   resources :players
   resources :boards, only: [:show, :create, :update]
+  get '/games/:id', to: 'games#show'
   resources :games, only: [:show, :create]
   resources :sessions, only: [:new, :create, :destroy]
   resources :comments, only: [:create, :destroy, :index]
 
   root 'static_pages#home'
-  #get '/games', to: 'games#show'
-  get '/game/:id', to: 'games#show'
+  get '/games/:id', to: 'games#show'
   get '/signup', to: 'players#new'
   get '/about', to: 'static_pages#about'
   get '/signin', to: 'sessions#new'
