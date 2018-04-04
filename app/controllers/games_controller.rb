@@ -37,7 +37,7 @@ class GamesController < ApplicationController
   def do_move_by_player(cell)
     # parse the x and y coordinates out of the string
     # format is x_y
-    x,y = cell.split('_')
+    x, y = cell.split('_')
     @game.do_move @game.player_a, x.to_i, y.to_i
   end
 

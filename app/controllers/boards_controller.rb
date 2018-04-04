@@ -19,7 +19,7 @@ class BoardsController < ApplicationController
   end
 
   def place_ship
-    x,y = params[:cell].split('_')
+    x, y = params[:cell].split('_')
 
     if @board.place_ship x.to_i, y.to_i
       @board.save
