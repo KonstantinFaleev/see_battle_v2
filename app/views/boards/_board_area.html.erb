@@ -77,7 +77,7 @@
   <% end %>
   <h4 style="padding-top: 10px"><%= header %></h4>
 
-  <%= button_to "#{btn_name}", games_path(:board_id => board),
+  <%= button_to "#{btn_name}", games_path(board_id: board),
                 class: "#{btn_class}",
                 :style => "margin-top: 15px; width: 200px;",
                 :data => { disable_with: "Starting new game..." },

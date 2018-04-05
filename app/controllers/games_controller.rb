@@ -4,13 +4,14 @@ class GamesController < ApplicationController
 
   respond_to :html, :js
 
-  def show
-    @comment = current_player.comments.build(game_id: @game.id)
-  end
-
   def create
     @game = Game.start_game(current_player, Player.find_by_id(2), params[:board_id])
-    redirect_to @game
+    redirect_to game_path(@game)
+  end
+
+  def show
+    #redirect_to "http://www.rubyonrails.org"
+    @comment = current_player.comments.build(game_id: @game.id)
   end
 
   def receive_move
@@ -34,6 +35,12 @@ class GamesController < ApplicationController
     redirect_to @game
   end
 
+  private
+
+  def find_game
+    @game = Game.find(params[:id])
+  end
+
   def do_move_by_player(cell)
     # parse the x and y coordinates out of the string
     # format is x_y
@@ -45,11 +52,5 @@ class GamesController < ApplicationController
   def do_move_by_application
     x, y = @game.get_move_for_ai
     @game.do_move @game.player_b, x, y
-  end
-
-  private
-
-  def find_game
-    @game = Game.find(params[:id])
   end
 end
