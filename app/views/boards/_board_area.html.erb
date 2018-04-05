@@ -48,16 +48,16 @@
   <% if !board.is_ready? %>
       <div class="col-md-3 text-center" style="vertical-align: middle;">
         <div id="current_ship">
-          <%= render 'current_ship', :board => board %>
+          <%= render 'current_ship', :board => @board %>
         </div>
       </div>
       <div class="col-md-3 text-center">
-        <%= render 'next_ships', :board => board %>
+        <%= render 'next_ships', :board => @board %>
       </div>
   <% else %>
       <div class="col-md-6" style="vertical-align: middle; width: 300px;">
         <div id="save_button">
-          <%= render 'save_button', :board => board %>
+          <%= render 'save_button', :board => @board %>
         </div>
       </div>
   <% end %>
