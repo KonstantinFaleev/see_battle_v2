@@ -6,7 +6,7 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.start_game(current_player, Player.find_by_id(2), params[:board_id])
-    redirect_to game_path(@game)
+    redirect_to game_path(@game_id)
   end
 
   def show

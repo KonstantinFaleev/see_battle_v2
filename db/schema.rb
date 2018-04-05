@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327201446) do
+ActiveRecord::Schema.define(version: 20180405111731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,17 +40,17 @@ ActiveRecord::Schema.define(version: 20180327201446) do
     t.integer "player_a_id"
     t.integer "player_b_id"
     t.integer "winner_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "looser_id"
     t.integer "player_a_ships", default: 20
     t.integer "player_b_ships", default: 20
+    t.string "play_status"
     t.text "player_a_board"
     t.text "player_b_board"
-    t.string "play_status"
-    t.integer "looser_id"
+    t.text "game_log", default: "Game has started."
     t.text "ai_moves_pull"
     t.text "ai_neglected_moves"
-    t.text "game_log", default: "Game has started."
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "title"
   end
 
@@ -64,15 +64,15 @@ ActiveRecord::Schema.define(version: 20180327201446) do
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "password_digest"
-    t.integer "rating", default: 100
     t.string "remember_token"
-    t.boolean "admin", default: false
+    t.integer "rating", default: 1000
     t.integer "ships_lost", default: 0
     t.integer "ships_destroyed", default: 0
+    t.boolean "admin", default: false
     t.datetime "last_response_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_players_on_deleted_at"
     t.index ["last_response_at"], name: "index_players_on_last_response_at"
