@@ -20,7 +20,7 @@ module SeeBattleV2
     config.action_dispatch.default_headers.clear
 
     config.before_initialize do |app|
-      app.config.paths.add 'app/models', :eager_load => true
+      app.config.paths.add 'app/models', eager_load: true
     end
 
     # Reload cached/serialized classes before every request (in development

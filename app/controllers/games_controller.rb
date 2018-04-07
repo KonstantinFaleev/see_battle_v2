@@ -6,10 +6,11 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.start_game(current_player, Player.find_by_id(2), params[:board_id])
-    redirect_to game_path(@game)
+    redirect_to @game
   end
 
   def show
+
     @comment = current_player.comments.build(game_id: @game.id)
   end
 
