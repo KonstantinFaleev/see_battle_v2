@@ -1,7 +1,7 @@
 class Player < ActiveRecord::Base
   has_secure_password
-  has_many :victories, :foreign_key => 'winner_id', :class_name => 'Game'
-  has_many :defeats, :foreign_key => 'looser_id', :class_name => 'Game'
+  has_many :victories, foreign_key: 'winner_id', class_name: 'Game'
+  has_many :defeats, foreign_key: 'looser_id', class_name:'Game'
   has_many :boards
   has_many :comments
 
@@ -29,7 +29,7 @@ class Player < ActiveRecord::Base
 
   def self.search(search)
     if search
-      find(:all, :conditions => ['lower(name) LIKE ?', "%#{search.downcase}%"])
+      find(:all, conditions: ['lower(name) LIKE ?', "%#{search.downcase}%"])
     else
       find(:all)
     end
