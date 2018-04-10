@@ -1,7 +1,7 @@
 class Player < ActiveRecord::Base
   has_secure_password
   has_many :victories, foreign_key: 'winner_id', class_name: 'Game'
-  has_many :defeats, foreign_key: 'looser_id', class_name:'Game'
+  has_many :defeats, foreign_key: 'looser_id', class_name: 'Game'
   has_many :boards
   has_many :comments
 

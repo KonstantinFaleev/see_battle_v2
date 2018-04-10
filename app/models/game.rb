@@ -13,8 +13,8 @@ class Game < ActiveRecord::Base
 
   belongs_to :player_a, foreign_key: 'player_a_id', class_name: 'Player'
   belongs_to :player_b, foreign_key: 'player_b_id', class_name: 'Player'
-  belongs_to :looser, foreign_key: 'looser_id', class_name: 'Player'
-  belongs_to :winner, foreign_key: 'winner_id', class_name: 'Player'
+  #belongs_to :looser, foreign_key: 'looser_id', class_name: 'Player'
+  #belongs_to :winner, foreign_key: 'winner_id', class_name: 'Player'
   has_many :ships, foreign_key: 'game_id', class_name: 'Ship'
   has_many :comments
 

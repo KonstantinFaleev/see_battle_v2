@@ -10,7 +10,6 @@ class GamesController < ApplicationController
   end
 
   def show
-
     @comment = current_player.comments.build(game_id: @game.id)
   end
 
