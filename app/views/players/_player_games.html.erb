@@ -1,7 +1,7 @@
-<% if game.winner.nil? %>
+<% if game.winner_id.nil? %>
     <% status = "In progress" %>
     <tr class="warning">
-<% elsif game.winner.id == @player.id %>
+<% elsif game.winner_id.id == @player.id %>
     <% status = "Victory" %>
     <tr class="success">
 <% else %>
