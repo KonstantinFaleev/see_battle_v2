@@ -11,11 +11,11 @@ class Game < ActiveRecord::Base
   validates :player_a_ships, presence: true
   validates :player_b_ships, presence: true
 
-  belongs_to :player_a, :foreign_key => 'player_a_id', :class_name => 'Player'
-  belongs_to :player_b, :foreign_key => 'player_b_id', :class_name => 'Player'
-  belongs_to :looser, :foreign_key => 'looser_id', :class_name => 'Player', optional: true
-  belongs_to :winner, :foreign_key => 'winner_id', :class_name => 'Player', optional: true
-  has_many :ships,:foreign_key => 'game_id', :class_name => 'Ship'
+  belongs_to :player_a, foreign_key: 'player_a_id', class_name: 'Player'
+  belongs_to :player_b, foreign_key: 'player_b_id', class_name: 'Player'
+  belongs_to :looser, foreign_key: 'looser_id', class_name: 'Player', optional: true
+  belongs_to :winner, foreign_key: 'winner_id', class_name:'Player', optional: true
+  has_many :ships, foreign_key: 'game_id', class_name: 'Ship'
   has_many :comments
 
   #to differ cases when ship is hit and player should move again
@@ -125,12 +125,12 @@ class Game < ActiveRecord::Base
     if game_over?
       # forced to use update_attributes explicitly?
       #self.winner = player
-      self.update_attributes :winner => player
+      self.update_attributes winner: player
       if self.winner == self.player_a
-        self.update_attributes :looser => player_b
+        self.update_attributes looser: player_b
         self.play_status = "You have won this game. Congratulations!"
       else
-        self.update_attributes :looser => player_a
+        self.update_attributes looser: player_a
         if surrender
           self.play_status = "You have surrendered."
         else
