@@ -85,7 +85,7 @@ class Game < ActiveRecord::Base
 
     if board[x][y][0] == 1
       board[x][y][0] = 3
-      ship = board[x][y][1].reload
+      ship = board[x][y][1]
       ship.update_attribute('decks', ship.decks-1)
       ships -= 1
       self.move_again = true
