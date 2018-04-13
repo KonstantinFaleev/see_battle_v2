@@ -24,6 +24,7 @@ gem 'nokogiri'
 gem 'json'
 gem 'paranoia', '~> 2.0'
 gem 'pg', '>= 0.18', '< 2.0'
+gem 'rails_12factor'
 gem 'puma', '~> 3.7'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rubocop', require: false
