@@ -21,8 +21,8 @@ class PlayersController < ApplicationController
   end
 
   def show
-    @saved_boards = Board.where("player_id = ? AND saved = ?", @player.id, true).load.paginate(:page => params[:page], :per_page => 10)
-    @games = Game.where(["player_a_id = ? or player_b_id = ?", @player.id, @player.id]).load.paginate(:page => params[:page], :per_page => 10)
+    @saved_boards = Board.where("player_id = ? AND saved = ?", @player.id, true).load.paginate(page: params[:page], per_page: 10)
+    @games = Game.where(["player_a_id = ? or player_b_id = ?", @player.id, @player.id]).load.paginate(page: params[:page], per_page: 10)
   end
 
   def comments

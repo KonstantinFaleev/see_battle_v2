@@ -19,7 +19,7 @@
     </ol>
 <% end %>
 
-<%= form_for(comment, :remote=>true) do |f| %>
+<%= form_for(comment, :remote => true) do |f| %>
     <div class="field" style="margin-top: 10px;">
       <%= f.text_area :content, placeholder: "Add your comment...",
                       :maxlength => 140, :style => "width:100%;margin-bottom:0px;" %>
