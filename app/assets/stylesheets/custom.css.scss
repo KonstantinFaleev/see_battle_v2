@@ -10,7 +10,6 @@ $grayLighter: #eee;
 $blue: #049cdb;
 
 
-
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -96,6 +95,13 @@ h5 {
 .logo{
   position: absolute;
   z-index: 1000;
+}
+
+.collapse.navbar-collapse{
+  h1{
+    text-align: left;
+    color: white;
+  }
 }
 
 /* Home page */
