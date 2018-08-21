@@ -1,7 +1,10 @@
 <nav class="navbar navbar-inverse">
   <div class="container">
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"><h1>Sea Battle - GeekHub</h1>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-left">
+        <h1>Sea Battle - GeekHub</h1>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
         <% if signed_in? %>
